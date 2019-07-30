@@ -1,0 +1,49 @@
+package loc.aliar.monitoringsystem.model;
+
+import loc.aliar.monitoringsystem.repository.BodyPositionRepository;
+import loc.aliar.monitoringsystem.repository.LoadRepository;
+import loc.aliar.monitoringsystem.repository.StatementRepository;
+import loc.aliar.monitoringsystem.validation.annotation.Exists;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ReadingModel {
+    private Long id;
+
+    @NotNull
+    private Short duration;
+
+    @NotNull
+    @Min(50)
+    @Max(250)
+    private Short growth;
+
+    @NotNull
+    @Min(30)
+    @Max(200)
+    private Short weight;
+
+    private LocalDateTime date;
+
+    private Byte borg;
+
+    @Exists(LoadRepository.class)
+    private Long loadId;
+
+    @Exists(BodyPositionRepository.class)
+    private Long bodyPositionId;
+
+    @Exists(StatementRepository.class)
+    private Long statementId;
+}
