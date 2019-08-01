@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card" >
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Личная информация</h4>
+                <p class="card-category">Добавить личную информацию доктора</p>
+            </div>
+            <div class="card-body">
+            <form th:action="@{doctors.store}" method="POST">
+<!--                {!! Form::open(['route' => 'doctors.store']) !!}-->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Фамилия</label>
+                            <input type="text" class="form-control"
+                                   aria-label="last_name">
+<!--                            {{ Form::label('last_name', 'Фамилия', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('last_name', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('last_name') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Имя</label>
+                            <input type="text" class="form-control"
+                                   aria-label="first_name">
+<!--                            {{ Form::label('first_name', 'Имя', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('first_name', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('first_name') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Отчество</label>
+                            <input type="text" class="form-control"
+                                   aria-label="middle_name">
+<!--                            {{ Form::label('middle_name', 'Отчество', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('middle_name', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('middle_name') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Логин</label>
+                            <input type="text" class="form-control"
+                                   aria-label="login">
+<!--                            {{ Form::label('login', 'Логин', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('login', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('login') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Пароль</label>
+                            <input type="password" class="form-control"
+                                   aria-label="password">
+<!--                            {{ Form::label('password', 'Пароль', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::password('password', ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Звание</label>
+                            <!--                        <select th:field="rank" class="form-control"-->
+                            <!--                               aria-label="rank_id" th:placeholder="Выберите звание">-->
+                            <!--                        </select>-->
+<!--                            {{ Form::label('rank_id', 'Звание', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::select('rank_id', $rank, null,-->
+<!--                            ['class' => 'form-control', 'placeholder' => 'Выберите звание']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('rank_id') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Ученая степень</label>
+                            <!--                        <select th:field="degree" class="form-control"-->
+                            <!--                               aria-label="degree_id" th:placeholder="Выберите ученая степень">-->
+                            <!--                        </select>-->
+<!--                            {{ Form::label('degree_id', 'Ученая степень', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::select('degree_id', $degree, null,-->
+<!--                            ['class' => 'form-control', 'placeholder' => 'Выберите ученая степень']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('degree_id') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Специализация</label>
+                            <!--                        <select th:field="specialization" class="form-control"-->
+                            <!--                               aria-label="specialization_id" th:placeholder="Выберите специализацию">-->
+                            <!--                        </select>-->
+<!--                            {{ Form::label('specialization_id', 'Специализация', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::select('specialization_id', $specialization, null,-->
+<!--                            ['class' => 'form-control', 'placeholder' => 'Выберите специализацию']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('specialization_id') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Телефон</label>
+                            <input type="text" class="form-control"
+                                   aria-label="phone">
+<!--                            {{ Form::label('phone', 'Телефон', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('phone', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('phone') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Email</label>
+                            <input type="text" class="form-control"
+                                   aria-label="email">
+<!--                            {{ Form::label('email', 'Email', ['class' => 'bmd-label-floating']) }}-->
+<!--                            {{ Form::text('email', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Добавить</button>
+                <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                <div class="clearfix"></div>
+                <!--                                {{ Form::close() }}-->
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+

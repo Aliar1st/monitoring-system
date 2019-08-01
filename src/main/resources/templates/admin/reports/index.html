@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="col-md-12" layout:fragment="contentAdmin">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Отчёты</h4>
+            <p class="card-category">Выбор временного промежутка и отчёта</p>
+        </div>
+        <div class="card-body">
+            <form th:action="@{admin.reports}" method="GET">
+                <!--            {!! Form::open(['route' => 'admin.reports', 'id' => 'chartDateForm',  'method' => 'get']) !!}-->
+                <div class="row">
+                    <div class="col">
+                        <div class="bmd-label-floating">
+                            <label class="bmd-label-floating">Временной промежуток</label>
+                            <!--                        {{ Form::label('reportrange', 'Временной промежуток',-->
+                            <!--                        ['class' => 'bmd-label-floating']) }}-->
+                            <div class="reports_cl" id="reportrange">
+                                <i class="fa fa-calendar"></i>&nbsp;
+                                <span></span> <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <input name="date_from" type="hidden">
+                    <input name="date_to" type="hidden">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" formaction="{{ route('admin.patientsActivity') }}" class="btn btn-primary">Активность пациентов</button>
+                        <button type="submit" formaction="{{ route('admin.messagesActivity') }}" class="btn btn-primary">Активность в чате</button>
+                        <button type="submit" formaction="{{ route('admin.trendChange') }}" class="btn btn-primary">Изменение тенденции оценки по Боргу</button>
+                    </div>
+                </div>
+            </form>
+<!--                {!! Form::close() !!}-->
+        </div>
+    </div>
+</div>
+
+
+<div layout:fragment="styles">
+    <!-- JQuery DataTable Css -->
+    <link th:href="@{/styles/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css}"
+          rel="stylesheet">
+    <!-- Daterangepicker -->
+    <link th:href="@{/styles/daterangepicker.css}" rel="stylesheet">
+    <link th:href="@{/styles/datatables.css}"  rel="stylesheet" type="text/css"/>
+</div>
+
+<div layout:fragment="scripts">
+    <script th:src="@{/scripts/daterangepicker.js}"></script>
+    <script th:src="@{/scripts/custom/custom-reports.js}"></script>
+</div>
+
+</body>
+</html>
