@@ -26,7 +26,7 @@ public class AdminDoctorServiceImpl implements AdminDoctorService {
     private final SecurityService securityService;
 
     @Override
-    public List<DoctorModel> getAllByDepartmentId(Long departmentId) {
+    public List<DoctorModel> getAllByDepartmentId(Integer departmentId) {
         List<Doctor> doctors = doctorRepository.findAllByDepartmentId(departmentId);
         return convertEntitiesListToModels(doctors);
     }

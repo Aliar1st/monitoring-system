@@ -4,10 +4,10 @@ import loc.aliar.monitoringsystem.domain.Patient;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.service.SecurityService;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
-import loc.aliar.monitoringsystem.service.admin.EducationService;
 import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
+import loc.aliar.monitoringsystem.service.admin.CrudService;
+import loc.aliar.monitoringsystem.service.admin.EducationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,7 +32,7 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
 
     @GetMapping("add")
     public String create(Model model) {
-        Long departmentId = securityService.getDepartmentId();
+        Integer departmentId = securityService.getDepartmentId();
         List<DoctorModel> doctors = adminDoctorService.getAllByDepartmentId(departmentId);
         return createDefault(model
                 .addAttribute("doctors", doctors)

@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -38,7 +37,7 @@ public class ReadingController {
         return "";
     }
 
-    @GetMapping
+    @GetMapping("chartData")
     @ResponseBody
     public ChartDataResponse chartData(@Valid ChartDataRequest chartDataRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -53,10 +52,13 @@ public class ReadingController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        Optional<ReadingModel> lastReading = readingService.getLastByPatientId(securityService.getPatient().getId());
+        Long patientId = securityService.getPatient().getId();
+        Optional<ReadingModel> lastReading = readingService.getLastByPatientId(patientId);
+
+        lastReading.ifPresent(readingModel -> model
+                .addAttribute("growth", readingModel.getGrowth())
+                .addAttribute("weight", readingModel.getWeight()));
         model
-                .addAttribute("growth", lastReading.map(ReadingModel::getGrowth).orElse(null))
-                .addAttribute("weight", lastReading.map(ReadingModel::getWeight).orElse(null))
                 .addAttribute("bodyPositions", bodyPositionService.getAll())
                 .addAttribute("loadTypes", loadTypeService.getAll())
                 .addAttribute("loads", loadService.getAll())
