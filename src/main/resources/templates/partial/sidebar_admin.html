@@ -15,25 +15,25 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item {{ \Request::is(['doctors', 'doctors/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/doctors}">
+                <a class="nav-link" th:href="@{/admin/doctors}">
                     <i class="material-icons">person</i>
                     <p>Врачи</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['admins', 'admins/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admins}">
+                <a class="nav-link" th:href="@{/admin/admins}">
                     <i class="material-icons">person</i>
                     <p>Администраторы</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['patients', 'patients/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/patients}">
+                <a class="nav-link" th:href="@{/admin/patients}">
                     <i class="material-icons">person</i>
                     <p>Пациенты</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['reports', 'reports/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/reports}">
+                <a class="nav-link" th:href="@{/admin/reports}">
                     <i class="material-icons">content_paste</i>
                     <p>Отчёты</p>
                 </a>
