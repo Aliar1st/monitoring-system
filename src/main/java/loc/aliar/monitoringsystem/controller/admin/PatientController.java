@@ -9,6 +9,7 @@ import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.EducationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController("adminPatientController")
+@Controller("adminPatientController")
 @RequestMapping("admin/patients")
 @RequiredArgsConstructor
 public class PatientController implements BaseAdminController<Patient, PatientModel> {
