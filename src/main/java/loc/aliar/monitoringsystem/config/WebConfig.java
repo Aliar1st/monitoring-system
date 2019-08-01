@@ -4,6 +4,7 @@ import loc.aliar.monitoringsystem.converter.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -41,5 +42,19 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addConverter(new PositionToModelConverter());
         registry.addConverter(new SpecializationToModelConverter());
         registry.addConverter(new StatementToModelConverter());
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(
+                "/webjars/**",
+                "/images/**",
+                "/styles/**",
+                "/scripts/**")
+                .addResourceLocations(
+                        "classpath:/META-INF/resources/webjars/",
+                        "classpath:/static/images/",
+                        "classpath:/static/styles/",
+                        "classpath:/static/scripts/");
     }
 }

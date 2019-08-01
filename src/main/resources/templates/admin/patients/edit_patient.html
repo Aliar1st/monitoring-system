@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <form th:action="@{patients.update}" method="PUT">
+            <!--    {!! Form::model($general_information, ['route' => ['patients.update', $patient->id], 'method' => 'put']) !!}-->
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Личная информация</h4>
+                    <p class="card-category">Изменить личную информацию пациента</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Фамилия</label>
+                                <input type="text" class="form-control"
+                                       aria-label="last_name">
+                                <!--                        {{ Form::label('last_name', 'Фамилия', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('last_name', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('last_name') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Имя</label>
+                                <input type="text" class="form-control"
+                                       aria-label="first_name">
+                                <!--                        {{ Form::label('first_name', 'Имя', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('first_name', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('first_name') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Отчество</label>
+                                <input type="text" class="form-control"
+                                       aria-label="middle_name">
+                                <!--                        {{ Form::label('middle_name', 'Отчество', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('middle_name', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('middle_name') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Логин</label>
+                                <input type="text" class="form-control"
+                                       aria-label="login">
+                                <!--                        {{ Form::label('login', 'Логин', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('login', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('login') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Пароль</label>
+                                <input type="text" class="form-control"
+                                       aria-label="password">
+                                <!--                        {{ Form::label('password', 'Пароль', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::password('password', ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Образование</label>
+                                <!--                        <select th:field="edu" class="form-control"-->
+                                <!--                               aria-label="education_id" th:placeholder="Выберите образование">-->
+                                <!--                        </select>-->
+                                <!--                        {{ Form::label('education_id', 'Образование', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::select('education_id', $edu, null,-->
+                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите образование']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('education_id') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Пол</label>
+                                <!--                        <select th:field="sex" class="form-control"-->
+                                <!--                                aria-label="is_male" th:placeholder="Выберите пол">-->
+                                <!--                        </select>-->
+                                <!--                        {{ Form::label('is_male', 'Пол', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::select('is_male', $sex, null,-->
+                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите пол']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('is_male') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Пол</label>
+                                <!--                        <select th:field="sex" class="form-control"-->
+                                <!--                                aria-label="is_male" th:placeholder="Выберите пол">-->
+                                <!--                        </select>-->
+                                <!--                        {{ Form::label('is_work', 'Занятость', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::select('is_work', $work, null,-->
+                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите занятость']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('is_work') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Дата рождения</label>
+                                <input type="text" class="form-control"
+                                       aria-label="date_of_birth">
+                                <!--                        {{ Form::label('date_of_birth', 'Дата рождения', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::date('date_of_birth', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('date_of_birth') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Город</label>
+                                <input type="text" class="form-control"
+                                       aria-label="address">
+                                <!--                        {{ Form::label('address', 'Город', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('address', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('address') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Телефон</label>
+                                <input type="text" class="form-control"
+                                       aria-label="phone">
+                                <!--                        {{ Form::label('phone', 'Телефон', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('phone', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('phone') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Email</label>
+                                <input type="text" class="form-control"
+                                       aria-label="email">
+                                <!--                        {{ Form::label('email', 'Email', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('email', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Доктор</label>
+                                <!--                        <select th:field="doctors" class="form-control"-->
+                                <!--                                aria-label="doctor_id" th:placeholder="Выберите доктора">-->
+                                <!--                        </select>-->
+                                <!--                        {{ Form::label('doctor_id', 'Доктор', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::select('doctor_id', $doctors, null,-->
+                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите доктора']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('doctor_id') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Медицинская информация</h4>
+                    <p class="card-category">Изменить медицинскую информацию пациента</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Основной диагноз</label>
+                                <input type="text" class="form-control"
+                                       aria-label="basic_diagnosis">
+                                <!--                        {{ Form::label('basic_diagnosis', 'Основной диагноз', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('basic_diagnosis', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('basic_diagnosis') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сопутствующий диагноз</label>
+                                <input type="text" class="form-control"
+                                       aria-label="concomitant_diagnosis">
+                                <!--                        {{ Form::label('concomitant_diagnosis', 'Сопутствующий диагноз', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('concomitant_diagnosis', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('concomitant_diagnosis') }}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Операции</label>
+                                <input type="text" class="form-control"
+                                       aria-label="operations">
+                                <!--                        {{ Form::label('operations', 'Операции', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('operations', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('operations') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Осложнения</label>
+                                <input type="text" class="form-control"
+                                       aria-label="oslozhneniye">
+                                <!--                        {{ Form::label('oslozhneniye', 'Осложнения', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('oslozhneniye', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('oslozhneniye') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КДО ЛЖ, мл</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KDO_LZH">
+                                <!--                        {{ Form::label('KDO_LZH', 'КДО ЛЖ, мл', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('KDO_LZH', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KDO_LZH') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ЛЖ, мл</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KSO_LZH">
+                                <!--                        {{ Form::label('KSO_LZH', 'КСО ЛЖ, мл', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('KSO_LZH', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KSO_LZH') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ИММ, г/м2</label>
+                                <input type="text" class="form-control"
+                                       aria-label="IMM">
+                                <!--                        {{ Form::label('IMM', 'ИММ, г/м2', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('IMM', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('IMM') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ФВ, %</label>
+                                <input type="text" class="form-control"
+                                       aria-label="FV">
+                                <!--                        {{ Form::label('FV', 'ФВ, %', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('FV', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('FV') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ЛП</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KSO_LP">
+                                <!--                        {{ Form::label('KSO_LP', 'КСО ЛП', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('KSO_LP', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KSO_LP') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ПП</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KSO_PP">
+                                <!--                        {{ Form::label('KSO_PP', 'КСО ПП', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('KSO_PP', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KSO_PP') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">СДЛА</label>
+                                <input type="text" class="form-control"
+                                       aria-label="SDLA">
+                                <!--                        {{ Form::label('SDLA', 'СДЛА', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('SDLA', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('SDLA') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Диаст дисф.</label>
+                                <input type="text" class="form-control"
+                                       aria-label="diast_disf">
+                                <!--                        {{ Form::label('diast_disf', 'Диаст дисф.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('diast_disf', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('diast_disf') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Локальн сокр.</label>
+                                <input type="text" class="form-control"
+                                       aria-label="lokaln_sokr">
+                                <!--                        {{ Form::label('lokaln_sokr', 'Локальн сокр.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('lokaln_sokr', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('lokaln_sokr') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ХМ экг, дата</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KHM_ekg">
+                                <!--                        {{ Form::label('KHM_ekg', 'ХМ экг, дата', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('KHM_ekg', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KHM_ekg') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Осн. ритм</label>
+                                <input type="text" class="form-control"
+                                       aria-label="osn_ritm">
+                                <!--                        {{ Form::label('osn_ritm', 'Осн. ритм', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('osn_ritm', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('osn_ritm') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">НЖА/НЖТЖА/ЖТ</label>
+                                <input type="text" class="form-control"
+                                       aria-label="NZHA_NZHTZHA_ZHT">
+                                <!--                        {{ Form::label('NZHA_NZHTZHA_ZHT', 'НЖА/НЖТЖА/ЖТ', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('NZHA_NZHTZHA_ZHT', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('NZHA_NZHTZHA_ZHT') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЖА/Жт</label>
+                                <input type="text" class="form-control"
+                                       aria-label="ZHA_Zht">
+                                <!--                        {{ Form::label('ZHA_Zht', 'ЖА/Жт', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('ZHA_Zht', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('ZHA_Zht') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сум. ишемия, мин</label>
+                                <input type="text" class="form-control"
+                                       aria-label="sum_ishemiya">
+                                <!--                        {{ Form::label('sum_ishemiya', 'Сум. ишемия, мин', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('sum_ishemiya', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('sum_ishemiya') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЭКГ ритм</label>
+                                <input type="text" class="form-control"
+                                       aria-label="EKG_ritm">
+                                <!--                        {{ Form::label('EKG_ritm', 'ЭКГ ритм', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('EKG_ritm', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('EKG_ritm') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Нарушения ритма</label>
+                                <input type="text" class="form-control"
+                                       aria-label="nar_ritma">
+                                <!--                        {{ Form::label('nar_ritma', 'Нарушения ритма', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('nar_ritma', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('nar_ritma') }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Нар. проводимости</label>
+                                <input type="text" class="form-control"
+                                       aria-label="nar_provodimosti">
+                                <!--                        {{ Form::label('nar_provodimosti', 'Нар. проводимости', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('nar_provodimosti', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('nar_provodimosti') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ST, подъем/депрессия</label>
+                                <input type="text" class="form-control"
+                                       aria-label="ST">
+                                <!--                        {{ Form::label('ST', 'ST, подъем/депрессия', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('ST', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('ST') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Толерантность, МЕ/ВТ</label>
+                                <input type="text" class="form-control"
+                                       aria-label="tolerantnost">
+                                <!--                        {{ Form::label('tolerantnost', 'Толерантность, МЕ/ВТ', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('tolerantnost', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('tolerantnost') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Причина прекращения</label>
+                                <input type="text" class="form-control"
+                                       aria-label="prichina_prekrashch">
+                                <!--                        {{ Form::label('prichina_prekrashch', 'Причина прекращения', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('prichina_prekrashch', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('prichina_prekrashch') }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Продолж. нагрузки</label>
+                                <input type="text" class="form-control"
+                                       aria-label="prodolzh_nagruzki">
+                                <!--                        {{ Form::label('prodolzh_nagruzki', 'Продолж. нагрузки', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('prodolzh_nagruzki', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('prodolzh_nagruzki') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ОХ, ммоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="OKH">
+                                <!--                        {{ Form::label('OKH', 'ОХ, ммоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('OKH', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('OKH') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЛПНП, ммоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="LPNP">
+                                <!--                        {{ Form::label('LPNP', 'ЛПНП, ммоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('LPNP', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('LPNP') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЛПВП, ммоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="LPVP">
+                                <!--                        {{ Form::label('LPVP', 'ЛПВП, ммоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('LPVP', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('LPVP') }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ТГ, ммоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="TG">
+                                <!--                        {{ Form::label('TG', 'ТГ, ммоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('TG', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('TG') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">АЛТ, ед/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="ALT">
+                                <!--                        {{ Form::label('ALT', 'АЛТ, ед/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('ALT', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('ALT') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">АСТ, ед/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="AST">
+                                <!--                        {{ Form::label('AST', 'АСТ, ед/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('AST', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('AST') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Глю, ммоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="Glyu">
+                                <!--                        {{ Form::label('Glyu', 'Глю, ммоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('Glyu', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('Glyu') }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Кр, мкмоль/л</label>
+                                <input type="text" class="form-control"
+                                       aria-label="Kr">
+                                <!--                        {{ Form::label('Kr', 'Кр, мкмоль/л', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('Kr', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('Kr') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Медикаменты группы</label>
+                                <input type="text" class="form-control"
+                                       aria-label="medikamenty_gruppy">
+                                <!--                        {{ Form::label('medikamenty_gruppy', 'Медикаменты группы', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('medikamenty_gruppy', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('medikamenty_gruppy') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КАГ</label>
+                                <input type="text" class="form-control"
+                                       aria-label="KAG">
+                                <!--                        {{ Form::label('KAG', 'КАГ', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('KAG', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('KAG') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Гармоничный</label>
+                                <input type="number" class="form-control"
+                                       aria-label="harmonious">
+                                <!--                        {{ Form::label('harmonious', 'Гармоничный', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('harmonious', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('harmonious') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Эргопатич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="ergopatical">
+                                <!--                        {{ Form::label('ergopatical', 'Эргопатич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('ergopatical', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('ergopatical') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Аногнозич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="anognosy">
+                                <!--                        {{ Form::label('anognosy', 'Аногнозич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('anognosy', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('anognosy') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Тревожный</label>
+                                <input type="number" class="form-control"
+                                       aria-label="disturbing">
+                                <!--                        {{ Form::label('disturbing', 'Тревожный', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('disturbing', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('disturbing') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Ипохондрич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="hypochondriacal">
+                                <!--                        {{ Form::label('hypochondriacal', 'Ипохондрич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('hypochondriacal', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('hypochondriacal') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Неврастенич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="neurasthenic">
+                                <!--                        {{ Form::label('neurasthenic', 'Неврастенич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('neurasthenic', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('neurasthenic') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Меланхолич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="melancholy">
+                                <!--                        {{ Form::label('melancholy', 'Меланхолич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('melancholy', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('melancholy') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Апатическ</label>
+                                <input type="number" class="form-control"
+                                       aria-label="apathetic">
+                                <!--                        {{ Form::label('apathetic', 'Апатическ', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('apathetic', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('apathetic') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сентитивн.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="sentimental">
+                                <!--                        {{ Form::label('sentimental', 'Сентитивн.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('sentimental', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('sentimental') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Эгоцентрич.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="self_centered">
+                                <!--                        {{ Form::label('self_centered', 'Эгоцентрич.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('self_centered', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('self_centered') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Паронояльный</label>
+                                <input type="number" class="form-control"
+                                       aria-label="paranoid">
+                                <!--                        {{ Form::label('paranoid', 'Паронояльный', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('paranoid', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('paranoid') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Дисфорическ.</label>
+                                <input type="number" class="form-control"
+                                       aria-label="dysphoric">
+                                <!--                        {{ Form::label('dysphoric', 'Дисфорическ.', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('dysphoric', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('dysphoric') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Тип личности</label>
+                                <input type="number" class="form-control"
+                                       aria-label="personality_type">
+                                <!--                        {{ Form::label('personality_type', 'Тип личности', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('personality_type', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('personality_type') }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Соотнош. типов</label>
+                                <input type="number" class="form-control"
+                                       aria-label="type_relationship">
+                                <!--                        {{ Form::label('type_relationship', 'Соотнош. типов', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('type_relationship', null,-->
+                                <!--                        ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('type_relationship') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Обновить</button>
+                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

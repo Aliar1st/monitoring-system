@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/app}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет администратора</title>
+</head>
+    <body>
+        <div layout:fragment="content">
+            <div th:insert="~{partial/sidebar_admin :: sidebar_admin}">
+            </div>
+
+            <div class="main-panel">
+                <div th:insert="~{partial/navbar :: navbar}">
+                </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div layout:fragment="contentAdmin"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+        <div layout:fragment="scripts">
+            <script th:src="@{/scripts/jquery-datatable/jquery.dataTables.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/dataTables.buttons.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.flash.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/jszip.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/pdfmake.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/vfs_fonts.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.html5.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.print.min.js}"></script>
+            <script th:src="@{/scripts/jquery-datatable.js}"></script>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="sidebar_admin" class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="logo">
+        <a href="#" class="simple-text logo-normal">
+            НИИ Кардиологии
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item {{ \Request::is(['doctors', 'doctors/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('doctors.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>Врачи</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['admins', 'admins/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admins.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>Администраторы</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['patients', 'patients/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('patients.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>Пациенты</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['reports', 'reports/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.reports') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Отчёты</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['body_positions', 'body_positions/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('body_positions.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Положение тела</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['load_types', 'load_types/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('load_types.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Тип нагрузки</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['load_names', 'load_names/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('load_names.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Нагрузка</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['statements', 'statements/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('statements.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Состояние пациента</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['educations', 'educations/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('educations.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Образование</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['degrees', 'degrees/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('degrees.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Ученая степень врача</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['ranks', 'ranks/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('ranks.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Звание врача</p>
+                </a>
+            </li>
+            <li class="nav-item {{ \Request::is(['specializations', 'specializations/*']) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('specializations.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>Специализация врача</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

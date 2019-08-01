@@ -1,0 +1,158 @@
+.dt-buttons {
+    float: left;
+    width: 40%;
+    min-height: 100px;
+    line-height: 100px;
+}
+
+.dt-button {
+    padding: 12px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    background-color: #9c27b0;
+    color: #fff;
+}
+
+.a:hover, .a:focus {
+    color: #fff !important;
+    background-color: #a233b5 !important;
+}
+
+.bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating,
+.bmd-form-group:not(.has-success):not(.has-danger) [class*=' bmd-label'].bmd-label-floating {
+    color: #7c7c7c !important;
+}
+
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"] {
+    color: transparent;
+}
+
+/* Include this to make it visible when input is clicked */
+input:focus,
+.is-filled input[type="time"],
+.is-filled input[type="date"],
+.is-filled input[type="datetime-local"] {
+    color: #000 !important;
+}
+
+input {
+    font-size: 1.2em !important;
+    color: #000;
+}
+
+select {
+    font-size: 1.2em !important;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 36px;
+}
+
+#reportrange {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.has-error .invalid-feedback {
+    display: block;
+}
+
+.sidebar .nav li.active > [data-toggle="collapse"]{
+    background-color: #9c27b0 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4) !important;
+    color:white;
+}
+
+#patientList{
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+#patientList li img{
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.8rem !important;
+}
+
+#patientList li{
+    padding-right:0 !important;
+    padding-top:0 !important;
+    
+}
+
+#patientList li a{
+    padding-left:5px;
+    padding-right:0;
+    margin-left: 10px !important;
+    margin-top:0;
+
+}
+
+#patientList li a .text-small{
+    margin-right: auto;
+}
+
+#patientList li a .text-smaller{
+    font-size: 0.75rem;
+}
+
+.dataTables_paginate{
+    margin: 0 auto !important;
+}
+
+.dataTables_paginate .pagination{
+    margin: auto !important;
+}
+
+#DataTables_Table_0_paginate{
+    margin: 0 auto !important;
+}
+
+#DataTables_Table_0_paginate .pagination{
+    margin: auto !important;
+}
+
+#DataTables_Table_0_paginate .pagination li{
+    margin: 0 10px;
+}
+
+.dataTables_paginate .pagination li{
+    margin: 0 10px;
+}
+
+.reports_cl {
+    white-space: nowrap;
+    margin: 0;
+}
+
+div >.reports_cl {
+    min-width: min-content;
+    max-width: max-content;
+}
+
+.time-readings div{
+    padding: 5px 0px !important;
+    padding-left:20px !important;
+}
+
+
+.bmd-label-floating{
+    font-size: 0.6875rem !important;
+}
+
+.friend-list .active{
+    background: #9c27b0;
+}
+
+.friend-list .active strong,
+.friend-list .active p
+{
+    color: white !important;
+}
