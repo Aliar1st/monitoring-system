@@ -5,13 +5,14 @@ import loc.aliar.monitoringsystem.model.DegreeModel;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.DegreeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/degrees")
 @RequiredArgsConstructor
 public class DegreeController implements BaseAdminController<Degree, DegreeModel> {

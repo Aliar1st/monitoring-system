@@ -1,0 +1,47 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Отчёт по активности в чате в период с {{ $from }} по {{ $to }}</title>-->
+    <title>Отчёт по активности в чате в период с 000 по 000</title>
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Отчёт по активности в чате</h4>
+<!--                <p class="card-category">Период: с {{ $from }} по {{ $to }}</p>-->
+                <p class="card-category">Период: с 000 по 000</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Врач</th>
+                            <th>Сообщений врача</th>
+                            <th>Пациент</th>
+                            <th>Сообщений пациента</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--                    @foreach($data as $element)-->
+                        <!--                    <tr>-->
+                        <!--                        <td>{{ $element->doctor }}</td>-->
+                        <!--                        <td>{{ $element->doctor_mes }}</td>-->
+                        <!--                        <td>{{ $element->patient }}</td>-->
+                        <!--                        <td>{{ $element->patient_mes }}</td>-->
+                        <!--                    </tr>-->
+                        <!--                    @endforeach-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

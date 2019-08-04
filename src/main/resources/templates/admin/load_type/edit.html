@@ -1,0 +1,41 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Тип нагрузки</h4>
+                <p class="card-category">Изменить тип нагрузки</p>
+            </div>
+            <div class="card-body">
+                <!--            {!! Form::model($load_type, ['route' => ['load_types.update', $load_type->id], 'method' => 'put']) !!}-->
+                <form th:action="@{load_types.update}" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Тип нагрузки</label>
+                                <input type="text" class="form-control"
+                                       aria-label="load_type">
+                                <!--                        {{ Form::label('load_type', 'Тип нагрузки', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::text('load_type', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('load_type') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <div class="clearfix"></div>
+                    <!--            {!! Form::close() !!}-->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

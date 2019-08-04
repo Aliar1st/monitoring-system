@@ -4,13 +4,14 @@ import loc.aliar.monitoringsystem.domain.Doctor;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import loc.aliar.monitoringsystem.service.admin.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController("adminDoctorController")
+@Controller("adminDoctorController")
 @RequestMapping("admin/doctors")
 @RequiredArgsConstructor
 public class DoctorController implements BaseAdminController<Doctor, DoctorModel> {

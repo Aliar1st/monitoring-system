@@ -6,13 +6,14 @@ import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.LoadService;
 import loc.aliar.monitoringsystem.service.admin.LoadTypeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/loads")
 @RequiredArgsConstructor
 public class LoadController implements BaseAdminController<Load, LoadModel> {

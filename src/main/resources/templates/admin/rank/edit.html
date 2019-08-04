@@ -1,0 +1,40 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="col-md-12" layout:fragment="contentAdmin">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Звание</h4>
+            <p class="card-category">Изменить звание</p>
+        </div>
+        <div class="card-body">
+            <form th:action="@{rank.update}" method="POST">
+<!--            {!! Form::model($rank, ['route' => ['ranks.update', $rank->id], 'method' => 'put']) !!}-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Звание</label>
+                        <input type="text" class="form-control"
+                               aria-label="rank">
+<!--                        {{ Form::label('rank', 'Звание', ['class' => 'bmd-label-floating']) }}-->
+<!--                        {{ Form::text('rank', null, ['class' => 'form-control']) }}-->
+                        <div class="invalid-feedback d-block">{{ $errors->first('rank') }}</div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+            <div class="clearfix"></div>
+<!--            {!! Form::close() !!}-->
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

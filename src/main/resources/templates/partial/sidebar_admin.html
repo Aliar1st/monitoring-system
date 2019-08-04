@@ -39,49 +39,49 @@
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['body_positions', 'body_positions/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('body_positions.index') }}">
+                <a class="nav-link" th:href="@{/admin/body_position}">
                     <i class="material-icons">library_books</i>
                     <p>Положение тела</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['load_types', 'load_types/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('load_types.index') }}">
+                <a class="nav-link" th:href="@{/admin/load_type}">
                     <i class="material-icons">library_books</i>
                     <p>Тип нагрузки</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['load_names', 'load_names/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('load_names.index') }}">
+                <a class="nav-link" th:href="@{/admin/load_name}">
                     <i class="material-icons">library_books</i>
                     <p>Нагрузка</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['statements', 'statements/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('statements.index') }}">
+                <a class="nav-link" th:href="@{/admin/statement}">
                     <i class="material-icons">library_books</i>
                     <p>Состояние пациента</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['educations', 'educations/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('educations.index') }}">
+                <a class="nav-link" th:href="@{/admin/education}">
                     <i class="material-icons">library_books</i>
                     <p>Образование</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['degrees', 'degrees/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('degrees.index') }}">
+                <a class="nav-link" th:href="@{/admin/degree}">
                     <i class="material-icons">library_books</i>
                     <p>Ученая степень врача</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['ranks', 'ranks/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('ranks.index') }}">
+                <a class="nav-link" th:href="@{/admin/rank}">
                     <i class="material-icons">library_books</i>
                     <p>Звание врача</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['specializations', 'specializations/*']) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('specializations.index') }}">
+                <a class="nav-link" th:href="@{/admin/specialization}">
                     <i class="material-icons">library_books</i>
                     <p>Специализация врача</p>
                 </a>

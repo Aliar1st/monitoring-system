@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="col-md-12" layout:fragment="contentAdmin">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Учёная степень</h4>
+            <p class="card-category">Изменить учёную степень</p>
+        </div>
+        <div class="card-body">
+            <!--            {!! Form::open(['route' => 'degrees.update']) !!}-->
+            <form th:action="@{degrees.update}" method="POST">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Учёная степень</label>
+                            <input type="text" class="form-control"
+                                   aria-label="degree">
+                            <!--                        {{ Form::label('degree', 'Учёная степень', ['class' => 'bmd-label-floating']) }}-->
+                            <!--                        {{ Form::text('degree', null, ['class' => 'form-control']) }}-->
+                            <div class="invalid-feedback d-block">{{ $errors->first('degree') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+                <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                <div class="clearfix"></div>
+                <!--            {!! Form::close() !!}-->
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

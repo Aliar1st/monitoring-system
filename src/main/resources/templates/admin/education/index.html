@@ -1,0 +1,54 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Образования</h4>
+                <p class="card-category">Список всех образований</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>№</th>
+                            <th>Образование</th>
+                            <th data-orderable="false"><a th:href="@{/admin/education/create}" class="btn btn-primary ">Добавить образование</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="e : ${educations}">
+                            <tr>
+                                <td th:text="${e.id}"></td>
+                                <td th:text="${e.education}"></td>
+                                <td class="text-primary">
+                                    <a th:href="@{/admin/education/__${e.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                        <!--                    @foreach($educations as $e)-->
+                        <!--                    <tr>-->
+                        <!--                        <td>{{ $e->id }}</td>-->
+                        <!--                        <td>{{ $e->education }}</td>-->
+                        <!--                        <td class="text-primary">-->
+                        <!--                            <a href="{{ route('educations.edit', ['id' => $e->id]) }}" class="btn btn-primary ">Редактировать</a>-->
+                        <!--                        </td>-->
+                        <!--                    </tr>-->
+                        <!--                    @endforeach-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

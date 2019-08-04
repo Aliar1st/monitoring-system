@@ -5,13 +5,14 @@ import loc.aliar.monitoringsystem.model.PositionModel;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.PositionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/positions")
 @RequiredArgsConstructor
 public class PositionController implements BaseAdminController<Position, PositionModel> {

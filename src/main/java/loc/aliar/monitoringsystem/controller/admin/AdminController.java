@@ -7,13 +7,14 @@ import loc.aliar.monitoringsystem.model.UserModel;
 import loc.aliar.monitoringsystem.service.admin.AdminService;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/admins")
 @RequiredArgsConstructor
 public class AdminController implements BaseAdminController<Admin, AdminModel> {

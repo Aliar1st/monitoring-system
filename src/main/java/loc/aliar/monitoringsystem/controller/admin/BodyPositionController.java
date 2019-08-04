@@ -5,13 +5,14 @@ import loc.aliar.monitoringsystem.model.BodyPositionModel;
 import loc.aliar.monitoringsystem.service.admin.BodyPositionService;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/body-positions")
 @RequiredArgsConstructor
 public class BodyPositionController implements BaseAdminController<BodyPosition, BodyPositionModel> {

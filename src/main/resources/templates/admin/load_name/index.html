@@ -1,0 +1,56 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Вид нагрузки</h4>
+                <p class="card-category">Список всех видов нагрузки</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>№</th>
+                            <th>Вид нагрузки</th>
+                            <th>Тип нагрузки</th>
+                            <th data-orderable="false"><a th:href="@{/admin/load_name/create}" class="btn btn-primary ">Добавить вид нагрузки</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="ln : ${load_names}">
+                            <tr>
+                                <td th:text="${ln.id}"></td>
+                                <td th:text="${ln.load_name}"></td>
+                                <td class="text-primary">
+                                    <a th:href="@{/admin/load_name/__${ln.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                        <!--                    @foreach($load_names as $ln)-->
+                        <!--                    <tr>-->
+                        <!--                        <td>{{ $ln->id }}</td>-->
+                        <!--                        <td>{{ $ln->load_name }}</td>-->
+                        <!--                        <td>{{ $ln->loadType->load_type }}</td>-->
+                        <!--                        <td class="text-primary">-->
+                        <!--                            <a href="{{ route('load_names.edit', ['id' => $ln->id]) }}" class="btn btn-primary ">Редактировать</a>-->
+                        <!--                        </td>-->
+                        <!--                    </tr>-->
+                        <!--                    @endforeach-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

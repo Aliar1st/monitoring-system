@@ -1,0 +1,53 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Отчёт по изменении тенденции оценки по Боргу в период с {{ $from }} по {{ $to }}</title>-->
+    <title>Отчёт по изменении тенденции оценки по Боргу в период с 000 по 000</title>
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Отчёт по изменению тенденции оценки по Боргу</h4>
+                <!--            <p class="card-category">Период: с {{ $from }} по {{ $to }}</p>-->
+                <p class="card-category">Период: с 000 по 000</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Врач</th>
+                            <th>Пациент</th>
+                            <th>Изменение</th>
+                            <th>Тенденция на начало периода</th>
+                            <th>Тенденция на конец периода</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--                    @foreach($data as $e)-->
+                        <!--                    <tr>-->
+                        <!--                        <td>{{ $e->doctor }}</td>-->
+                        <!--                        <td>{{ $e->patient }}</td>-->
+                        <!--                        <td style="color: {{$e->percent < 0 ? 'green' : 'red'}};">-->
+                        <!--                            {{ ($e->percent < 0 ? '' : '+') . number_format($e->percent, 2, ',', '') }} %-->
+                        <!--                        </td>-->
+                        <!--                        <td>{{ number_format($e->yMin, 2, ',', '') }}</td>-->
+                        <!--                        <td>{{ number_format($e->yMax, 2, ',', '') }}</td>-->
+                        <!--                    </tr>-->
+                        <!--                    @endforeach-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

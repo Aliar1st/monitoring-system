@@ -1,3 +1,4 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/admin}"
@@ -27,11 +28,25 @@
                         <th>Результат последних показаний</th>
                         <th>Контактый телефон</th>
                         <th data-orderable="false">
-                            <a href="{{ route('patients.create') }}" class="btn btn-primary ">Добавить пациента</a>
+                            <a th:href="@{/admin/patients/create}" class="btn btn-primary ">Добавить пациента</a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
+                    <th:block th:each="p : ${patients}">
+                        <tr>
+                            <td th:text="${p.id}"></td>
+                            <td th:text="${p.id}">{{ $p->generalInformation->last_name }}</td>
+                            <td th:text="${p.id}">{{ $p->generalInformation->first_name }}</td>
+                            <td th:text="${p.id}">{{ $p->generalInformation->middle_name ?? \Config::get('constants.not_available') }}</td>
+                            <td th:text="${p.id}">{{ Helper::getDateFromReading($p->lastReading) }}</td>
+                            <td th:text="${p.id}">{{ Helper::getBorgResultFromReading($p->lastReading) }}</td>
+                            <td th:text="${p.id}">{{ $p->generalInformation->phone ?? $na }}</td>
+                            <td class="text-primary">
+                                <a th:href="@{/admin/patient/__${p.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                            </td>
+                        </tr>
+                    </th:block>
 <!--                    @foreach($patients as $p)-->
 <!--                    <tr>-->
 <!--                        <td>{{ $p->id }}</td>-->

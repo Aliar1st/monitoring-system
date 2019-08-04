@@ -1,0 +1,65 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="col-md-12" layout:fragment="contentAdmin">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Состояние пациента</h4>
+                <p class="card-category">Изменить состояние пациента</p>
+            </div>
+            <div class="card-body">
+                <!--            {!! Form::open(['route' => 'statements.store']) !!}-->
+                <form th:action="@{statements.update}" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Состояние</label>
+                                <textarea type="text" class="form-control"
+                                          aria-label="statement" rows="3"></textarea>
+                                <!--                        {{ Form::label('statement', 'Состояние', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::textarea('statement', null, ['class' => 'form-control', 'rows' => 3]) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('statement') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Рекомендация</label>
+                                <textarea type="text" class="form-control"
+                                          aria-label="recommendation" rows="3"></textarea>
+                                <!--                        {{ Form::label('recommendation', 'Рекомендация', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::textarea('recommendation', null, ['class' => 'form-control', 'rows' => 3]) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('recommendation') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Результат по Боргу</label>
+                                <input type="number" class="form-control"
+                                       aria-label="borg_result">
+                                <!--                        {{ Form::label('borg_result', 'Результат по Боргу', ['class' => 'bmd-label-floating']) }}-->
+                                <!--                        {{ Form::number('borg_result', null, ['class' => 'form-control']) }}-->
+                                <div class="invalid-feedback d-block">{{ $errors->first('borg_result') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <div class="clearfix"></div>
+                    <!--            {!! Form::close() !!}-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -5,13 +5,14 @@ import loc.aliar.monitoringsystem.model.SpecializationModel;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.SpecializationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("admin/specializations")
 @RequiredArgsConstructor
 public class SpecializationController implements BaseAdminController<Specialization, SpecializationModel> {
