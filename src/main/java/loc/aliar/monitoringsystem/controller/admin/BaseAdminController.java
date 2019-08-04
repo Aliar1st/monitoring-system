@@ -14,7 +14,7 @@ public interface BaseAdminController<E, M extends IdAble> {
 
     @SneakyThrows
     default String createDefault(Model model) {
-        model.addAttribute(getEntityName(), getModelClass().newInstance());
+        model.addAttribute(getModelClass().getSimpleName(), getModelClass().newInstance());
         return getHtmlFolder() + "create";
     }
 
@@ -29,7 +29,7 @@ public interface BaseAdminController<E, M extends IdAble> {
     }
 
     default String editDefault(Long id, Model model) {
-        model.addAttribute(getEntityName(), getCrudService().get(id));
+        model.addAttribute(getModelClass().getSimpleName(), getCrudService().get(id));
         return getHtmlFolder() + "edit";
     }
 
