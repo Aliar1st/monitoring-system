@@ -9,18 +9,19 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @RequiredArgsConstructor
-public class ExistsValidator implements ConstraintValidator<Exists, Long> {
+public class ExistsValidatorForInteger implements ConstraintValidator<Exists, Integer> {
     private final ApplicationContext context;
 
-    private CrudRepository<?, Long> repository;
+    private CrudRepository<?, Integer> repository;
 
     @Override
     public void initialize(Exists constraint) {
-        repository = context.getBean(constraint.value());
+        //noinspection unchecked
+        repository = (CrudRepository<?, Integer>) context.getBean(constraint.value());
     }
 
     @Override
-    public boolean isValid(Long id, ConstraintValidatorContext context) {
+    public boolean isValid(Integer id, ConstraintValidatorContext context) {
         if (id == null) {
             return true;
         }
