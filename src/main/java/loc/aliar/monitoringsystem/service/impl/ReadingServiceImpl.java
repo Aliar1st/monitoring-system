@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -57,7 +58,9 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public ReadingModel get(Long id) {
-        return conversionService.convert(readingRepository.getOne(id), ReadingModel.class);
+        return conversionService.convert(readingRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Reading with id " + id + " not found")
+        ), ReadingModel.class);
     }
 
     @Override

@@ -3,12 +3,14 @@ package loc.aliar.monitoringsystem.service.admin;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public interface CrudService<E, M> {
     default M get(Long id) {
-        E entity = getRepository().getOne(id);
+        E entity = getRepository().findById(id).orElseThrow(
+                () -> new EntityNotFoundException(getEntityClass().getSimpleName() + " with id " + id + " not found"));
         return getConversationService().convert(entity, getModelClass());
     }
 
