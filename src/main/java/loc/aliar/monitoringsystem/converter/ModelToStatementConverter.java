@@ -8,6 +8,7 @@ public class ModelToStatementConverter implements Converter<StatementModel, Stat
     @Override
     public Statement convert(StatementModel source) {
         return Statement.builder()
+                .id(source.getId())
                 .statement(source.getStatement())
                 .recommendation(source.getRecommendation())
                 .borgResult(source.getBorgResult())

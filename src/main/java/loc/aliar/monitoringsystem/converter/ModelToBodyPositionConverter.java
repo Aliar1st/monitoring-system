@@ -8,6 +8,7 @@ public class ModelToBodyPositionConverter implements Converter<BodyPositionModel
     @Override
     public BodyPosition convert(BodyPositionModel source) {
         return BodyPosition.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

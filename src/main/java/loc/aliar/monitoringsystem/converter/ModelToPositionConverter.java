@@ -8,6 +8,7 @@ public class ModelToPositionConverter implements Converter<PositionModel, Positi
     @Override
     public Position convert(PositionModel source) {
         return Position.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Reading extends AbstractModel {
     @Column(nullable = false)
@@ -33,4 +34,18 @@ public class Reading extends AbstractModel {
 
     @ManyToOne(optional = false)
     private Statement statement;
+
+    @Builder
+    public Reading(
+            Long id, Short duration, Short growth, Short weight, Patient patient,
+            Load load, BodyPosition bodyPosition, Statement statement) {
+        super(id);
+        this.duration = duration;
+        this.growth = growth;
+        this.weight = weight;
+        this.patient = patient;
+        this.load = load;
+        this.bodyPosition = bodyPosition;
+        this.statement = statement;
+    }
 }

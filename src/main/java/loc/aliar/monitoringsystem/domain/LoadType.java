@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class LoadType extends AbstractModel {
     @Column(unique = true, length = 255, nullable = false)
@@ -22,5 +23,11 @@ public class LoadType extends AbstractModel {
 
     public LoadType(Long id) {
         super(id);
+    }
+
+    @Builder
+    public LoadType(Long id, String name) {
+        super(id);
+        this.name = name;
     }
 }

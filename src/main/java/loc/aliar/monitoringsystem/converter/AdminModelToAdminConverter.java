@@ -9,6 +9,7 @@ public class AdminModelToAdminConverter implements Converter<AdminModel, Admin> 
     @Override
     public Admin convert(AdminModel source) {
         return Admin.builder()
+                .id(source.getId())
                 .department(new Department(source.getDepartmentId()))
                 .build();
     }

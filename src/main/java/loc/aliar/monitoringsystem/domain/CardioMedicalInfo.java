@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,9 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CardioMedicalInfo extends AbstractModel {
 
@@ -90,4 +91,53 @@ public class CardioMedicalInfo extends AbstractModel {
 
     @ManyToOne(optional = false)
     private Department department;
+
+    @Builder
+    public CardioMedicalInfo(
+            Long id, String basicDiagnosis, String concomitantDiagnosis, String operations,
+            String oslozhneniye, Short kdoLzh, Short ksoLzh, Short imm, Short fv, Short ksoLp,
+            Short ksoPp, Short sdla, String diastDisf, String lokalnSokr, String khmEkg,
+            String osnRitm, String zhaZht, String sumIshemiya, String ekgRitm, String narRitma,
+            String narprovodimosti, String st, String tolerantnost, String prichinaPrekrashch,
+            Short prodolzhNagruzki, Double okh, Double lpnp, Double lpvp, Double tg, Double alt,
+            Double ast, Double glyu, Double kr, String medikamentyGruppy, String kag,
+            PatientDiseaseAttitude patientDiseaseAttitude, Department department) {
+        super(id);
+        this.basicDiagnosis = basicDiagnosis;
+        this.concomitantDiagnosis = concomitantDiagnosis;
+        this.operations = operations;
+        this.oslozhneniye = oslozhneniye;
+        this.kdoLzh = kdoLzh;
+        this.ksoLzh = ksoLzh;
+        this.imm = imm;
+        this.fv = fv;
+        this.ksoLp = ksoLp;
+        this.ksoPp = ksoPp;
+        this.sdla = sdla;
+        this.diastDisf = diastDisf;
+        this.lokalnSokr = lokalnSokr;
+        this.khmEkg = khmEkg;
+        this.osnRitm = osnRitm;
+        this.zhaZht = zhaZht;
+        this.sumIshemiya = sumIshemiya;
+        this.ekgRitm = ekgRitm;
+        this.narRitma = narRitma;
+        this.narprovodimosti = narprovodimosti;
+        this.st = st;
+        this.tolerantnost = tolerantnost;
+        this.prichinaPrekrashch = prichinaPrekrashch;
+        this.prodolzhNagruzki = prodolzhNagruzki;
+        this.okh = okh;
+        this.lpnp = lpnp;
+        this.lpvp = lpvp;
+        this.tg = tg;
+        this.alt = alt;
+        this.ast = ast;
+        this.glyu = glyu;
+        this.kr = kr;
+        this.medikamentyGruppy = medikamentyGruppy;
+        this.kag = kag;
+        this.patientDiseaseAttitude = patientDiseaseAttitude;
+        this.department = department;
+    }
 }

@@ -9,6 +9,7 @@ public class ModelToLoadConverter implements Converter<LoadModel, Load> {
     @Override
     public Load convert(LoadModel source) {
         return Load.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .loadType(new LoadType(source.getId()))
                 .build();

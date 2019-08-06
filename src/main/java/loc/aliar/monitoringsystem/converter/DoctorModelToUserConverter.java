@@ -16,6 +16,7 @@ public class DoctorModelToUserConverter implements Converter<DoctorModel, User> 
     @Override
     public User convert(DoctorModel source) {
         return User.builder()
+                .id(source.getId())
                 .username(source.getUsername())
                 .password(passwordEncoder.encode(source.getPassword()))
                 .role(Role.Roles.DOCTOR.getRole())

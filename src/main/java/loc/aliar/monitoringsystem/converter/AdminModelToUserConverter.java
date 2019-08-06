@@ -16,6 +16,7 @@ public class AdminModelToUserConverter implements Converter<AdminModel, User> {
     @Override
     public User convert(AdminModel source) {
         return User.builder()
+                .id(source.getId())
                 .username(source.getUsername())
                 .password(passwordEncoder.encode(source.getPassword()))
                 .role(Role.Roles.ADMIN.getRole())

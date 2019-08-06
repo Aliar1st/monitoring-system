@@ -16,6 +16,7 @@ public class PatientModelToGeneralInfoConverter implements Converter<PatientMode
     @Override
     public PatientGeneralInfo convert(PatientModel source) {
         return PatientGeneralInfo.builder()
+                .id(source.getId())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
                 .middleName(source.getMiddleName())

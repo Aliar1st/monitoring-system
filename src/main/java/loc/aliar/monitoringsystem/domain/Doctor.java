@@ -1,15 +1,16 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Doctor extends AbstractModel {
     @Column(nullable = false, length = 50)
@@ -48,4 +49,21 @@ public class Doctor extends AbstractModel {
 
     @ManyToMany
     private List<Patient> patients;
+
+    @Builder
+    public Doctor(
+            Long id, String firstName, String lastName, String middleName, String phone, String email,
+            Specialization specialization, Degree degree, Position position, User user, Department department) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.phone = phone;
+        this.email = email;
+        this.specialization = specialization;
+        this.degree = degree;
+        this.position = position;
+        this.user = user;
+        this.department = department;
+    }
 }

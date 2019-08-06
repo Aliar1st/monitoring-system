@@ -1,15 +1,18 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Patient extends AbstractModel {
     @OneToOne(optional = false)
@@ -18,12 +21,19 @@ public class Patient extends AbstractModel {
     @OneToOne
     private CardioMedicalInfo cardioMedicalInfo;
 
-    @ManyToMany(mappedBy = "patients")
-    private List<Doctor> doctors;
-
     @OneToOne(optional = false)
     private User user;
 
+    @ManyToMany(mappedBy = "patients")
+    private List<Doctor> doctors;
+
     @OneToMany(mappedBy = "patient")
     private List<Reading> readings;
+
+    public Patient(Long id, PatientGeneralInfo patientGeneralInfo, CardioMedicalInfo cardioMedicalInfo, User user) {
+        super(id);
+        this.patientGeneralInfo = patientGeneralInfo;
+        this.cardioMedicalInfo = cardioMedicalInfo;
+        this.user = user;
+    }
 }

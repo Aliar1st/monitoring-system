@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -8,9 +11,7 @@ import java.util.Map;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Department {
     public static final Map<Integer, Departments> ID_DEPARTMENTS = new HashMap<>();
 
@@ -37,5 +38,11 @@ public class Department {
 
     public Department(Integer id) {
         this.id = id;
+    }
+
+    @Builder
+    public Department(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

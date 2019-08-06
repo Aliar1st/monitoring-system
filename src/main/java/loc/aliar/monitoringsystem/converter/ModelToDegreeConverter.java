@@ -8,6 +8,7 @@ public class ModelToDegreeConverter implements Converter<DegreeModel, Degree> {
     @Override
     public Degree convert(DegreeModel source) {
         return Degree.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

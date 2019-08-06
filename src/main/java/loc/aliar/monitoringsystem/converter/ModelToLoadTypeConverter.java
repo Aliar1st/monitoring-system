@@ -8,6 +8,7 @@ public class ModelToLoadTypeConverter implements Converter<LoadTypeModel, LoadTy
     @Override
     public LoadType convert(LoadTypeModel source) {
         return LoadType.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

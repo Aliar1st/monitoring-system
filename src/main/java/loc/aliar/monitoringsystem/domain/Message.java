@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Message extends AbstractModel {
     @Column(columnDefinition = "text", nullable = false)
@@ -24,4 +25,13 @@ public class Message extends AbstractModel {
 
     @ManyToOne(optional = false)
     private User toUser;
+
+    @Builder
+    public Message(Long id, String body, Boolean isRead, User fromUser, User toUser) {
+        super(id);
+        this.body = body;
+        this.isRead = isRead;
+        this.fromUser = fromUser;
+        this.toUser = toUser;
+    }
 }

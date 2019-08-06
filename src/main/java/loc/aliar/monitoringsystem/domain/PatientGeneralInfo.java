@@ -1,6 +1,9 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +12,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class PatientGeneralInfo extends AbstractModel {
     @Column(nullable = false, length = 50)
@@ -43,4 +44,21 @@ public class PatientGeneralInfo extends AbstractModel {
 
     @ManyToOne
     private Education education;
+
+    @Builder
+    public PatientGeneralInfo(
+            Long id, String firstName, String lastName, String middleName, String photo, Boolean isWork,
+            Boolean isMale, LocalDate dateOfBirth, String phone, String email, Education education) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.photo = photo;
+        this.isWork = isWork;
+        this.isMale = isMale;
+        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
+        this.email = email;
+        this.education = education;
+    }
 }

@@ -8,6 +8,7 @@ public class ModelToSpecializationConverter implements Converter<SpecializationM
     @Override
     public Specialization convert(SpecializationModel source) {
         return Specialization.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

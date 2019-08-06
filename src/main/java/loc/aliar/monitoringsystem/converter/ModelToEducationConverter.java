@@ -8,6 +8,7 @@ public class ModelToEducationConverter implements Converter<EducationModel, Educ
     @Override
     public Education convert(EducationModel source) {
         return Education.builder()
+                .id(source.getId())
                 .name(source.getName())
                 .build();
     }
