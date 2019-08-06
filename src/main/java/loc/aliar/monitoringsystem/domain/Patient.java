@@ -1,5 +1,6 @@
 package loc.aliar.monitoringsystem.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class Patient extends AbstractModel {
     @OneToMany(mappedBy = "patient")
     private List<Reading> readings;
 
+    @Builder
     public Patient(Long id, PatientGeneralInfo patientGeneralInfo, CardioMedicalInfo cardioMedicalInfo, User user) {
         super(id);
         this.patientGeneralInfo = patientGeneralInfo;
