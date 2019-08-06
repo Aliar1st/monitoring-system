@@ -20,16 +20,16 @@
                         <tr>
                             <th>№</th>
                             <th>Тип нагрузки</th>
-                            <th data-orderable="false"><a th:href="@{/admin/load_type/create}" class="btn btn-primary ">Добавить тип нагрузки</a></th>
+                            <th data-orderable="false"><a th:href="@{/admin/load-types/add}" class="btn btn-primary ">Добавить тип нагрузки</a></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="l : ${load_types}">
+                        <th:block th:each="l : ${entities}">
                             <tr>
                                 <td th:text="${l.id}"></td>
-                                <td th:text="${l.load_type}"></td>
+                                <td th:text="${l.name}"></td>
                                 <td class="text-primary">
-                                    <a th:href="@{/admin/load_type/__${l.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                    <a th:href="@{/admin/load-types/__${l.id}__/edit}" class="btn btn-primary ">Редактировать</a>
                                 </td>
                             </tr>
                         </th:block>

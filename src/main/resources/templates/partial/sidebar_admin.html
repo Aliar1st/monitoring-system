@@ -38,14 +38,14 @@
                     <p>Отчёты</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['body_positions', 'body_positions/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/body_position}">
+            <li class="nav-item {{ \Request::is(['body-positions', 'body-positions/*']) ? 'active' : '' }}">
+                <a class="nav-link" th:href="@{/admin/body-positions}">
                     <i class="material-icons">library_books</i>
                     <p>Положение тела</p>
                 </a>
             </li>
             <li class="nav-item {{ \Request::is(['load_types', 'load_types/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/load_type}">
+                <a class="nav-link" th:href="@{/admin/load-types}">
                     <i class="material-icons">library_books</i>
                     <p>Тип нагрузки</p>
                 </a>

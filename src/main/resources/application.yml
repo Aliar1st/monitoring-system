@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://ALIAR-PC\SQLEXPRESS:1433;database=monitoring_system
-    username: monsys
-    password: monsys
+    url: jdbc:sqlserver://DESKTOP-13HAE4Q\SQLEXPRESS:1433;database=monitoring_system
+    username: sysmon
+    password: sysmon
     platform: mssql
     initialization-mode: always
     tomcat:
@@ -15,5 +15,5 @@ spring:
         dialect: org.hibernate.dialect.SQLServer2012Dialect
         format_sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     open-in-view: false

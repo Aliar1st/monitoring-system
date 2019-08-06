@@ -15,16 +15,18 @@
             </div>
             <div class="card-body">
 <!--                {!! Form::open(['route' => 'body_positions.store']) !!}-->
-                <form th:action="@{body_positions.store}" method="POST">
+                <form th:action="@{/admin/body-positions}" th:object="${BodyPositionModel}" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="bmd-label-floating">Положение тела</label>
-                            <input type="text" class="form-control"
+                            <input  th:field="*{name}" type="text" class="form-control"
                                    aria-label="body_position">
 <!--                            {{ Form::label('body_position', 'Положение тела', ['class' => 'bmd-label-floating']) }}-->
 <!--                            {{ Form::text('body_position', null, ['class' => 'form-control']) }}-->
-                            <div class="invalid-feedback d-block">{{ $errors->first('body_position') }}</div>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                 th:errors="${name}">
+                            </div>
                         </div>
                     </div>
                 </div>

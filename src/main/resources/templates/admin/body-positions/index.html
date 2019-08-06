@@ -20,17 +20,18 @@
                         <tr>
                             <th>№</th>
                             <th>Положение тела</th>
-                            <th data-orderable="false"><a th:href="@{/admin/body_position/create}" class="btn btn-primary ">Добавить положение тела</a>
+                            <th data-orderable="false"><a th:href="@{/admin/body-positions/add}" class="btn btn-primary ">Добавить положение тела</a>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="a : ${body_positions}">
+                        <th:block th:each="bp : ${entities}">
                             <tr>
                                 <td th:text="${bp.id}"></td>
-                                <td th:text="${bp.body_position}"></td>
+                                <td th:text="${bp.name}"></td>
                                 <td class="text-primary">
-                                    <a th:href="@{/admin/body_position/__${bp.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                    <a th:href="@{/admin/body-positions/__${bp.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                    <input type="hidden" name="id" th:value="${bp.id}">
                                 </td>
                             </tr>
                         </th:block>
