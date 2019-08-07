@@ -1,6 +1,6 @@
 package loc.aliar.monitoringsystem.model;
 
-import loc.aliar.monitoringsystem.repository.DepartmentRepository;
+import loc.aliar.monitoringsystem.repository.DegreeRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +19,6 @@ public class DegreeModel implements IdAble {
 
     @NotEmpty
     @Size(min = 4, max = 30)
-    @Unique(DepartmentRepository.class)
+    @Unique(DegreeRepository.class)
     private String name;
 }

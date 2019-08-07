@@ -11,43 +11,54 @@
         <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title">Вид нагрузки</h4>
-                <p class="card-category">Изменить вид нагрузки</p>
+                <p class="card-category">Добавить вид нагрузки</p>
             </div>
             <div class="card-body">
-                <!--            {!! Form::model($load_name, ['route' => ['load_names.update', $load_name->id], 'method' => 'put']) !!}-->
-                <form th:action="@{load_names.update}" method="POST">
+                <!--            {!! Form::open(['route' => 'load_names.store']) !!}-->
+                <form th:action="@{/admin/loads}" th:object="${LoadModel}" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Нагрузка</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{name}" type="text" class="form-control"
                                        aria-label="load_name">
                                 <!--                        {{ Form::label('load_name', 'Нагрузка', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::text('load_name', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('load_name') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                     th:errors="${name}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Тип нагрузки</label>
+                                <select class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите тип нагрузки</option>
+                                    <option th:each="c : ${loadTypes}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
                                 <!--                        <select th:field="load_type" class="form-control"-->
                                 <!--                               aria-label="load_type_id" th:placeholder="Выберите тип нагрузки">-->
                                 <!--                        </select>-->
                                 <!--                        {{ Form::label('load_type_id', 'Тип нагрузки', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::select('load_type_id', $load_type, null,-->
                                 <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите тип нагрузки']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('load_type_id') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('loadTypeId')}"
+                                     th:errors="${loadTypeId}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right">Изменить</button>
-                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <button type="submit" class="btn btn-primary pull-right">Добавить</button>
+                    <a th:href="@{/admin/loads}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                     <div class="clearfix"></div>
-<!--                    {!! Form::close() !!}-->
+                    <!--            {!! Form::close() !!}-->
                 </form>
             </div>
         </div>
     </div>
 </body>
 </html>
+
 

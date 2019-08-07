@@ -20,16 +20,16 @@
                         <tr>
                             <th>№</th>
                             <th>Образование</th>
-                            <th data-orderable="false"><a th:href="@{/admin/education/create}" class="btn btn-primary ">Добавить образование</a></th>
+                            <th data-orderable="false"><a th:href="@{/admin/educations/add}" class="btn btn-primary ">Добавить образование</a></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="e : ${educations}">
+                        <th:block th:each="e : ${entities}">
                             <tr>
                                 <td th:text="${e.id}"></td>
-                                <td th:text="${e.education}"></td>
+                                <td th:text="${e.name}"></td>
                                 <td class="text-primary">
-                                    <a th:href="@{/admin/education/__${e.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                    <a th:href="@{/admin/educations/__${e.id}__/edit}" class="btn btn-primary ">Редактировать</a>
                                 </td>
                             </tr>
                         </th:block>

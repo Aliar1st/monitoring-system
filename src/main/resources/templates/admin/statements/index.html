@@ -22,10 +22,21 @@
                             <th>Состояние</th>
                             <th>Рекомендация</th>
                             <th>Результат по Боргу</th>
-                            <th data-orderable="false"><a th:href="@{/admin/statement/create}" class="btn btn-primary ">Добавить состояниие</a></th>
+                            <th data-orderable="false"><a th:href="@{/admin/statements/add}" class="btn btn-primary ">Добавить состояниие</a></th>
                         </tr>
                         </thead>
                         <tbody>
+                        <th:block th:each="l : ${entities}">
+                            <tr>
+                                <td th:text="${l.id}"></td>
+                                <td th:text="${l.statement}"></td>
+                                <td th:text="${l.recommendation}"></td>
+                                <td th:text="${l.borgResult}"></td>
+                                <td class="text-primary">
+                                    <a th:href="@{/admin/statements/__${l.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                </td>
+                            </tr>
+                        </th:block>
                         <!--                    @foreach($statements as $s)-->
                         <!--                    <tr>-->
                         <!--                        <td>{{ $s->id }}</td>-->

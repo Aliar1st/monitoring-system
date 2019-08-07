@@ -14,74 +14,78 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item {{ \Request::is(['doctors', 'doctors/*']) ? 'active' : '' }}">
+<!--            <th:block th:if="${false}">-->
+<!--                <form th:action="@{/some-url}" method="post">this form inside th:block should not be visible</form>-->
+<!--            </th:block>-->
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/doctors')} ? 'active' : ''">
+
                 <a class="nav-link" th:href="@{/admin/doctors}">
                     <i class="material-icons">person</i>
                     <p>Врачи</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['admins', 'admins/*']) ? 'active' : '' }}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/admins')} ? 'active' : ''">
                 <a class="nav-link" th:href="@{/admin/admins}">
                     <i class="material-icons">person</i>
                     <p>Администраторы</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['patients', 'patients/*']) ? 'active' : '' }}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/patients')} ? 'active' : ''">
                 <a class="nav-link" th:href="@{/admin/patients}">
                     <i class="material-icons">person</i>
                     <p>Пациенты</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['reports', 'reports/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/reports}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/reports')} ? 'active' : ''">
+                <a class="nav-link" href="#">
                     <i class="material-icons">content_paste</i>
                     <p>Отчёты</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['body-positions', 'body-positions/*']) ? 'active' : '' }}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/body-positions')} ? 'active' : ''">
                 <a class="nav-link" th:href="@{/admin/body-positions}">
                     <i class="material-icons">library_books</i>
                     <p>Положение тела</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['load_types', 'load_types/*']) ? 'active' : '' }}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/load-types')} ? 'active' : ''">
                 <a class="nav-link" th:href="@{/admin/load-types}">
                     <i class="material-icons">library_books</i>
                     <p>Тип нагрузки</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['load_names', 'load_names/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/load_name}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/loads')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/loads}">
                     <i class="material-icons">library_books</i>
                     <p>Нагрузка</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['statements', 'statements/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/statement}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/statements')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/statements}">
                     <i class="material-icons">library_books</i>
                     <p>Состояние пациента</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['educations', 'educations/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/education}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/educations')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/educations}">
                     <i class="material-icons">library_books</i>
                     <p>Образование</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['degrees', 'degrees/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/degree}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/degrees')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/degrees}">
                     <i class="material-icons">library_books</i>
                     <p>Ученая степень врача</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['ranks', 'ranks/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/rank}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/positions')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/positions}">
                     <i class="material-icons">library_books</i>
                     <p>Звание врача</p>
                 </a>
             </li>
-            <li class="nav-item {{ \Request::is(['specializations', 'specializations/*']) ? 'active' : '' }}">
-                <a class="nav-link" th:href="@{/admin/specialization}">
+            <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/admin/specializations')} ? 'active' : ''">
+                <a class="nav-link" th:href="@{/admin/specializations}">
                     <i class="material-icons">library_books</i>
                     <p>Специализация врача</p>
                 </a>

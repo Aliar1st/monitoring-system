@@ -15,21 +15,25 @@
             </div>
             <div class="card-body">
                 <!--            {!! Form::model($load_type, ['route' => ['load_types.update', $load_type->id], 'method' => 'put']) !!}-->
-                <form th:action="@{load_types.update}" method="POST">
+                <form th:action="@{/admin/load-types/__${id}__}" th:object="${LoadTypeModel}" method="POST">
+                    <input type="hidden" name="_method" value="put" />
+                    <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Тип нагрузки</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{name}" type="text" class="form-control"
                                        aria-label="load_type">
                                 <!--                        {{ Form::label('load_type', 'Тип нагрузки', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::text('load_type', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('load_type') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                     th:errors="${name}">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary pull-right">Изменить</button>
-                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <a th:href="@{/admin/load-types}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                     <div class="clearfix"></div>
                     <!--            {!! Form::close() !!}-->
                 </form>

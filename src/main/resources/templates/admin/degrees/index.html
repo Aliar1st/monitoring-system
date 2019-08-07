@@ -20,16 +20,16 @@
                         <tr>
                             <th>№</th>
                             <th>Учёная степень</th>
-                            <th data-orderable="false"><a th:href="@{/admin/degree/create}" class="btn btn-primary ">Добавить учёную степень</a></th>
+                            <th data-orderable="false"><a th:href="@{/admin/degrees/add}" class="btn btn-primary ">Добавить учёную степень</a></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="a : ${degrees}">
+                        <th:block th:each="d : ${entities}">
                             <tr>
                                 <td th:text="${d.id}"></td>
-                                <td th:text="${d.degree}"></td>
+                                <td th:text="${d.name}"></td>
                                 <td class="text-primary">
-                                    <a th:href="@{/admin/degree/__${d.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                    <a th:href="@{/admin/degrees/__${d.id}__/edit}" class="btn btn-primary ">Редактировать</a>
                                 </td>
                             </tr>
                         </th:block>

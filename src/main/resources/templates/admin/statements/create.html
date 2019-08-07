@@ -15,16 +15,18 @@
             </div>
             <div class="card-body">
                 <!--            {!! Form::open(['route' => 'statements.store']) !!}-->
-                <form th:action="@{statements.store}" method="POST">
+                <form th:action="@{/admin/statements}" th:object="${StatementModel}" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Состояние</label>
-                                <textarea type="text" class="form-control"
+                                <textarea th:field="*{statement}" type="text" class="form-control"
                                           aria-label="statement" rows="3"></textarea>
                                 <!--                        {{ Form::label('statement', 'Состояние', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::textarea('statement', null, ['class' => 'form-control', 'rows' => 3]) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('statement') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('statement')}"
+                                     th:errors="${statement}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -32,11 +34,13 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Рекомендация</label>
-                                <textarea type="text" class="form-control"
+                                <textarea th:field="*{recommendation}" type="text" class="form-control"
                                           aria-label="recommendation" rows="3"></textarea>
                                 <!--                        {{ Form::label('recommendation', 'Рекомендация', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::textarea('recommendation', null, ['class' => 'form-control', 'rows' => 3]) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('recommendation') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('recommendation')}"
+                                     th:errors="${recommendation}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -44,16 +48,18 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Результат по Боргу</label>
-                                <input type="number" class="form-control"
+                                <input th:field="*{borgResult}" type="number" class="form-control"
                                        aria-label="borg_result">
                                 <!--                        {{ Form::label('borg_result', 'Результат по Боргу', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::number('borg_result', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('borg_result') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('borgResult')}"
+                                     th:errors="${borgResult}">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary pull-right">Добавить</button>
-                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <a th:href="@{/admin/statements}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                     <div class="clearfix"></div>
                     <!--            {!! Form::close() !!}-->
                 </form>

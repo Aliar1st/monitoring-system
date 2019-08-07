@@ -38,7 +38,8 @@ public class LoadController implements BaseAdminController<Load, LoadModel> {
 
     @GetMapping("{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        return editDefault(id, model);
+        return editDefault(id, model
+                .addAttribute("loadTypes", loadTypeService.getAll()));
     }
 
     @PutMapping("{id}")

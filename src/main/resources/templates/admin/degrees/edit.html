@@ -1,3 +1,4 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/admin}"
@@ -14,21 +15,25 @@
         </div>
         <div class="card-body">
             <!--            {!! Form::open(['route' => 'degrees.update']) !!}-->
-            <form th:action="@{degrees.update}" method="POST">
+            <form th:action="@{/admin/degrees/__${id}__}" th:object="${DegreeModel}" method="POST">
+                <input type="hidden" name="_method" value="put" />
+                <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="bmd-label-floating">Учёная степень</label>
-                            <input type="text" class="form-control"
+                            <input th:field="*{name}" type="text" class="form-control"
                                    aria-label="degree">
                             <!--                        {{ Form::label('degree', 'Учёная степень', ['class' => 'bmd-label-floating']) }}-->
                             <!--                        {{ Form::text('degree', null, ['class' => 'form-control']) }}-->
-                            <div class="invalid-feedback d-block">{{ $errors->first('degree') }}</div>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                 th:errors="${name}">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary pull-right">Изменить</button>
-                <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                <a th:href="@{/admin/degrees}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                 <div class="clearfix"></div>
                 <!--            {!! Form::close() !!}-->
             </form>

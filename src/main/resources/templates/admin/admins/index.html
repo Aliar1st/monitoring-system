@@ -26,10 +26,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="a : ${admins}">
+                        <th:block th:each="a : ${entities}">
                             <tr>
                                 <td th:text="${a.id}"></td>
-                                <td th:text="${a.login}"></td>
+                                <td th:text="${a.username}"></td>
                                 <td class="text-primary">
                                     <a th:href="@{/admin/admins/__${a.id}__/edit}" class="btn btn-primary ">Редактировать</a>
                                 </td>

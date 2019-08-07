@@ -11,25 +11,29 @@
     <div class="card">
         <div class="card-header card-header-primary">
             <h4 class="card-title">Специализация</h4>
-            <p class="card-category">Добавить специализацию</p>
+            <p class="card-category">Изменить специализацию</p>
         </div>
         <div class="card-body">
-<!--            {!! Form::open(['route' => 'specializations.store']) !!}-->
-            <form th:action="@{specializations.store}" method="POST">
+<!--            {!! Form::model($specialization, ['route' => ['specializations.update', $specialization->id], 'method' => 'put']) !!}-->
+            <form th:action="@{/admin/specializations/__${id}__}" th:object="${SpecializationModel}" method="POST">
+                <input type="hidden" name="_method" value="put" />
+                <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Специализация</label>
-                        <input type="text" class="form-control"
+                        <input th:field="*{name}" type="text" class="form-control"
                                aria-label="specialization">
 <!--                        {{ Form::label('specialization', 'Специализация', ['class' => 'bmd-label-floating']) }}-->
 <!--                        {{ Form::text('specialization', null, ['class' => 'form-control']) }}-->
-                        <div class="invalid-feedback d-block">{{ $errors->first('specialization') }}</div>
+                        <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                             th:errors="${name}">
+                        </div>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Добавить</button>
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+            <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+            <a th:href="@{/admin/specializations}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
             <div class="clearfix"></div>
 <!--            {!! Form::close() !!}-->
             </form>

@@ -33,17 +33,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="p : ${patients}">
+                    <th:block th:each="p : ${entities}">
                         <tr>
                             <td th:text="${p.id}"></td>
-                            <td th:text="${p.id}">{{ $p->generalInformation->last_name }}</td>
-                            <td th:text="${p.id}">{{ $p->generalInformation->first_name }}</td>
-                            <td th:text="${p.id}">{{ $p->generalInformation->middle_name ?? \Config::get('constants.not_available') }}</td>
-                            <td th:text="${p.id}">{{ Helper::getDateFromReading($p->lastReading) }}</td>
-                            <td th:text="${p.id}">{{ Helper::getBorgResultFromReading($p->lastReading) }}</td>
-                            <td th:text="${p.id}">{{ $p->generalInformation->phone ?? $na }}</td>
+                            <td th:text="${p.lastName}"></td>
+                            <td th:text="${p.firstName}"></td>
+                            <td th:text="${p.middleName}"></td>
+                            <td th:text="lastReadingDate"></td>
+                            <td th:text="lastReadingBorg"></td>
+                            <td th:text="${p.phone}"></td>
                             <td class="text-primary">
-                                <a th:href="@{/admin/patient/__${p.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                                <a th:href="@{/admin/patients/__${p.id}__/edit}" class="btn btn-primary ">Редактировать</a>
                             </td>
                         </tr>
                     </th:block>

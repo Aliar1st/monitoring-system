@@ -20,10 +20,19 @@
                     <tr>
                         <th>№</th>
                         <th>Звание</th>
-                        <th data-orderable="false"><a th:href="@{/admin/degree/create}" class="btn btn-primary ">Добавить звание</a></th>
+                        <th data-orderable="false"><a th:href="@{/admin/positions/add}" class="btn btn-primary ">Добавить звание</a></th>
                     </tr>
                     </thead>
                     <tbody>
+                    <th:block th:each="d : ${entities}">
+                        <tr>
+                            <td th:text="${d.id}"></td>
+                            <td th:text="${d.name}"></td>
+                            <td class="text-primary">
+                                <a th:href="@{/admin/positions/__${d.id}__/edit}" class="btn btn-primary ">Редактировать</a>
+                            </td>
+                        </tr>
+                    </th:block>
 <!--                    @foreach($ranks as $r)-->
 <!--                    <tr>-->
 <!--                        <td>{{ $r->id }}</td>-->

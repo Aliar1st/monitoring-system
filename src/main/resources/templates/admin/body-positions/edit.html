@@ -14,22 +14,26 @@
                 <p class="card-category">Изменить положение тела</p>
             </div>
             <div class="card-body">
-                <form th:action="@{body_positions.update}" method="POST">
+                <form th:action="@{/admin/body-positions/__${id}__}" th:object="${BodyPositionModel}" method="POST">
+                    <input type="hidden" name="_method" value="put" />
+                    <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                     <!--            {!! Form::model($body_position, ['route' => ['body_positions.update', $body_position->id], 'method' => 'put']) !!}-->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Положение тела</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{name}" type="text" class="form-control"
                                        aria-label="body_position">
                                 <!--                        {{ Form::label('body_position', 'Положение тела', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::text('body_position', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('body_position') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                     th:errors="${name}">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary pull-right">Изменить</button>
-                    <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <a th:href="@{/admin/body-positions}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                     <div class="clearfix"></div>
                 </form>
                 <!--            {!! Form::close() !!}-->

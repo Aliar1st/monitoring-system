@@ -15,21 +15,23 @@
         </div>
         <div class="card-body">
             <!--            {!! Form::open(['route' => 'ranks.store']) !!}-->
-            <form th:action="@{ranks.store}" method="POST">
+            <form th:action="@{/admin/positions}" th:object="${PositionModel}" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="bmd-label-floating">Звание</label>
-                            <input type="text" class="form-control"
+                            <input th:field="*{name}"  type="text" class="form-control"
                                    aria-label="rank">
 <!--                            {{ Form::label('rank', 'Звание', ['class' => 'bmd-label-floating']) }}-->
 <!--                            {{ Form::text('rank', null, ['class' => 'form-control']) }}-->
-                            <div class="invalid-feedback d-block">{{ $errors->first('rank') }}</div>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
+                                 th:errors="${name}">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary pull-right">Добавить</button>
-                <a href="{{ url()->previous() }}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                <a th:href="@{/admin/positions}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                 <div class="clearfix"></div>
                 <!--            {!! Form::close() !!}-->
             </form>
