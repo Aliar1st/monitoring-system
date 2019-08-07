@@ -11,7 +11,7 @@ public class ModelToLoadConverter implements Converter<LoadModel, Load> {
         return Load.builder()
                 .id(source.getId())
                 .name(source.getName())
-                .loadType(new LoadType(source.getId()))
+                .loadType(new LoadType(source.getLoadTypeId()))
                 .build();
     }
 }
