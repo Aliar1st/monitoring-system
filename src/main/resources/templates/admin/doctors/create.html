@@ -103,7 +103,7 @@
                     <div class="col-md-4">
                         <div class="form-group bmd-form-group is-filled">
                             <label class="bmd-label-floating">Специализация</label>
-                            <select required class="form-control" aria-label="load_type" th:field="*{degreeId}">
+                            <select required class="form-control" aria-label="load_type" th:field="*{specializationId}">
                                 <option value="" selected="selected" style=" display: none;">Выберите специализацию</option>
                                 <option th:each="c : ${specializations}"
                                         th:value="${c.id}"
@@ -139,7 +139,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Отдел</label>
-                            <input th:field="*{departmentId}" type="text" class="form-control"
+                            <input th:field="*{departmentId}" type="number" class="form-control"
                                    aria-label="email">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
                                  th:errors="*{departmentId}">
