@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <!--            {!! Form::model($load_name, ['route' => ['load_names.update', $load_name->id], 'method' => 'put']) !!}-->
-                <form th:action="@{/admin/loads/__${id}__}" th:object="${LoadModel}" method="POST">
+                <form th:action="@{/admin/loads/__${id}__}" th:object="${loadModel}" method="POST">
                     <input type="hidden" name="_method" value="put" />
                     <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                     <div class="row">
@@ -27,7 +27,7 @@
                                 <!--                        {{ Form::label('load_name', 'Нагрузка', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::text('load_name', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
-                                     th:errors="${name}">
+                                     th:errors="*{name}">
                                 </div>
                             </div>
                         </div>
@@ -45,9 +45,9 @@
                                 <!--                        {{ Form::label('load_type_id', 'Тип нагрузки', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::select('load_type_id', $load_type, null,-->
                                 <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите тип нагрузки']) }}-->
-<!--                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"-->
-<!--                                     th:errors="${name}">-->
-<!--                                </div>-->
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('loadTypeId')}"
+                                     th:errors="*{loadTypeId}">
+                                </div>
                             </div>
                         </div>
                     </div>

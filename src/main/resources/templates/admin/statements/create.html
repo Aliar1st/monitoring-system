@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <!--            {!! Form::open(['route' => 'statements.store']) !!}-->
-                <form th:action="@{/admin/statements}" th:object="${StatementModel}" method="POST">
+                <form th:action="@{/admin/statements}" th:object="${statementModel}" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -25,7 +25,7 @@
                                 <!--                        {{ Form::label('statement', 'Состояние', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::textarea('statement', null, ['class' => 'form-control', 'rows' => 3]) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('statement')}"
-                                     th:errors="${statement}">
+                                     th:errors="*{statement}">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 <!--                        {{ Form::label('recommendation', 'Рекомендация', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::textarea('recommendation', null, ['class' => 'form-control', 'rows' => 3]) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('recommendation')}"
-                                     th:errors="${recommendation}">
+                                     th:errors="*{recommendation}">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <!--                        {{ Form::label('borg_result', 'Результат по Боргу', ['class' => 'bmd-label-floating']) }}-->
                                 <!--                        {{ Form::number('borg_result', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('borgResult')}"
-                                     th:errors="${borgResult}">
+                                     th:errors="*{borgResult}">
                                 </div>
                             </div>
                         </div>

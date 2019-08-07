@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
 <!--            {!! Form::model($specialization, ['route' => ['specializations.update', $specialization->id], 'method' => 'put']) !!}-->
-            <form th:action="@{/admin/specializations/__${id}__}" th:object="${SpecializationModel}" method="POST">
+            <form th:action="@{/admin/specializations/__${id}__}" th:object="${specializationModel}" method="POST">
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
             <div class="row">
@@ -27,7 +27,7 @@
 <!--                        {{ Form::label('specialization', 'Специализация', ['class' => 'bmd-label-floating']) }}-->
 <!--                        {{ Form::text('specialization', null, ['class' => 'form-control']) }}-->
                         <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
-                             th:errors="${name}">
+                             th:errors="*{name}">
                         </div>
                     </div>
                 </div>

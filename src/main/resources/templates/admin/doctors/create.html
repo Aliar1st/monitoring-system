@@ -14,7 +14,7 @@
                 <p class="card-category">Добавить личную информацию доктора</p>
             </div>
             <div class="card-body">
-            <form th:action="@{/admin/doctors}" th:object="${DoctorModel}" method="POST">
+            <form th:action="@{/admin/doctors}" th:object="${doctorModel}" method="POST">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -22,7 +22,7 @@
                             <input th:field="*{lastName}" type="text" class="form-control"
                                    aria-label="last_name">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lastName')}"
-                                 th:errors="${lastName}">
+                                 th:errors="*{lastName}">
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <input th:field="*{firstName}" type="text" class="form-control"
                                    aria-label="first_name">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('firstName')}"
-                                 th:errors="${firstName}">
+                                 th:errors="*{firstName}">
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             <input th:field="*{middleName}" type="text" class="form-control"
                                    aria-label="middle_name">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('middleName')}"
-                                 th:errors="${middleName}">
+                                 th:errors="*{middleName}">
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <input th:field="*{username}" type="text" class="form-control"
                                    aria-label="login">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('username')}"
-                                 th:errors="${username}">
+                                 th:errors="*{username}">
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <input th:field="*{password}" type="password" class="form-control"
                                    aria-label="password">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
-                                 th:errors="${password}">
+                                 th:errors="*{password}">
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             </select>
 
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('positionId')}"
-                                 th:errors="${positionId}">
+                                 th:errors="*{positionId}">
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             </select>
 
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('degreeId')}"
-                                 th:errors="${degreeId}">
+                                 th:errors="*{degreeId}">
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                         th:utext="${c.name}"></option>
                             </select>
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('specializationId')}"
-                                 th:errors="${specializationId}">
+                                 th:errors="*{specializationId}">
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                             <input th:field="*{phone}" type="text" class="form-control"
                                    aria-label="phone">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('phone')}"
-                                 th:errors="${phone}">
+                                 th:errors="*{phone}">
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                             <input th:field="*{email}" type="text" class="form-control"
                                    aria-label="email">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}"
-                                 th:errors="${email}">
+                                 th:errors="*{email}">
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                             <input th:field="*{departmentId}" type="text" class="form-control"
                                    aria-label="email">
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
-                                 th:errors="${departmentId}">
+                                 th:errors="*{departmentId}">
                             </div>
                         </div>
                     </div>

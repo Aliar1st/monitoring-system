@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <!--            {!! Form::open(['route' => 'ranks.store']) !!}-->
-            <form th:action="@{/admin/positions}" th:object="${PositionModel}" method="POST">
+            <form th:action="@{/admin/positions}" th:object="${positionModel}" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -25,7 +25,7 @@
 <!--                            {{ Form::label('rank', 'Звание', ['class' => 'bmd-label-floating']) }}-->
 <!--                            {{ Form::text('rank', null, ['class' => 'form-control']) }}-->
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}"
-                                 th:errors="${name}">
+                                 th:errors="*{name}">
                             </div>
                         </div>
                     </div>

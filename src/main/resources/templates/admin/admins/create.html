@@ -14,7 +14,7 @@
                 <p class="card-category">Добавить личную информацию администратора</p>
             </div>
             <div class="card-body">
-                <form th:action="@{/admin/admins}" th:object="${AdminModel}" method="POST">
+                <form th:action="@{/admin/admins}" th:object="${adminModel}" method="POST">
 <!--                {!! Form::open(['route' => 'admins.store']) !!}-->
                 <div class="row">
                     <div class="col-md-4">
@@ -26,7 +26,7 @@
 <!--                            {{ Form::text('login', null, ['class' => 'form-control']) }}-->
 <!--                            <div class="invalid-feedback d-block">{{ $errors->first('login') }}</div>-->
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('username')}"
-                                   th:errors="${username}">
+                                   th:errors="*{username}">
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
 <!--                            {{ Form::password('password', ['class' => 'form-control']) }}-->
 <!--                            <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>-->
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
-                                 th:errors="${password}">
+                                 th:errors="*{password}">
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <!--                            {{ Form::password('password', ['class' => 'form-control']) }}-->
                             <!--                            <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>-->
                             <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
-                                 th:errors="${departmentId}">
+                                 th:errors="*{departmentId}">
                             </div>
                         </div>
                     </div>

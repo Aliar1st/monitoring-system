@@ -14,37 +14,38 @@
                 <p class="card-category">Изменить личную информацию доктора</p>
             </div>
             <div class="card-body">
-                <form th:action="@{doctors.update}" method="POST">
-<!--                    {!! Form::model($doctor, ['route' => ['doctors.update', $doctor->id], 'method' => 'put']) !!}-->
+                <form th:action="@{/admin/doctors/__${id}__}" th:object="${doctorModel}" method="POST">
+                    <input type="hidden" name="_method" value="put" />
+                    <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Фамилия</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{lastName}" type="text" class="form-control"
                                        aria-label="last_name">
-                                <!--                            {{ Form::label('last_name', 'Фамилия', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('last_name', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('last_name') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lastName')}"
+                                     th:errors="*{lastName}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Имя</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{firstName}" type="text" class="form-control"
                                        aria-label="first_name">
-                                <!--                            {{ Form::label('first_name', 'Имя', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('first_name', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('first_name') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('firstName')}"
+                                     th:errors="*{firstName}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Отчество</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{middleName}" type="text" class="form-control"
                                        aria-label="middle_name">
-                                <!--                            {{ Form::label('middle_name', 'Отчество', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('middle_name', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('middle_name') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('middleName')}"
+                                     th:errors="*{middleName}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,21 +53,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Логин</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{username}" type="text" class="form-control"
                                        aria-label="login">
-                                <!--                            {{ Form::label('login', 'Логин', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('login', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('login') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('username')}"
+                                     th:errors="*{username}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Пароль</label>
-                                <input type="password" class="form-control"
+                                <input th:field="*{password}" type="password" class="form-control"
                                        aria-label="password">
-                                <!--                            {{ Form::label('password', 'Пароль', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::password('password', ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
+                                     th:errors="*{password}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,66 +75,83 @@
                         <div class="col-md-4">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Звание</label>
-                                <!--                        <select th:field="rank" class="form-control"-->
-                                <!--                               aria-label="rank_id" th:placeholder="Выберите звание">-->
-                                <!--                        </select>-->
-                                <!--                            {{ Form::label('rank_id', 'Звание', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::select('rank_id', $rank, null,-->
-                                <!--                            ['class' => 'form-control', 'placeholder' => 'Выберите звание']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('rank_id') }}</div>
+                                <select required class="form-control" aria-label="load_type" th:field="*{positionId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите звание</option>
+                                    <option th:each="c : ${positions}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('positionId')}"
+                                     th:errors="*{positionId}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Ученая степень</label>
-                                <!--                        <select th:field="degree" class="form-control"-->
-                                <!--                               aria-label="degree_id" th:placeholder="Выберите ученая степень">-->
-                                <!--                        </select>-->
-                                <!--                            {{ Form::label('degree_id', 'Ученая степень', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::select('degree_id', $degree, null,-->
-                                <!--                            ['class' => 'form-control', 'placeholder' => 'Выберите ученая степень']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('degree_id') }}</div>
+                                <select required class="form-control" aria-label="load_type" th:field="*{degreeId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите ученую степень</option>
+                                    <option th:each="c : ${degrees}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('degreeId')}"
+                                     th:errors="*{degreeId}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Специализация</label>
-                                <!--                        <select th:field="specialization" class="form-control"-->
-                                <!--                               aria-label="specialization_id" th:placeholder="Выберите специализацию">-->
-                                <!--                        </select>-->
-                                <!--                            {{ Form::label('specialization_id', 'Специализация', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::select('specialization_id', $specialization, null,-->
-                                <!--                            ['class' => 'form-control', 'placeholder' => 'Выберите специализацию']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('specialization_id') }}</div>
+                                <select required class="form-control" aria-label="load_type" th:field="*{degreeId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите специализацию</option>
+                                    <option th:each="c : ${specializations}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('specializationId')}"
+                                     th:errors="*{specializationId}">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Телефон</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{phone}" type="text" class="form-control"
                                        aria-label="phone">
-                                <!--                            {{ Form::label('phone', 'Телефон', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('phone', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('phone') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('phone')}"
+                                     th:errors="*{phone}">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Email</label>
-                                <input type="text" class="form-control"
+                                <input th:field="*{email}" type="text" class="form-control"
                                        aria-label="email">
-                                <!--                            {{ Form::label('email', 'Email', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                            {{ Form::text('email', null, ['class' => 'form-control']) }}-->
-                                <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}"
+                                     th:errors="*{email}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Отдел</label>
+                                <input th:field="*{departmentId}" type="text" class="form-control"
+                                       aria-label="email">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
+                                     th:errors="*{departmentId}">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary pull-right">Изменить</button>
                     <a th:href="@{/admin/doctors}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
                     <div class="clearfix"></div>
-                    <!--                                {{ Form::close() }}-->
                 </form>
             </div>
         </div>
