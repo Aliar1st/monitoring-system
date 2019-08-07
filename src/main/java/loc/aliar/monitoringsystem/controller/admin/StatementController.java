@@ -49,16 +49,6 @@ public class StatementController implements BaseAdminController<Statement, State
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<StatementModel> getModelClass() {
         return StatementModel.class;
     }

@@ -49,16 +49,6 @@ public class SpecializationController implements BaseAdminController<Specializat
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<SpecializationModel> getModelClass() {
         return SpecializationModel.class;
     }

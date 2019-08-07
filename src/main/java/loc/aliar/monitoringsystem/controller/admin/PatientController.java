@@ -61,16 +61,6 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<PatientModel> getModelClass() {
         return PatientModel.class;
     }

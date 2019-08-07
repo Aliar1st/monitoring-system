@@ -52,16 +52,6 @@ public class LoadController implements BaseAdminController<Load, LoadModel> {
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<LoadModel> getModelClass() {
         return LoadModel.class;
     }

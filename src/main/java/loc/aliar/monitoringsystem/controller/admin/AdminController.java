@@ -1,9 +1,7 @@
 package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.domain.Admin;
-import loc.aliar.monitoringsystem.domain.User;
 import loc.aliar.monitoringsystem.model.AdminModel;
-import loc.aliar.monitoringsystem.model.UserModel;
 import loc.aliar.monitoringsystem.service.admin.AdminService;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -48,16 +46,6 @@ public class AdminController implements BaseAdminController<Admin, AdminModel> {
     @DeleteMapping("{id}")
     public String delete(@PathVariable Long id) {
         return deleteDefault(id);
-    }
-
-    @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
     }
 
     @Override

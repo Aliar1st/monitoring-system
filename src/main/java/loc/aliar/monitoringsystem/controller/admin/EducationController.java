@@ -49,16 +49,6 @@ public class EducationController implements BaseAdminController<Education, Educa
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<EducationModel> getModelClass() {
         return EducationModel.class;
     }

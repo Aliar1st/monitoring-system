@@ -49,16 +49,6 @@ public class BodyPositionController implements BaseAdminController<BodyPosition,
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<BodyPositionModel> getModelClass() {
         return BodyPositionModel.class;
     }

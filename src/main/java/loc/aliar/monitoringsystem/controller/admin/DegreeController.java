@@ -49,16 +49,6 @@ public class DegreeController implements BaseAdminController<Degree, DegreeModel
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<DegreeModel> getModelClass() {
         return DegreeModel.class;
     }

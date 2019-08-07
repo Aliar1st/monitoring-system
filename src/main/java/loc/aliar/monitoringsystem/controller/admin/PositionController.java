@@ -49,16 +49,6 @@ public class PositionController implements BaseAdminController<Position, Positio
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<PositionModel> getModelClass() {
         return PositionModel.class;
     }

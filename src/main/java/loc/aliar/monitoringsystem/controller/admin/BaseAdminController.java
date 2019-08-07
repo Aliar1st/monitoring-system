@@ -8,13 +8,13 @@ import org.springframework.validation.BindingResult;
 
 public interface BaseAdminController<E, M extends IdAble> {
     default String indexDefault(Model model) {
-        model.addAttribute(getEntitiesName(), getCrudService().getAll());
+        model.addAttribute(getCrudService().getAll());
         return getHtmlFolder() + "index";
     }
 
     @SneakyThrows
     default String createDefault(Model model) {
-        model.addAttribute(getModelClass().getSimpleName(), getModelClass().newInstance());
+        model.addAttribute(getModelClass().newInstance());
         return getHtmlFolder() + "create";
     }
 
@@ -29,7 +29,7 @@ public interface BaseAdminController<E, M extends IdAble> {
     }
 
     default String editDefault(Long id, Model model) {
-        model.addAttribute(getModelClass().getSimpleName(), getCrudService().get(id));
+        model.addAttribute(getCrudService().get(id));
         return getHtmlFolder() + "edit";
     }
 
@@ -48,14 +48,6 @@ public interface BaseAdminController<E, M extends IdAble> {
         getCrudService().delete(id);
 
         return getRedirectToRootPath();
-    }
-
-    default String getEntityName() {
-        return "entity";
-    }
-
-    default String getEntitiesName() {
-        return "entities";
     }
 
     Class<M> getModelClass();

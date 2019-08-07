@@ -49,16 +49,6 @@ public class LoadTypeController implements BaseAdminController<LoadType, LoadTyp
     }
 
     @Override
-    public String getEntityName() {
-        return "entity";
-    }
-
-    @Override
-    public String getEntitiesName() {
-        return "entities";
-    }
-
-    @Override
     public Class<LoadTypeModel> getModelClass() {
         return LoadTypeModel.class;
     }
