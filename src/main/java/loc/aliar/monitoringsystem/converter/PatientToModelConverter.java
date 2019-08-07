@@ -8,6 +8,7 @@ public class PatientToModelConverter implements Converter<Patient, PatientModel>
     @Override
     public PatientModel convert(Patient source) {
         return PatientModel.builder()
+                .id(source.getId())
                 .username(source.getUser().getUsername())
                 .firstName(source.getPatientGeneralInfo().getFirstName())
                 .lastName(source.getPatientGeneralInfo().getLastName())
