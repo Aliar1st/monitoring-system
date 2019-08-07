@@ -8,6 +8,7 @@ public class DoctorToModelConverter implements Converter<Doctor, DoctorModel> {
     @Override
     public DoctorModel convert(Doctor source) {
         return DoctorModel.builder()
+                .id(source.getId())
                 .username(source.getUser().getUsername())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
