@@ -39,6 +39,7 @@ public class SecurityServiceImpl implements SecurityService {
         u.setRole(Role.Roles.SUPER_ADMIN.getRole());
 
         if (true) return u;
+
         return user
                 .filter(User.class::isInstance)
                 .map(User.class::cast)
