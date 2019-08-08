@@ -48,6 +48,9 @@ public class CardioMedicalInfo extends AbstractModel {
     private String osnRitm;
 
     @Column(length = 20)
+    private String nzhaNzhtzhaZht;
+
+    @Column(length = 20)
     private String zhaZht;
 
     @Column(length = 15)

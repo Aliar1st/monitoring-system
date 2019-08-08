@@ -34,7 +34,7 @@ public class ReadingController {
         model
                 .addAttribute("readings", securityService.getPatient().getReadings())
                 .addAttribute("loadTypes", loadTypeService.getAll());
-        return "";
+        return "readings/index";
     }
 
     @GetMapping("chartData")
@@ -64,7 +64,7 @@ public class ReadingController {
                 .addAttribute("loads", loadService.getAll())
                 .addAttribute("statements", statementService.getAll());
 
-        return "";
+        return "readings/create";
     }
 
     @PostMapping

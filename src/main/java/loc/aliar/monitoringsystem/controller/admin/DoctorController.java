@@ -22,6 +22,7 @@ public class DoctorController implements BaseAdminController<Doctor, DoctorModel
 
     @GetMapping
     public String index(Model model) {
+
         return indexDefault(model);
     }
 

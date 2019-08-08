@@ -47,20 +47,6 @@
                             </td>
                         </tr>
                     </th:block>
-<!--                    @foreach($patients as $p)-->
-<!--                    <tr>-->
-<!--                        <td>{{ $p->id }}</td>-->
-<!--                        <td>{{ $p->generalInformation->last_name }}</td>-->
-<!--                        <td>{{ $p->generalInformation->first_name }}</td>-->
-<!--                        <td>{{ $p->generalInformation->middle_name ?? \Config::get('constants.not_available') }}</td>-->
-<!--                        <td>{{ Helper::getDateFromReading($p->lastReading) }}</td>-->
-<!--                        <td>{{ Helper::getBorgResultFromReading($p->lastReading) }}</td>-->
-<!--                        <td>{{ $p->generalInformation->phone ?? $na }}</td>-->
-<!--                        <td class="text-primary">-->
-<!--                            <a href="{{ route('patients.edit', ['id' => $p->id]) }}" class="btn btn-primary ">Редактировать</a>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    @endforeach-->
                     </tbody>
                 </table>
             </div>

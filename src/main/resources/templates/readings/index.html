@@ -1,0 +1,118 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/patient}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="contentPatient" class="col-md-8">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Динамика самочувствия в баллах по шкале Борга</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart"></canvas>
+                <form th:action="@{/readings}" th:object="${readingModel}" method="POST">
+<!--                {!! Form::open(['route' => ['readings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}-->
+                <div class="row justify-content-md-center">
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group is-filled time-readings">
+                            <label class="bmd-label-floating">Временной промежуток</label>
+                            <div id="reportrange">
+                                <i class="fa fa-calendar"></i>&nbsp;
+                                <span></span> <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Тип физической нагрузки</label>
+                            <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
+                                <option value="" selected="selected" style=" display: none;">Все типы</option>
+                                <option th:each="c : ${loadTypes}"
+                                        th:value="${c.id}"
+                                        th:utext="${c.name}"></option>
+                            </select>
+<!--                            {{ Form::select('load_type_id', $load_types, null,-->
+<!--                            ['id' => 'load_type_id_all_readings', 'class' => 'form-control',-->
+<!--                            'placeholder' => 'Все типы']) }}-->
+                        </div>
+                    </div>
+                    <input name="date_from" type="hidden">
+                    <input name="date_to" type="hidden">
+                </div>
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title ">История реабилитации</h4>
+                    <p class="card-category">Список всех занесенных показаний</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead class=" text-primary">
+                            <tr>
+                                <th>№</th>
+                                <th>Дата</th>
+                                <th>Время</th>
+                                <th>Нагрузка</th>
+                                <th>Тип нагрузки</th>
+                                <th>Результат(в баллах по Боргу)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="p : ${readingModelList}">
+                                <tr>
+                                    <td th:text="${p.id}"></td>
+                                    <td th:text="${p.date}"></td>
+                                    <td th:text="${p.date}"></td>
+                                    <td th:text="${p.loadId}"></td>
+                                    <td th:text="loadTypeId"></td>
+                                    <td th:text="${p.borg}"></td>
+                                </tr>
+                            </th:block>
+<!--                            @foreach($readings as $reading)-->
+<!--                            <tr>-->
+<!--                                <td>{{ $reading->id }}</td>-->
+<!--                                <td>{{ Helper::getDateFromReading($reading) }}</td>-->
+<!--                                <td>{{ Helper::getTimeFromReading($reading) }}</td>-->
+<!--                                <td>{{ $reading->loadd->loadName->load_name }}</td>-->
+<!--                                <td>{{ $reading->loadd->loadName->loadType->load_type }}</td>-->
+<!--                                <td class="text-primary">{{ Helper::getBorgResultFromReading($reading) }}</td>-->
+<!--                            </tr>-->
+<!--                            @endforeach-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div layout:fragment="styles">
+        <link th:href="@{/styles/daterangepicker.css}"  rel="stylesheet" type="text/css"/>
+        <link th:href="@{/styles/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css}" rel="stylesheet" type="text/css"/>
+    </div>
+
+    <div layout:fragment="scripts">
+        <!-- Jquery DataTable Plugin Js -->
+        <script th:src="@{/scripts/jquery-datatable/jquery.dataTables.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/dataTables.buttons.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.flash.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/jszip.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/pdfmake.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/vfs_fonts.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.html5.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.print.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable.js}"></script>
+        <script th:src="@{/scripts/daterangepicker.js}"></script>
+        <script th:src="@{/scripts/custom/custom-chart.js}"></script>
+    </div>
+
+
+</body>
+</html>

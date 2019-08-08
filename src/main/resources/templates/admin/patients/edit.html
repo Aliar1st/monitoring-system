@@ -24,8 +24,6 @@
                                 <label class="bmd-label-floating">Фамилия</label>
                                 <input th:field="*{lastName}" type="text" class="form-control"
                                        aria-label="last_name">
-                                <!--                        {{ Form::label('last_name', 'Фамилия', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::text('last_name', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lastName')}"
                                      th:errors="*{lastName}">
                                 </div>
@@ -36,8 +34,6 @@
                                 <label class="bmd-label-floating">Имя</label>
                                 <input th:field="*{firstName}" type="text" class="form-control"
                                        aria-label="first_name">
-                                <!--                        {{ Form::label('first_name', 'Имя', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::text('first_name', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('firstName')}"
                                      th:errors="*{firstName}">
                                 </div>
@@ -48,8 +44,6 @@
                                 <label class="bmd-label-floating">Отчество</label>
                                 <input th:field="*{middleName}" type="text" class="form-control"
                                        aria-label="middle_name">
-                                <!--                        {{ Form::label('middle_name', 'Отчество', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::text('middle_name', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('middleName')}"
                                      th:errors="*{middleName}">
                                 </div>
@@ -62,8 +56,6 @@
                                 <label class="bmd-label-floating">Логин</label>
                                 <input th:field="*{username}" type="text" class="form-control"
                                        aria-label="login">
-                                <!--                        {{ Form::label('login', 'Логин', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::text('login', null, ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('username')}"
                                      th:errors="*{username}">
                                 </div>
@@ -74,8 +66,6 @@
                                 <label class="bmd-label-floating">Пароль</label>
                                 <input th:field="*{password}" type="text" class="form-control"
                                        aria-label="password">
-                                <!--                        {{ Form::label('password', 'Пароль', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::password('password', ['class' => 'form-control']) }}-->
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
                                      th:errors="*{password}">
                                 </div>
@@ -86,6 +76,12 @@
                         <div class="col-md-3">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Образование</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите образование</option>
+                                    <option th:each="c : ${educations}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
                                 <!--                        <select th:field="edu" class="form-control"-->
                                 <!--                               aria-label="education_id" th:placeholder="Выберите образование">-->
                                 <!--                        </select>-->
@@ -100,12 +96,11 @@
                         <div class="col-md-3">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Пол</label>
-                                <!--                        <select th:field="isMale" class="form-control"-->
-                                <!--                                aria-label="is_male" th:placeholder="Выберите пол">-->
-                                <!--                        </select>-->
-                                <!--                        {{ Form::label('is_male', 'Пол', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::select('is_male', $sex, null,-->
-                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите пол']) }}-->
+                                <select required class="form-control" aria-label="load_type" th:field="*{isMale}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите пол</option>
+                                    <option th:value="true" th:utext="Мужчина"></option>
+                                    <option th:value="false" th:utext="Женщина"></option>
+                                </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isMale')}"
                                      th:errors="*{isMale}">
                                 </div>
@@ -114,14 +109,13 @@
                         <div class="col-md-3">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Занятость</label>
-                                <!--                        <select th:field="work" class="form-control"-->
-                                <!--                                aria-label="is_work" th:placeholder="Выберите занятость">-->
-                                <!--                        </select>-->
-                                <!--                        {{ Form::label('is_work', 'Занятость', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::select('is_work', $work, null,-->
-                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите занятость']) }}-->
-                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('work')}"
-                                     th:errors="*{work}">
+                                <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите занятость</option>
+                                    <option th:value="true" th:utext="Работаю"></option>
+                                    <option th:value="false" th:utext="Не работаю"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isWork')}"
+                                     th:errors="*{isWork}">
                                 </div>
                             </div>
                         </div>

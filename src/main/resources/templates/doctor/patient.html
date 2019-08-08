@@ -1,0 +1,661 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/doctor}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="contentDoctor" class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Динамика самочувствия в баллах по шкале Борга</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <canvas id="myChart"></canvas>
+                        <form th:action="@{/readings}" th:object="${readingModel}" method="POST">
+                            <!--                {!! Form::open(['route' => ['readings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}-->
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-4">
+                                    <div class="form-group bmd-form-group is-filled time-readings">
+                                        <label class="bmd-label-floating">Временной промежуток</label>
+                                        <div id="reportrange">
+                                            <i class="fa fa-calendar"></i>&nbsp;
+                                            <span></span> <i class="fa fa-caret-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group bmd-form-group is-filled">
+                                        <label class="bmd-label-floating">Тип физической нагрузки</label>
+                                        <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
+                                            <option value="" selected="selected" style=" display: none;">Все типы</option>
+                                            <option th:each="c : ${loadTypes}"
+                                                    th:value="${c.id}"
+                                                    th:utext="${c.name}"></option>
+                                        </select>
+                                        <!--                            {{ Form::select('load_type_id', $load_types, null,-->
+                                        <!--                            ['id' => 'load_type_id_all_readings', 'class' => 'form-control',-->
+                                        <!--                            'placeholder' => 'Все типы']) }}-->
+                                    </div>
+                                </div>
+                                <input name="date_from" type="hidden">
+                                <input name="date_to" type="hidden">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">История реабилитации</h4>
+                <p class="card-category">Список всех занесенных показаний</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>№</th>
+                            <th>Дата</th>
+                            <th>Время</th>
+                            <th>Нагрузка</th>
+                            <th>Тип нагрузки</th>
+                            <th>Результат(в баллах по Боргу)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="p : ${readingModelList}">
+                            <tr>
+                                <td th:text="${p.id}"></td>
+                                <td th:text="${p.date}">{{ $reading->created_at->format('d/m/Y') }}</td>
+                                <td th:text="${p.date}">{{ $reading->created_at->format('H:i T') }}</td>
+                                <td th:text="${p.loadId}"></td>
+                                <td th:text="loadTypeId">{{ $reading->loadd->loadName->loadType->load_type }}</td>
+                                <td th:text="${p.borg}"></td>
+                            </tr>
+                        </th:block>
+<!--                        @foreach($readings as $reading)-->
+<!--                        <tr>-->
+<!--                            <td>{{ $reading->id }}</td>-->
+<!--                            <td>{{ $reading->created_at->format('d/m/Y') }}</td>-->
+<!--                            <td>{{ $reading->created_at->format('H:i T') }}</td>-->
+<!--                            <td>{{ $reading->loadd->loadName->load_name }}</td>-->
+<!--                            <td>{{ $reading->loadd->loadName->loadType->load_type }}</td>-->
+<!--                            <td class="text-primary">{{ $reading->loadd->statement->borg_result }}</td>-->
+<!--                        </tr>-->
+<!--                        @endforeach-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Медицинская информация</h4>
+            </div>
+            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${patientModel}" method="POST">
+                <input type="hidden" name="_method" value="put" />
+                <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Основной диагноз</label>
+                                <input th:field="*{basicDiagnosis}" type="text" class="form-control"
+                                       aria-label="basic_diagnosis">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('basicDiagnosis')}"
+                                     th:errors="*{basicDiagnosis}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сопутствующий диагноз</label>
+                                <input th:field="*{concomitantDiagnosis}" type="text" class="form-control"
+                                       aria-label="concomitant_diagnosis">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('concomitantDiagnosis')}"
+                                     th:errors="*{concomitantDiagnosis}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Операции</label>
+                                <input th:field="*{operations}" type="text" class="form-control"
+                                       aria-label="operations">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('operations')}"
+                                     th:errors="*{operations}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Осложнения</label>
+                                <input th:field="*{oslozhneniye}" type="text" class="form-control"
+                                       aria-label="oslozhneniye">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('oslozhneniye')}"
+                                     th:errors="*{oslozhneniye}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КДО ЛЖ, мл</label>
+                                <input th:field="*{kdoLzh}" type="text" class="form-control"
+                                       aria-label="KDO_LZH">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kdoLzh')}"
+                                     th:errors="*{kdoLzh}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ЛЖ, мл</label>
+                                <input th:field="*{ksoLzh}" type="text" class="form-control"
+                                       aria-label="KSO_LZH">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoLzh')}"
+                                     th:errors="*{ksoLzh}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ИММ, г/м2</label>
+                                <input th:field="*{imm}" type="text" class="form-control"
+                                       aria-label="IMM">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('imm')}"
+                                     th:errors="*{imm}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ФВ, %</label>
+                                <input th:field="*{fv}" type="text" class="form-control"
+                                       aria-label="FV">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('fv')}"
+                                     th:errors="*{fv}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ЛП</label>
+                                <input th:field="*{ksoLp}" type="text" class="form-control"
+                                       aria-label="KSO_LP">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoLp')}"
+                                     th:errors="*{ksoLp}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КСО ПП</label>
+                                <input th:field="*{ksoPp}" type="text" class="form-control"
+                                       aria-label="KSO_PP">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoPp')}"
+                                     th:errors="*{ksoPp}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">СДЛА</label>
+                                <input th:field="*{sdla}" type="text" class="form-control"
+                                       aria-label="SDLA">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sdla')}"
+                                     th:errors="*{sdla}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Диаст дисф.</label>
+                                <input th:field="*{diastDisf}" type="text" class="form-control"
+                                       aria-label="diast_disf">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('diastDisf')}"
+                                     th:errors="*{diastDisf}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Локальн сокр.</label>
+                                <input th:field="*{lokalnSokr}" type="text" class="form-control"
+                                       aria-label="lokaln_sokr">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lokalnSokr')}"
+                                     th:errors="*{lokalnSokr}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ХМ экг, дата</label>
+                                <input th:field="*{khmEkg}" type="text" class="form-control"
+                                       aria-label="KHM_ekg">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('khmEkg')}"
+                                     th:errors="*{khmEkg}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Осн. ритм</label>
+                                <input th:field="*{osnRitm}" type="text" class="form-control"
+                                       aria-label="osn_ritm">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('osnRitm')}"
+                                     th:errors="*{osnRitm}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">НЖА/НЖТЖА/ЖТ</label>
+                                <input th:field="*{nzhaNzhtzhaZht}" type="text" class="form-control"
+                                       aria-label="NZHA_NZHTZHA_ZHT">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nzhaNzhtzhaZht')}"
+                                     th:errors="*{nzhaNzhtzhaZht}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЖА/Жт</label>
+                                <input th:field="*{zhaZht}" type="text" class="form-control"
+                                       aria-label="ZHA_Zht">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('zhaZht')}"
+                                     th:errors="*{zhaZht}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сум. ишемия, мин</label>
+                                <input th:field="*{sumIshemiya}" type="text" class="form-control"
+                                       aria-label="sum_ishemiya">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sumIshemiya')}"
+                                     th:errors="*{sumIshemiya}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЭКГ ритм</label>
+                                <input th:field="*{ekgRitm}" type="text" class="form-control"
+                                       aria-label="EKG_ritm">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ekgRitm')}"
+                                     th:errors="*{ekgRitm}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Нарушения ритма</label>
+                                <input th:field="*{narRitma}" type="text" class="form-control"
+                                       aria-label="nar_ritma">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('narRitma')}"
+                                     th:errors="*{narRitma}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Нар. проводимости</label>
+                                <input th:field="*{narprovodimosti}" type="text" class="form-control"
+                                       aria-label="nar_provodimosti">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('narprovodimosti')}"
+                                     th:errors="*{narprovodimosti}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ST, подъем/депрессия</label>
+                                <input th:field="*{st}" type="text" class="form-control"
+                                       aria-label="ST">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('st')}"
+                                     th:errors="*{st}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Толерантность, МЕ/ВТ</label>
+                                <input th:field="*{tolerantnost}" type="text" class="form-control"
+                                       aria-label="tolerantnost">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('tolerantnost')}"
+                                     th:errors="*{tolerantnost}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Причина прекращения</label>
+                                <input th:field="*{prichinaPrekrashch}" type="text" class="form-control"
+                                       aria-label="prichina_prekrashch">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('prichinaPrekrashch')}"
+                                     th:errors="*{prichinaPrekrashch}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Продолж. нагрузки</label>
+                                <input th:field="*{prodolzhNagruzki}" type="text" class="form-control"
+                                       aria-label="prodolzh_nagruzki">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('prodolzhNagruzki')}"
+                                     th:errors="*{prodolzhNagruzki}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ОХ, ммоль/л</label>
+                                <input th:field="*{okh}" type="text" class="form-control"
+                                       aria-label="OKH">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('okh')}"
+                                     th:errors="*{okh}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЛПНП, ммоль/л</label>
+                                <input th:field="*{lpnp}" type="text" class="form-control"
+                                       aria-label="LPNP">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lpnp')}"
+                                     th:errors="*{lpnp}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ЛПВП, ммоль/л</label>
+                                <input th:field="*{lpvp}" type="text" class="form-control"
+                                       aria-label="LPVP">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lpvp')}"
+                                     th:errors="*{lpvp}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">ТГ, ммоль/л</label>
+                                <input th:field="*{tg}" type="text" class="form-control"
+                                       aria-label="TG">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('tg')}"
+                                     th:errors="*{tg}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">АЛТ, ед/л</label>
+                                <input th:field="*{alt}" type="text" class="form-control"
+                                       aria-label="ALT">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('alt')}"
+                                     th:errors="*{alt}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">АСТ, ед/л</label>
+                                <input th:field="*{ast}" type="text" class="form-control"
+                                       aria-label="AST">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ast')}"
+                                     th:errors="*{ast}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Глю, ммоль/л</label>
+                                <input th:field="*{glyu}" type="text" class="form-control"
+                                       aria-label="Glyu">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('glyu')}"
+                                     th:errors="*{glyu}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Кр, мкмоль/л</label>
+                                <input th:field="*{kr}" type="text" class="form-control"
+                                       aria-label="Kr">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kr')}"
+                                     th:errors="*{kr}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Медикаменты группы</label>
+                                <input th:field="*{medikamentyGruppy}" type="text" class="form-control"
+                                       aria-label="medikamenty_gruppy">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('medikamentyGruppy')}"
+                                     th:errors="*{medikamentyGruppy}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">КАГ</label>
+                                <input th:field="*{kag}" type="text" class="form-control"
+                                       aria-label="KAG">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kag')}"
+                                     th:errors="*{kag}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Гармоничный</label>
+                                <input th:field="*{harmonious}" type="number" class="form-control"
+                                       aria-label="harmonious">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('harmonious')}"
+                                     th:errors="*{harmonious}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Эргопатич.</label>
+                                <input th:field="*{ergopatial}" type="number" class="form-control"
+                                       aria-label="ergopatical">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ergopatial')}"
+                                     th:errors="*{ergopatial}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Аногнозич.</label>
+                                <input th:field="*{anognocy}" type="number" class="form-control"
+                                       aria-label="anognosy">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('anognocy')}"
+                                     th:errors="*{anognocy}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Тревожный</label>
+                                <input th:field="*{disturbing}" type="number" class="form-control"
+                                       aria-label="disturbing">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('disturbing')}"
+                                     th:errors="*{disturbing}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Ипохондрич.</label>
+                                <input th:field="*{hypochondriacal}" type="number" class="form-control"
+                                       aria-label="hypochondriacal">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('hypochondriacal')}"
+                                     th:errors="*{hypochondriacal}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Неврастенич.</label>
+                                <input th:field="*{neurasthenic}" type="number" class="form-control"
+                                       aria-label="neurasthenic">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('neurasthenic')}"
+                                     th:errors="*{neurasthenic}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Меланхолич.</label>
+                                <input th:field="*{melancholy}" type="number" class="form-control"
+                                       aria-label="melancholy">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('melancholy')}"
+                                     th:errors="*{melancholy}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Апатическ</label>
+                                <input th:field="*{apathetic}" type="number" class="form-control"
+                                       aria-label="apathetic">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('apathetic')}"
+                                     th:errors="*{apathetic}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Сентитивн.</label>
+                                <input th:field="*{sentimental}" type="number" class="form-control"
+                                       aria-label="sentimental">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sentimental')}"
+                                     th:errors="*{sentimental}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Эгоцентрич.</label>
+                                <input th:field="*{self_centered}" type="number" class="form-control"
+                                       aria-label="self_centered">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('self_centered')}"
+                                     th:errors="*{self_centered}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Паронояльный</label>
+                                <input th:field="*{paranoid}" type="number" class="form-control"
+                                       aria-label="paranoid">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('paranoid')}"
+                                     th:errors="*{paranoid}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Дисфорическ.</label>
+                                <input th:field="*{dysphoric}" type="number" class="form-control"
+                                       aria-label="dysphoric">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('dysphoric')}"
+                                     th:errors="*{dysphoric}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Тип личности</label>
+                                <input th:field="*{personality_type}" type="number" class="form-control"
+                                       aria-label="personality_type">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('personality_type')}"
+                                     th:errors="*{personality_type}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Соотнош. типов</label>
+                                <input th:field="*{type_relationship}" type="number" class="form-control"
+                                       aria-label="type_relationship">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('type_relationship')}"
+                                     th:errors="*{type_relationship}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Обновить</button>
+                    <a th:href="@{/doctor}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div layout:fragment="styles">
+        <link th:href="@{/styles/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css}"  rel="stylesheet" type="text/css"/>
+        <link th:href="@{/styles/daterangepicker.css}" rel="stylesheet" type="text/css"/>
+    </div>
+
+    <div layout:fragment="scripts">
+        <!-- Jquery DataTable Plugin Js -->
+        <script th:src="@{/scripts/jquery-datatable/jquery.dataTables.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/dataTables.buttons.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.flash.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/jszip.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/pdfmake.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/vfs_fonts.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.html5.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable/extensions/export/buttons.print.min.js}"></script>
+        <script th:src="@{/scripts/jquery-datatable.js}"></script>
+        <script th:src="@{/scripts/daterangepicker.js}"></script>
+        <script th:src="@{/scripts/custom/custom-chart.js}"></script>
+    </div>
+</body>
+</html>

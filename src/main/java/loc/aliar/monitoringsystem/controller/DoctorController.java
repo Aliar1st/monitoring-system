@@ -18,9 +18,9 @@ public class DoctorController {
 
     @GetMapping
     public String index(Model model) {
-        Long doctorId = securityService.getDoctor().getId();
-        model.addAttribute(patientService.getAllByDoctorId(doctorId));
-        return "";
+//        Long doctorId = securityService.getDoctor().getId();
+//        model.addAttribute(patientService.getAllByDoctorId(doctorId));
+        return "doctor/index";
     }
 
     @GetMapping("/{id}")

@@ -1,0 +1,158 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/patient}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="contentPatient" class="col-md-8">
+
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Оставить показания</h4>
+                <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/readings}" th:object="${readingModel}" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Дата выполнения</label>
+                                <input disabled=""  th:field="*{date}" type="date" class="form-control"
+                                        aria-label="date" th:value="${#calendars.format(#calendars.createNow(), 'dd MMM yyyy')}">
+<!--                                {{ Form::label('', 'Дата выполнения', ['class' => 'bmd-label-floating']) }}-->
+<!--                                {{ Form::date('', \Carbon\Carbon::now(), ['class' => 'form-control', 'disabled' => '']) }}-->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Время выполнения</label>
+                                <input class="form-control" type="time" name="duration" id="duration" disabled=""
+                                       th:value="${#calendars.format(#calendars.createNow(), 'HH:mm')}">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Рост, см</label>
+                                <input  th:field="*{growth}" type="number" class="form-control"
+                                        aria-label="growth">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('growth')}"
+                                     th:errors="*{growth}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Вес, кг</label>
+                                <input  th:field="*{weight}" type="number" class="form-control"
+                                        aria-label="weight">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('weight')}"
+                                     th:errors="*{weight}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Положение тела во время выполнения физической нагрузки</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{bodyPositionId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите положение тела</option>
+                                    <option th:each="c : ${bodyPositions}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('bodyPositionId')}"
+                                     th:errors="*{bodyPositionId}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Продолжительность выполненной физической нагрузки, мин</label>
+                                <input  th:field="*{duration}" type="number" class="form-control"
+                                        aria-label="duration">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('duration')}"
+                                     th:errors="*{duration}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Тип физической нагрузки</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите тип</option>
+                                    <option th:each="c : ${loadTypes}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Выполненная физическая нагрузка</label>
+<!--                                <select class="form-control" id="load_name_id" name="load_name_id">-->
+<!--                                    <option value="">Выберите нагрузку</option>-->
+<!--                                    -->
+<!--                                    @foreach($load_names as $load)-->
+<!--                                    <option value="{{ $load->id }}" data-load-type="{{ $load->load_type_id }}"-->
+<!--                                            style="display: none;">-->
+<!--                                        {{ $load->load_name }}-->
+<!--                                    </option>-->
+<!--                                    @endforeach-->
+<!--                                </select>-->
+
+                                <select required class="form-control" aria-label="load_type" th:field="*{loadId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите нагрузку</option>
+                                    <option th:each="c : ${loads}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"
+                                            th:data-load-type="*{loadTypeId}"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('loadId')}"
+                                     th:errors="*{loadId}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Выберите утверждение, подходящее, по Вашему мнению, для описания Ваших ощущений во время выполнения физических нагрузок</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{statementId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите утверждение</option>
+                                    <option th:each="c : ${statements}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('statementId')}"
+                                     th:errors="*{statementId}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary pull-right">Отправить</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div layout:fragment="scripts">
+        <script th:src="@{/scripts/custom/custom-create-reading.js}"></script>
+    </div>
+</body>
+</html>

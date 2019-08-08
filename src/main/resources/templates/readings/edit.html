@@ -1,0 +1,160 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/patient}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="contentPatient"class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Личная информация</h4>
+                <p class="card-category">Вы можете изменить свою личную информацию</p>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/admin/doctors/__${id}__}" th:object="${doctorModel}" method="POST">
+                    <input type="hidden" name="_method" value="put" />
+                    <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Фамилия</label>
+                                <input th:field="*{lastName}" type="text" class="form-control"
+                                       aria-label="last_name">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lastName')}"
+                                     th:errors="*{lastName}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Имя</label>
+                                <input th:field="*{firstName}" type="text" class="form-control"
+                                       aria-label="first_name">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('firstName')}"
+                                     th:errors="*{firstName}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Отчество</label>
+                                <input th:field="*{middleName}" type="text" class="form-control"
+                                       aria-label="middle_name">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('middleName')}"
+                                     th:errors="*{middleName}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Логин</label>
+                                <input th:field="*{username}" type="text" class="form-control"
+                                       aria-label="login">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('username')}"
+                                     th:errors="*{username}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Пароль</label>
+                                <input th:field="*{password}" type="password" class="form-control"
+                                       aria-label="password">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
+                                     th:errors="*{password}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Звание</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{positionId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите звание</option>
+                                    <option th:each="c : ${positions}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('positionId')}"
+                                     th:errors="*{positionId}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Ученая степень</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{degreeId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите ученую степень</option>
+                                    <option th:each="c : ${degrees}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('degreeId')}"
+                                     th:errors="*{degreeId}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Специализация</label>
+                                <select required class="form-control" aria-label="load_type" th:field="*{specializationId}">
+                                    <option value="" selected="selected" style=" display: none;">Выберите специализацию</option>
+                                    <option th:each="c : ${specializations}"
+                                            th:value="${c.id}"
+                                            th:utext="${c.name}"></option>
+                                </select>
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('specializationId')}"
+                                     th:errors="*{specializationId}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Телефон</label>
+                                <input th:field="*{phone}" type="text" class="form-control"
+                                       aria-label="phone">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('phone')}"
+                                     th:errors="*{phone}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Email</label>
+                                <input th:field="*{email}" type="text" class="form-control"
+                                       aria-label="email">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}"
+                                     th:errors="*{email}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Отдел</label>
+                                <input th:field="*{departmentId}" type="number" class="form-control"
+                                       aria-label="email">
+                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
+                                     th:errors="*{departmentId}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+                    <a th:href="@{/doctor}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

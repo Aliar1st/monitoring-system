@@ -1,0 +1,26 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/app}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет врача</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div th:insert="~{partial/sidebar_doctor :: sidebar_doctor}"></div>
+        <div class="main-panel">
+            <div th:insert="~{partial/navbar :: navbar}"></div>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div layout:fragment="contentDoctor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/patient}"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="contentPatient" class="col-md-8">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Заключение</h4>
+                <p class="card-category">Комментарий к полученному результату</p>
+            </div>
+            <div class="card-body">
+                <h3>Ваш результат <strong>{{ $borg_result }} баллов</strong> </h3>
+                <p>{{ $recommendation }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">ЧСС</h4>
+                <p class="card-category">Рассчитывается как число баллов*10 уд/мин</p>
+            </div>
+            <div class="card-body">
+                {{ $borg_result * 10 }}
+            </div>
+        </div>
+        <a th:href="@{/readings}" class="btn btn-primary pull-right">Посмотреть историю реабилитации</a>
+        <!-- <a href="readings.blade.php" class="btn btn-primary pull-right">Печать заключения</a> -->
+        <a th:href="@{/readings/create}" class="btn btn-primary pull-right">Добавить еще показания</a>
+
+    </div>
+</body>
+</html>

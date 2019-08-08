@@ -1,0 +1,42 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/doctor}">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="sidebar_doctor" class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                НИИ Кардиологии
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('doctor.chat') }}">
+                        <p>Сообщения пациентов</p>
+                    </a>
+
+
+                </li>
+                <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/doctor')} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/doctor}">
+                        <i class="material-icons">content_paste</i>
+                        <p>Пациенты</p>
+                    </a>
+                </li>
+                <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/doctor/edit')} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/doctor/edit}">
+                        <i class="material-icons">person</i>
+                        <p>Личная информация</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+

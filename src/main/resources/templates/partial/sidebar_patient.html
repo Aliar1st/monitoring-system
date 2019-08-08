@@ -1,0 +1,46 @@
+<!--suppress ThymeleafVariablesResolveInspection -->
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/patient}">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="sidebar_patient" class="sidebar" data-color="purple" data-background-color="white" data-image="personal_area/assets/img/sidebar-1.jpg">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                НИИ Кардиологии
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <p>Написать врачу</p>
+                    </a>
+                </li>
+                <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/patient')} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/patient}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Главная страница</p>
+                    </a>
+                </li>
+                <li class="nav-item " th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/readings/add')} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/readings/create}">
+                        <i class="material-icons">person</i>
+                        <p>Оставить показания</p>
+                    </a>
+                </li>
+                <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/readings')} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/readings}">
+                        <i class="material-icons">content_paste</i>
+                        <p>История реабилитации</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+

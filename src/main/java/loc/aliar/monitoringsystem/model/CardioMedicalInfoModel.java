@@ -35,6 +35,7 @@ public class CardioMedicalInfoModel {
     @Size(max = 20) private String lokalnSokr;
     @Size(max = 10) private String khmEkg;
     @Size(max = 50) private String osnRitm;
+    @Size(max = 20) private String nzhaNzhtzhaZht;
     @Size(max = 20) private String zhaZht;
     @Size(max = 15) private String sumIshemiya;
     @Size(max = 30) private String ekgRitm;
