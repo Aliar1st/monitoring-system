@@ -23,16 +23,16 @@ insert into specialization (name) values
 insert into doctor (first_name, last_name, degree_id, department_id, position_id, specialization_id, user_id) values
 ('doc', 'doc', 1, 1, 1, 1, 3);
 
-insert into cardio_medical_info (basic_diagnosis) values
-('test1'),
-('test2'),
-('test3'),
-('test4'),
-('test5');
+insert into patient (last_name, first_name, date_of_birth, is_male, is_work, user_id) values
+('test1', 'test1', '2019-01-01', 1, 1, (3+1)),
+('test2', 'test2', '2019-01-01', 1, 1, (3+2)),
+('test3', 'test3', '2019-01-01', 1, 1, (3+3)),
+('test4', 'test4', '2019-01-01', 1, 1, (3+4)),
+('test5', 'test5', '2019-01-01', 1, 1, (3+5));
 
-insert into patient (last_name, first_name, date_of_birth, is_male, is_work, cardio_medical_info_id, user_id) values
-('test1', 'test1', '2019-01-01', 1, 1, 1, (3+1)),
-('test2', 'test2', '2019-01-01', 1, 1, 2, (3+2)),
-('test3', 'test3', '2019-01-01', 1, 1, 3, (3+3)),
-('test4', 'test4', '2019-01-01', 1, 1, 4, (3+4)),
-('test5', 'test5', '2019-01-01', 1, 1, 5, (3+5));
+insert into cardio_medical_info (basic_diagnosis, patient_id) values
+('test1', 1),
+('test2', 2),
+('test3', 3),
+('test4', 4),
+('test5', 5);
