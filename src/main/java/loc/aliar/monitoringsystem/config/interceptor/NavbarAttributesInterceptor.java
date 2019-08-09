@@ -17,9 +17,9 @@ public class NavbarAttributesInterceptor extends HandlerInterceptorAdapter {
     private final SecurityService securityService;
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        Long userId = securityService.getUser().getId();
-        Long unreadCount = messageService.unreadCount(userId);
-        request.setAttribute("unreadCount", unreadCount);
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)  {
+//        Long userId = securityService.getUser().getId();
+//        Long unreadCount = messageService.unreadCount(userId);
+        request.setAttribute("unreadCount", 5);
     }
 }

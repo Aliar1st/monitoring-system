@@ -1,6 +1,5 @@
 package loc.aliar.monitoringsystem.config.interceptor;
 
-import loc.aliar.monitoringsystem.domain.Patient;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.model.ReadingModel;
 import loc.aliar.monitoringsystem.service.ReadingService;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Component
@@ -23,15 +23,15 @@ public class ProfileCardAttributesInterceptor extends HandlerInterceptorAdapter 
     private final ConversionService conversionService;
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        Patient patient = securityService.getPatient();
-        PatientModel patientModel = conversionService.convert(patient, PatientModel.class);
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+//        Patient patient = securityService.getPatient();
+        PatientModel patientModel = securityService.getPatientModel();
 
-        String dob = patientModel.getDateOfBirth().format(null);
+        String dob = patientModel.getDateOfBirth().format(DateTimeFormatter.ofPattern(""));
         String name = patientModel.fullName();
         String photo = patientModel.getPhotoUrl();
 
-        Optional<ReadingModel> lastReadingOpt = readingService.getLastByPatientId(patient.getId());
+        Optional<ReadingModel> lastReadingOpt = readingService.getLastByPatientId(1L);
         String lastDate;
         String lastTime;
         String lastScore;
