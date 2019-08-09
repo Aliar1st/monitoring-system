@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface ReadingRepository extends JpaRepository<Reading, Long> {
     Optional<Reading> findFirstByPatientIdOrderByCreatedDate(Long patientId);
 
+    List<Reading> findAllByPatientIdOrderByCreatedDate(Long patientId);
+
     List<Reading> findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(
             Long patientId, Long loadTypeId, LocalDateTime start, LocalDateTime end);
 }

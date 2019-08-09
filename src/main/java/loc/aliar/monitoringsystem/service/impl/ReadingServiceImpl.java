@@ -5,6 +5,7 @@ import loc.aliar.monitoringsystem.model.ChartDataResponse;
 import loc.aliar.monitoringsystem.model.ReadingModel;
 import loc.aliar.monitoringsystem.repository.ReadingRepository;
 import loc.aliar.monitoringsystem.service.ReadingService;
+import loc.aliar.monitoringsystem.utils.ConverterUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ import java.util.Optional;
 public class ReadingServiceImpl implements ReadingService {
     private final ReadingRepository readingRepository;
     private final ConversionService conversionService;
+
+    @Override
+    public List<ReadingModel> getByPatientId(Long patientId) {
+        return ConverterUtils.convertList(readingRepository.findAllByPatientIdOrderByCreatedDate(patientId),
+                ReadingModel.class, conversionService);
+    }
 
     @Override
     public Optional<ReadingModel> getLastByPatientId(Long patientId) {
