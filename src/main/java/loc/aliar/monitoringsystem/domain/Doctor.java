@@ -26,22 +26,22 @@ public class Doctor extends AbstractModel {
     @Column(length = 130)
     private String email;
 
-//    @ManyToOne(optional = false)
+    //    @ManyToOne(optional = false)
     @ManyToOne
     private Specialization specialization;
 
-//    @ManyToOne(optional = false)
+    //    @ManyToOne(optional = false)
     @ManyToOne
     private Degree degree;
 
-//    @ManyToOne(optional = false)
+    //    @ManyToOne(optional = false)
     @ManyToOne
     private Position position;
 
     @OneToOne(optional = false)
     private User user;
 
-//    @ManyToOne(optional = false)
+    //    @ManyToOne(optional = false)
     @ManyToOne
     private Department department;
 

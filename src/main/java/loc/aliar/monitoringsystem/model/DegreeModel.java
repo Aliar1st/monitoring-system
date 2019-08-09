@@ -2,15 +2,12 @@ package loc.aliar.monitoringsystem.model;
 
 import loc.aliar.monitoringsystem.repository.DegreeRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

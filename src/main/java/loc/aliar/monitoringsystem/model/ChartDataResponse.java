@@ -1,14 +1,14 @@
 package loc.aliar.monitoringsystem.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter @Setter
 @RequiredArgsConstructor
 public class ChartDataResponse {
     private final boolean success;

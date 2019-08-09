@@ -5,16 +5,13 @@ import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

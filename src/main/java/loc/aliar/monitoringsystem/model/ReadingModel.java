@@ -4,17 +4,14 @@ import loc.aliar.monitoringsystem.repository.BodyPositionRepository;
 import loc.aliar.monitoringsystem.repository.LoadRepository;
 import loc.aliar.monitoringsystem.repository.StatementRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Data
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

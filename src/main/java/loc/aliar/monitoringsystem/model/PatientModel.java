@@ -5,10 +5,7 @@ import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-@Data
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

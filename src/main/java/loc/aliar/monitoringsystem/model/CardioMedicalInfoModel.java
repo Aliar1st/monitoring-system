@@ -3,12 +3,13 @@ package loc.aliar.monitoringsystem.model;
 import loc.aliar.monitoringsystem.repository.PatientRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.*;
 
-@Data
+@Getter @Setter
 @NoArgsConstructor
 public class CardioMedicalInfoModel {
     private Long id;

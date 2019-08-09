@@ -1,9 +1,8 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -11,7 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Role implements GrantedAuthority {
     public static final Map<Integer, Roles> ID_ROLES = new HashMap<>();
