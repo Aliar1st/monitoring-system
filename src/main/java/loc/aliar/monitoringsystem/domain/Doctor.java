@@ -1,15 +1,13 @@
 package loc.aliar.monitoringsystem.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Doctor extends AbstractModel {

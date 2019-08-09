@@ -1,6 +1,7 @@
 package loc.aliar.monitoringsystem.service.impl;
 
 import loc.aliar.monitoringsystem.domain.Doctor;
+import loc.aliar.monitoringsystem.domain.Patient;
 import loc.aliar.monitoringsystem.exception.DepartmentException;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.repository.DoctorRepository;
@@ -45,4 +46,13 @@ public class PatientServiceImpl implements PatientService {
                 .map(p -> conversionService.convert(p, PatientModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public PatientModel getPatient(Long patientId) {
+        Patient patient = patientRepository.findById(patientId).orElseThrow(
+                () -> new EntityNotFoundException("Patient with id " + patientId + " not found"));
+        return conversionService.convert(patient, PatientModel.class);
+    }
+
+
 }

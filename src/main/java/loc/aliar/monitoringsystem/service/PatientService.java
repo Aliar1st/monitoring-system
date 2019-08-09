@@ -8,4 +8,6 @@ public interface PatientService {
     Object getMedicalInfo(Integer depId);
 
     List<PatientModel> getAllByDoctorId(Long doctorId);
+
+    PatientModel getPatient(Long id);
 }
