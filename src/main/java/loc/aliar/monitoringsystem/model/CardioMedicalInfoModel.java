@@ -1,9 +1,7 @@
 package loc.aliar.monitoringsystem.model;
 
-import loc.aliar.monitoringsystem.repository.DepartmentRepository;
 import loc.aliar.monitoringsystem.repository.PatientRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,6 @@ import javax.validation.constraints.*;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class CardioMedicalInfoModel {
     private Long id;
 
@@ -53,8 +50,7 @@ public class CardioMedicalInfoModel {
     @Min(0) private Double alt;
     @Min(0) private Double ast;
     @Min(0) private Double glyu;
-    @Min(0) private Double kr;
-    private String medikamentyGruppy;
+    @Min(0) private Double kr;private String medikamentyGruppy;
 
     @Size(max = 100) private String kag;
 
@@ -79,7 +75,67 @@ public class CardioMedicalInfoModel {
     @Exists(PatientRepository.class)
     private Long patientId;
 
-    @NotNull
-    @Exists(DepartmentRepository.class)
-    private Integer departmentId;
+    @Builder
+    public CardioMedicalInfoModel(
+            Long id, String basicDiagnosis, String concomitantDiagnosis, String operations,
+            String oslozhneniye, Short kdoLzh, Short ksoLzh, Short imm, Short fv, Short ksoLp, Short ksoPp, Short sdla,
+            String diastDisf, String lokalnSokr, String khmEkg, String osnRitm, String nzhaNzhtzhaZht, String zhaZht,
+            String sumIshemiya, String ekgRitm, String narRitma, String narprovodimosti, String st, String tolerantnost,
+            String prichinaPrekrashch, Short prodolzhNagruzki, Double okh, Double lpnp, Double lpvp, Double tg,
+            Double alt, Double ast, Double glyu, Double kr, String medikamentyGruppy, String kag, Byte harmonious,
+            Byte ergopatial, Byte anognocy, Byte disturbing, Byte hypochondriacal, Byte neurasthenic, Byte melancholy,
+            Byte apathetic, Byte sentimental, Byte self_centered, Byte paranoid, Byte dysphoric,
+            String personality_type, String type_relationship, Long patientId) {
+        this.id = id;
+        this.basicDiagnosis = basicDiagnosis;
+        this.concomitantDiagnosis = concomitantDiagnosis;
+        this.operations = operations;
+        this.oslozhneniye = oslozhneniye;
+        this.kdoLzh = kdoLzh;
+        this.ksoLzh = ksoLzh;
+        this.imm = imm;
+        this.fv = fv;
+        this.ksoLp = ksoLp;
+        this.ksoPp = ksoPp;
+        this.sdla = sdla;
+        this.diastDisf = diastDisf;
+        this.lokalnSokr = lokalnSokr;
+        this.khmEkg = khmEkg;
+        this.osnRitm = osnRitm;
+        this.nzhaNzhtzhaZht = nzhaNzhtzhaZht;
+        this.zhaZht = zhaZht;
+        this.sumIshemiya = sumIshemiya;
+        this.ekgRitm = ekgRitm;
+        this.narRitma = narRitma;
+        this.narprovodimosti = narprovodimosti;
+        this.st = st;
+        this.tolerantnost = tolerantnost;
+        this.prichinaPrekrashch = prichinaPrekrashch;
+        this.prodolzhNagruzki = prodolzhNagruzki;
+        this.okh = okh;
+        this.lpnp = lpnp;
+        this.lpvp = lpvp;
+        this.tg = tg;
+        this.alt = alt;
+        this.ast = ast;
+        this.glyu = glyu;
+        this.kr = kr;
+        this.medikamentyGruppy = medikamentyGruppy;
+        this.kag = kag;
+        this.harmonious = harmonious;
+        this.ergopatial = ergopatial;
+        this.anognocy = anognocy;
+        this.disturbing = disturbing;
+        this.hypochondriacal = hypochondriacal;
+        this.neurasthenic = neurasthenic;
+        this.melancholy = melancholy;
+        this.apathetic = apathetic;
+        this.sentimental = sentimental;
+        this.self_centered = self_centered;
+        this.paranoid = paranoid;
+        this.dysphoric = dysphoric;
+        this.personality_type = personality_type;
+        this.type_relationship = type_relationship;
+        this.patientId = patientId;
+    }
 }
