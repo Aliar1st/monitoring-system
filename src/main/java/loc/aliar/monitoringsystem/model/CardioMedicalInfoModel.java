@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.*;
 
 @Data
-@Builder
 @NoArgsConstructor
 public class CardioMedicalInfoModel {
     private Long id;
