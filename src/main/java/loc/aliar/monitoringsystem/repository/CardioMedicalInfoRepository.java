@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CardioMedicalInfoRepository extends JpaRepository<CardioMedicalInfo, Long> {
-
+    CardioMedicalInfo findByPatientId(Long patientId);
 }

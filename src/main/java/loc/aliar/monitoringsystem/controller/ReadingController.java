@@ -70,23 +70,17 @@ public class ReadingController {
     @PostMapping
     public String create(@Valid ReadingModel readingModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "";
+            return "readings/create";
         }
 
         readingService.save(readingModel);
 
-        return "";
+        return "redirect:/readings";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable Long id, Model model) {
         model.addAttribute(readingService.get(id));
-        return "";
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        readingService.delete(id);
-        return "";
+        return "readings/result";
     }
 }

@@ -7,6 +7,9 @@ import loc.aliar.monitoringsystem.model.AdminModel;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.service.SecurityService;
+import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
+import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
+import loc.aliar.monitoringsystem.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.core.Authentication;
@@ -22,6 +25,9 @@ import static loc.aliar.monitoringsystem.domain.Role.ID_ROLES;
 @RequiredArgsConstructor
 public class SecurityServiceImpl implements SecurityService {
     private final ConversionService conversionService;
+    private final AdminPatientService adminPatientService;
+    private final AdminDoctorService adminDoctorService;
+    private final AdminService adminService;
 
     @Override
     public User getUser() {
@@ -63,17 +69,20 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public AdminModel getAdminModel() {
-        return conversionService.convert(getUser().getAdmin(), AdminModel.class);
+        if (true) return adminService.get(1L);
+        return conversionService.convert(getAdmin(), AdminModel.class);
     }
 
     @Override
     public DoctorModel getDoctorModel() {
-        return conversionService.convert(getUser().getDoctor(), DoctorModel.class);
+        if (true) return adminDoctorService.get(1L);
+        return conversionService.convert(getDoctor(), DoctorModel.class);
     }
 
     @Override
     public PatientModel getPatientModel() {
-        return conversionService.convert(getUser().getPatient(), PatientModel.class);
+        if (true) return adminPatientService.get(1L);
+        return conversionService.convert(getPatient(), PatientModel.class);
     }
 
     @Override

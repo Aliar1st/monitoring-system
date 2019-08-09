@@ -3,6 +3,7 @@ package loc.aliar.monitoringsystem.model;
 import loc.aliar.monitoringsystem.repository.EducationRepository;
 import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
+import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NewUserPassword
 public class PatientModel implements IdAble {
     private Long id;
 
@@ -30,7 +32,6 @@ public class PatientModel implements IdAble {
             fieldName = "username")
     private String username;
 
-    @NotEmpty
     @Length(min = 4, max = 50)
     private String password;
 

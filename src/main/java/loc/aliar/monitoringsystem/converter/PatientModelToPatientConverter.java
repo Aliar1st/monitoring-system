@@ -1,7 +1,7 @@
 package loc.aliar.monitoringsystem.converter;
 
 import loc.aliar.monitoringsystem.domain.Education;
-import loc.aliar.monitoringsystem.domain.PatientGeneralInfo;
+import loc.aliar.monitoringsystem.domain.Patient;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.service.storage.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PatientModelToGeneralInfoConverter implements Converter<PatientModel, PatientGeneralInfo> {
-    private final StorageService storageService;
+public class PatientModelToPatientConverter implements Converter<PatientModel, Patient> {
+    private StorageService storageService;
 
     @Override
-    public PatientGeneralInfo convert(PatientModel source) {
-        return PatientGeneralInfo.builder()
+    public Patient convert(PatientModel source) {
+        return Patient.builder()
                 .id(source.getId())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())

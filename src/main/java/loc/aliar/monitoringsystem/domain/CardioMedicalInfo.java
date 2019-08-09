@@ -92,8 +92,8 @@ public class CardioMedicalInfo extends AbstractModel {
     @Embedded
     private PatientDiseaseAttitude patientDiseaseAttitude;
 
-    @ManyToOne(optional = false)
-    private Department department;
+    @ManyToOne
+    private Patient patient;
 
     @Builder
     public CardioMedicalInfo(
@@ -104,7 +104,7 @@ public class CardioMedicalInfo extends AbstractModel {
             String narprovodimosti, String st, String tolerantnost, String prichinaPrekrashch,
             Short prodolzhNagruzki, Double okh, Double lpnp, Double lpvp, Double tg, Double alt,
             Double ast, Double glyu, Double kr, String medikamentyGruppy, String kag,
-            PatientDiseaseAttitude patientDiseaseAttitude, Department department) {
+            PatientDiseaseAttitude patientDiseaseAttitude, Patient patient) {
         super(id);
         this.basicDiagnosis = basicDiagnosis;
         this.concomitantDiagnosis = concomitantDiagnosis;
@@ -141,6 +141,6 @@ public class CardioMedicalInfo extends AbstractModel {
         this.medikamentyGruppy = medikamentyGruppy;
         this.kag = kag;
         this.patientDiseaseAttitude = patientDiseaseAttitude;
-        this.department = department;
+        this.patient = patient;
     }
 }

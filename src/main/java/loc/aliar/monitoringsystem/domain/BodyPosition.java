@@ -16,6 +16,10 @@ public class BodyPosition extends AbstractModel {
     @Column(unique = true, length = 20, nullable = false)
     private String name;
 
+    public BodyPosition(Long id) {
+        super(id);
+    }
+
     @Builder
     public BodyPosition(Long id, String name) {
         super(id);

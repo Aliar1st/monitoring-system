@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 @RequiredArgsConstructor
@@ -15,11 +16,16 @@ public class PatientModelToUserConverter implements Converter<PatientModel, User
 
     @Override
     public User convert(PatientModel source) {
-        return User.builder()
+        User user = User.builder()
                 .id(source.getId())
                 .username(source.getUsername())
-                .password(passwordEncoder.encode(source.getPassword()))
                 .role(Role.Roles.PATIENT.getRole())
                 .build();
+
+        if (StringUtils.hasText(source.getPassword())) {
+            user.setPassword(passwordEncoder.encode(source.getPassword()));
+        }
+
+        return user;
     }
 }

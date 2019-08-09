@@ -77,7 +77,7 @@
                                 <label class="bmd-label-floating">Образование</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
                                     <option value="" selected="selected" style=" display: none;">Выберите образование</option>
-                                    <option th:each="c : ${educations}"
+                                    <option th:each="c : ${educationList}"
                                             th:value="${c.id}"
                                             th:utext="${c.name}"></option>
                                 </select>
@@ -91,8 +91,8 @@
                                 <label class="bmd-label-floating">Пол</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{isMale}">
                                     <option value="" selected="selected" style=" display: none;">Выберите пол</option>
-                                    <option th:value="true" th:utext="Мужчина"></option>
-                                    <option th:value="false" th:utext="Женщина"></option>
+                                    <option th:value="true">Мужчина</option>
+                                    <option th:value="false">Женщина</option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isMale')}"
                                      th:errors="*{isMale}">
@@ -104,8 +104,8 @@
                                 <label class="bmd-label-floating">Занятость</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
                                     <option value="" selected="selected" style=" display: none;">Выберите занятость</option>
-                                    <option th:value="true" th:utext="Работаю"></option>
-                                    <option th:value="false" th:utext="Не работаю"></option>
+                                    <option th:value="true">Работаю</option>
+                                    <option th:value="false">Не работаю</option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isWork')}"
                                      th:errors="*{isWork}">
@@ -167,7 +167,7 @@
                 <h4 class="card-title">Медицинская информация</h4>
                 <p class="card-category">Медицинскую информацию может обновлять Ваш лечащий врач</p>
             </div>
-            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${patientModel}" method="POST">
+            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${cardioMedicalInfoModel}" method="POST">
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                 <div class="card-body">

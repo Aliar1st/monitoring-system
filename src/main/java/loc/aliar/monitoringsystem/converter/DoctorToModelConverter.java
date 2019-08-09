@@ -3,7 +3,9 @@ package loc.aliar.monitoringsystem.converter;
 import loc.aliar.monitoringsystem.domain.Doctor;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DoctorToModelConverter implements Converter<Doctor, DoctorModel> {
     @Override
     public DoctorModel convert(Doctor source) {

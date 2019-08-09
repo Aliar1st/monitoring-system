@@ -3,7 +3,9 @@ package loc.aliar.monitoringsystem.converter;
 import loc.aliar.monitoringsystem.domain.Load;
 import loc.aliar.monitoringsystem.model.LoadModel;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoadToModelConverter implements Converter<Load, LoadModel> {
     @Override
     public LoadModel convert(Load source) {

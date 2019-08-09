@@ -23,14 +23,14 @@ public abstract class AbstractModel implements Persistable<Long>, Auditable<User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @CreatedBy
     private User createdBy;
 
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @LastModifiedBy
     private User lastModifiedBy;
 

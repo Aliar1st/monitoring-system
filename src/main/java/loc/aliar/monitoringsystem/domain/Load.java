@@ -20,6 +20,10 @@ public class Load extends AbstractModel {
     @ManyToOne(optional = false)
     private LoadType loadType;
 
+    public Load(Long id) {
+        super(id);
+    }
+
     @Builder
     public Load(Long id, String name, LoadType loadType) {
         super(id);

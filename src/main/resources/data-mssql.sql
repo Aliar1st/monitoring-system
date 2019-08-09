@@ -5,6 +5,10 @@ insert into role (name, authority) values
 ('Врач', 'ROLE_DOCTOR'),
 ('Пациент', 'ROLE_PATIENT');
 
+-- Отделы
+insert into department (name) values
+('Кардиология');
+
 -- Положения тела
 insert into body_position (name) values
 ('Лежа'),

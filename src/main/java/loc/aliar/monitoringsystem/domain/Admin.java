@@ -14,7 +14,8 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Admin extends AbstractModel {
-    @ManyToOne(optional = false)
+//    @ManyToOne(optional = false)
+    @ManyToOne
     private Department department;
 
     @OneToOne(optional = false)

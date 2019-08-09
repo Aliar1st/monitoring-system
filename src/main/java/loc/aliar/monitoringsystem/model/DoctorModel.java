@@ -2,6 +2,7 @@ package loc.aliar.monitoringsystem.model;
 
 import loc.aliar.monitoringsystem.repository.*;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
+import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import javax.validation.constraints.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NewUserPassword
 public class DoctorModel implements IdAble {
     private Long id;
 

@@ -1,12 +1,10 @@
 package loc.aliar.monitoringsystem.service.admin.impl;
 
 import loc.aliar.monitoringsystem.domain.Admin;
-import loc.aliar.monitoringsystem.domain.Department;
 import loc.aliar.monitoringsystem.domain.User;
 import loc.aliar.monitoringsystem.model.AdminModel;
 import loc.aliar.monitoringsystem.repository.AdminRepository;
 import loc.aliar.monitoringsystem.repository.UserRepository;
-import loc.aliar.monitoringsystem.service.SecurityService;
 import loc.aliar.monitoringsystem.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -23,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final AdminRepository adminRepository;
     private final ConversionService conversionService;
-    private final SecurityService securityService;
+//    private final SecurityService securityService;
 
     @Override
     public List<AdminModel> getAllByDepartmentId(Long departmentId) {
@@ -38,9 +36,9 @@ public class AdminServiceImpl implements AdminService {
 
         Admin admin = conversionService.convert(model, Admin.class);
         admin.setUser(user);
-        if (securityService.isAdmin()) {
-            admin.setDepartment(new Department(securityService.getDepartmentId()));
-        }
+//        if (securityService.isAdmin()) {
+//            admin.setDepartment(new Department(securityService.getDepartmentId()));
+//        }
         adminRepository.save(admin);
 
         return conversionService.convert(admin, AdminModel.class);

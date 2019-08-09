@@ -1,8 +1,8 @@
 package loc.aliar.monitoringsystem.service.admin.impl;
 
-import loc.aliar.monitoringsystem.domain.*;
+import loc.aliar.monitoringsystem.domain.Patient;
+import loc.aliar.monitoringsystem.domain.User;
 import loc.aliar.monitoringsystem.model.PatientModel;
-import loc.aliar.monitoringsystem.repository.PatientGeneralInfoRepository;
 import loc.aliar.monitoringsystem.repository.PatientRepository;
 import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
@@ -18,22 +18,21 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class AdminPatientServiceImpl implements AdminPatientService {
     private final UserRepository userRepository;
-    private final PatientGeneralInfoRepository patientGeneralInfoRepository;
     private final PatientRepository patientRepository;
     private final ConversionService conversionService;
 
     @Override
     public PatientModel save(PatientModel model) {
         User user = conversionService.convert(model, User.class);
+
+        if (user.getId() == null && user.getPassword() == null) {
+
+        }
+
         userRepository.save(user);
 
-        PatientGeneralInfo generalInfo = conversionService.convert(model, PatientGeneralInfo.class);
-        patientGeneralInfoRepository.save(generalInfo);
-
-        Patient patient = Patient.builder()
-                .user(user)
-                .patientGeneralInfo(generalInfo)
-                .build();
+        Patient patient = conversionService.convert(model, Patient.class);
+        patient.setUser(user);
         patientRepository.save(patient);
 
         return conversionService.convert(patient, PatientModel.class);
