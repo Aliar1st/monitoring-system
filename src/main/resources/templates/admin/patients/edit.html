@@ -98,8 +98,8 @@
                                 <label class="bmd-label-floating">Пол</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{isMale}">
                                     <option value="" selected="selected" style=" display: none;">Выберите пол</option>
-                                    <option th:value="true" th:utext="Мужчина"></option>
-                                    <option th:value="false" th:utext="Женщина"></option>
+                                    <option th:value="1">Мужчина</option>
+                                    <option th:value="0">Женщина</option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isMale')}"
                                      th:errors="*{isMale}">
@@ -111,8 +111,8 @@
                                 <label class="bmd-label-floating">Занятость</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
                                     <option value="" selected="selected" style=" display: none;">Выберите занятость</option>
-                                    <option th:value="true" th:utext="Работаю"></option>
-                                    <option th:value="false" th:utext="Не работаю"></option>
+                                    <option th:value="1">Работаю</option>
+                                    <option th:value="0">Не работаю</option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isWork')}"
                                      th:errors="*{isWork}">
@@ -186,20 +186,20 @@
                         <!--                        </div>-->
                         <!--                    </div>-->
                         <!--                </div>-->
-                        <div class="col-md-6">
-                            <div class="form-group bmd-form-group is-filled">
-                                <label class="bmd-label-floating">Отдел</label>
-                                <!--                        <select th:field="doctors" class="form-control"-->
-                                <!--                                aria-label="doctor_id" th:placeholder="Выберите доктора">-->
-                                <!--                        </select>-->
-                                <!--                        {{ Form::label('doctor_id', 'Доктор', ['class' => 'bmd-label-floating']) }}-->
-                                <!--                        {{ Form::select('doctor_id', $doctors, null,-->
-                                <!--                        ['class' => 'form-control', 'placeholder' => 'Выберите доктора']) }}-->
-                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"
-                                     th:errors="*{departmentId}">
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group bmd-form-group is-filled">-->
+<!--                                <label class="bmd-label-floating">Отдел</label>-->
+<!--                                &lt;!&ndash;                        <select th:field="doctors" class="form-control"&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                aria-label="doctor_id" th:placeholder="Выберите доктора">&ndash;&gt;-->
+<!--                                &lt;!&ndash;                        </select>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                        {{ Form::label('doctor_id', 'Доктор', ['class' => 'bmd-label-floating']) }}&ndash;&gt;-->
+<!--                                &lt;!&ndash;                        {{ Form::select('doctor_id', $doctors, null,&ndash;&gt;-->
+<!--                                &lt;!&ndash;                        ['class' => 'form-control', 'placeholder' => 'Выберите доктора']) }}&ndash;&gt;-->
+<!--                                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('departmentId')}"-->
+<!--                                     th:errors="*{departmentId}">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
 
                     <div class="clearfix"></div>
@@ -757,6 +757,8 @@
 <!--                    <div class="clearfix"></div>-->
 <!--                </div>-->
 <!--            </div>-->
+            <button type="submit" class="btn btn-primary pull-right">Обновить</button>
+            <a th:href="@{/admin/patients}" type="button" class="btn btn-primary pull-right mr-2">Назад</a>
         </form>
     </div>
 </body>

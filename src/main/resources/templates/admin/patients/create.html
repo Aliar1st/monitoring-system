@@ -96,8 +96,8 @@
                         <label class="bmd-label-floating">Пол</label>
                         <select required class="form-control" aria-label="load_type" th:field="*{isMale}">
                             <option value="" selected="selected" style=" display: none;">Выберите пол</option>
-                            <option th:value="true">Мужчина</option>
-                            <option th:value="false">Женщина</option>
+                            <option th:value="1">Мужчина</option>
+                            <option th:value="0">Женщина</option>
                         </select>
                         <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isMale')}"
                              th:errors="*{isMale}">
@@ -109,8 +109,8 @@
                         <label class="bmd-label-floating">Занятость</label>
                         <select required class="form-control" aria-label="load_type" th:field="*{isWork}">
                             <option value="" selected="selected" style=" display: none;">Выберите занятость</option>
-                            <option th:value="true">Работаю</option>
-                            <option th:value="false">Не работаю</option>
+                            <option th:value="1">Работаю</option>
+                            <option th:value="0">Не работаю</option>
                         </select>
                         <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('isWork')}"
                              th:errors="*{isWork}">
@@ -173,12 +173,12 @@
                 <div class="col-md-6">
                     <div class="form-group bmd-form-group is-filled">
                         <label class="bmd-label-floating">Доктор</label>
-<!--                        <select required class="form-control" aria-label="load_type" th:field="*{educationId}">-->
-<!--                            <option value="" selected="selected" style=" display: none;">Выберите образование</option>-->
-<!--                            <option th:each="c : ${educations}"-->
-<!--                                    th:value="${c.id}"-->
-<!--                                    th:utext="${c.name}"></option>-->
-<!--                        </select>-->
+                        <select required class="form-control" aria-label="load_type" th:field="*{doctorId}">
+                            <option value="" selected="selected" style=" display: none;">Выберите образование</option>
+                            <option th:each="c : ${doctors}"
+                                    th:value="${c.id}"
+                                    th:utext="${c.name}"></option>
+                        </select>
 <!--                        <select th:field="doctors" class="form-control"-->
 <!--                                aria-label="doctor_id" th:placeholder="Выберите доктора">-->
 <!--                        </select>-->

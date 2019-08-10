@@ -23,9 +23,9 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav">
 <!--                    @isset($unreadCount)-->
-                    <th:block th:if="(${unreadCount} > 0)" >
+                    <th:block th:if="(${unreadCount} > 0) AND !${#strings.contains(#httpServletRequest.requestURI, '/admin')}" >
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLin"
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLin"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">notifications</i>
@@ -37,8 +37,8 @@
 <!--                                @else-->
                                 <a class="dropdown-item" href="#">
 <!--                                    @endif-->
-                                    <th:block th:if="(${unreadCount} > 1)" th:utext="'У вас ' + ${unreadCount} + 'новых сообщений'"/>
-                                    <th:block th:if="(${unreadCount} == 1)" th:utext="'У вас ' + ${unreadCount} + 'новое сообщение'"/>
+                                    <th:block th:if="(${unreadCount} > 1)" th:utext="'У вас ' + ${unreadCount} + ' новых сообщений'"/>
+                                    <th:block th:if="(${unreadCount} == 1)" th:utext="'У вас ' + ${unreadCount} + ' новое сообщение'"/>
                                 </a>
                         </div>
                     </li>

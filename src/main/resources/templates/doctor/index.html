@@ -12,23 +12,24 @@
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <img class="img" src="{{ asset('storage/' . $p->generalInformation->photo) }}"/>
+<!--                        <img class="img" th:src="@{/public/__${photo}__}" />-->
+                        <img class="img" th:src="@{/images/faces/marc.jpg}"/>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray" th:text="${a.dateOfBirth}"></h6>
-                        <h4 class="card-title" th:text="${a.fullName()}"></h4>
+                        <h6 class="card-category text-gray"><span th:text="${dob}" th:remove="tag"></span></h6>
+                        <h4 class="card-title"><span th:text="${name}" th:remove="tag"></span></h4>
                         <p class="card-description">
+                        <p><strong>Дата последних показаний</strong><th:block th:utext="': ' + ${lastDate}"/></p>
+                        <p><strong>Время последних показаний</strong><th:block th:utext="': ' + ${lastTime}"/></p>
+                        <p><strong>Результат последних показаний</strong><th:block th:utext="': ' + ${lastScore} + ' баллов'"/></p>
 
-                        <p><strong>Дата последних показаний</strong>: {{ Helper::getDateFromReading($p->lastReading) }}</p>
-                        <p><strong>Время последних показаний</strong>: {{ Helper::getTimeFromReading($p->lastReading) }}</p>
-                        <p><strong>Результат последних показаний</strong>: {{ Helper::getBorgResultFromReading($p->lastReading) }} баллов</p>
                         <a th:href="@{/doctor/__${a.id}__}" class="btn btn-primary btn-round">Перейти</a>
                     </div>
                 </div>
             </div>
         </th:block>
 
-
+        <a th:href="@{/doctor/__${a.id}__}" class="btn btn-primary btn-round">Перейти</a>
     </th:block>
 </body>
 </html>

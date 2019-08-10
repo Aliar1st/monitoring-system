@@ -72,10 +72,10 @@
                         <th:block th:each="p : ${readingModelList}">
                             <tr>
                                 <td th:text="${p.id}"></td>
-                                <td th:text="${p.date}">{{ $reading->created_at->format('d/m/Y') }}</td>
-                                <td th:text="${p.date}">{{ $reading->created_at->format('H:i T') }}</td>
-                                <td th:text="${p.loadId}"></td>
-                                <td th:text="loadTypeId">{{ $reading->loadd->loadName->loadType->load_type }}</td>
+                                <td th:text="${p.getDateFormat()}"></td>
+                                <td th:text="${p.getTimeFormat()}"></td>
+                                <td th:text="${p.loadName}"></td>
+                                <td th:text="${p.loadTypeName}"></td>
                                 <td th:text="${p.borg}"></td>
                             </tr>
                         </th:block>
@@ -98,7 +98,7 @@
             <div class="card-header card-header-primary">
                 <h4 class="card-title">Медицинская информация</h4>
             </div>
-            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${cardioMedicalInfoModel}" method="POST">
+            <form th:object="${cardioMedicalInfoModel}" method="POST">
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                 <div class="card-body">

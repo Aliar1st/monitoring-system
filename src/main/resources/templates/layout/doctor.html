@@ -9,13 +9,13 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div th:insert="~{partial/sidebar_doctor :: sidebar_doctor}"></div>
+        <th:block th:insert="~{partial/sidebar_doctor :: sidebar_doctor}"/>
         <div class="main-panel">
-            <div th:insert="~{partial/navbar :: navbar}"></div>
+            <th:block th:insert="~{partial/navbar :: navbar}"/>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div layout:fragment="contentDoctor"></div>
+                        <th:block layout:fragment="contentDoctor"/>
                     </div>
                 </div>
             </div>

@@ -31,7 +31,7 @@ public class PatientAttributesController {
         if (securityService.isPatient()) {
             PatientModel patientModel = securityService.getPatientModel();
 
-            String dob = patientModel.getDateOfBirth().format(DateTimeFormatter.ofPattern(""));
+            String dob = patientModel.getDateOfBirth().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             String name = patientModel.fullName();
             String photo = patientModel.getPhotoUrl();
 
@@ -42,8 +42,8 @@ public class PatientAttributesController {
 
             if (lastReadingOpt.isPresent()) {
                 ReadingModel lastReading = lastReadingOpt.get();
-                lastDate = lastReading.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
-                lastTime = lastReading.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                lastDate = lastReading.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                lastTime = lastReading.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                 lastScore = lastReading.getBorg().toString();
             } else {
                 lastDate = lastTime = lastScore = "н/д";
