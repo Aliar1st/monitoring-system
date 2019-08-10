@@ -80,9 +80,9 @@ public class ReadingController {
             return "readings/create";
         }
 
-        readingService.save(readingModel);
+        Long id = readingService.save(readingModel);
 
-        return "redirect:/readings";
+        return "redirect:/readings/" + id;
     }
 
     @GetMapping("/{id}")

@@ -16,7 +16,7 @@ public interface ReadingService {
 
     ReadingModel get(Long id);
 
-    void save(ReadingModel readingModel);
+    Long save(ReadingModel readingModel);
 
     void delete(Long id);
 }
