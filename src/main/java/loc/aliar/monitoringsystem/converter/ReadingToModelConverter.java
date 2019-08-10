@@ -18,6 +18,7 @@ public class ReadingToModelConverter implements Converter<Reading, ReadingModel>
                 .date(source.getCreatedDate().orElse(null))
                 .loadName(source.getLoad().getName())
                 .loadTypeName(source.getLoad().getLoadType().getName())
+                .recommendation(source.getStatement().getRecommendation())
                 .loadId(source.getLoad().getId())
                 .bodyPositionId(source.getBodyPosition().getId())
                 .statementId(source.getStatement().getId())

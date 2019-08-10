@@ -37,6 +37,7 @@ public class ReadingModel {
     private Byte borg;
     private String loadName;
     private String loadTypeName;
+    private String recommendation;
 
     @Exists(LoadRepository.class)
     private Long loadId;
