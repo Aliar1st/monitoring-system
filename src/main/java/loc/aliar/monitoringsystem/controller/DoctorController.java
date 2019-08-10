@@ -41,6 +41,6 @@ public class DoctorController {
                 .addAttribute(cardioMedInfoService.getByPatientId(1L))
                 .addAttribute(adminPatientService.get(1L));
 
-        return "";
+        return "doctor/patient";
     }
 }

@@ -175,7 +175,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Основной диагноз</label>
-                                <input th:field="*{basicDiagnosis}" type="text" class="form-control"
+                                <input th:field="*{basicDiagnosis}" disabled="" type="text" class="form-control"
                                        aria-label="basic_diagnosis">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('basicDiagnosis')}"
                                      th:errors="*{basicDiagnosis}">
@@ -185,7 +185,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Сопутствующий диагноз</label>
-                                <input th:field="*{concomitantDiagnosis}" type="text" class="form-control"
+                                <input th:field="*{concomitantDiagnosis}" disabled="" type="text" class="form-control"
                                        aria-label="concomitant_diagnosis">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('concomitantDiagnosis')}"
                                      th:errors="*{concomitantDiagnosis}">
@@ -198,7 +198,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Операции</label>
-                                <input th:field="*{operations}" type="text" class="form-control"
+                                <input th:field="*{operations}" disabled="" type="text" class="form-control"
                                        aria-label="operations">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('operations')}"
                                      th:errors="*{operations}">
@@ -208,7 +208,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Осложнения</label>
-                                <input th:field="*{oslozhneniye}" type="text" class="form-control"
+                                <input th:field="*{oslozhneniye}" disabled="" type="text" class="form-control"
                                        aria-label="oslozhneniye">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('oslozhneniye')}"
                                      th:errors="*{oslozhneniye}">
@@ -220,7 +220,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">КДО ЛЖ, мл</label>
-                                <input th:field="*{kdoLzh}" type="text" class="form-control"
+                                <input th:field="*{kdoLzh}" disabled="" type="text" class="form-control"
                                        aria-label="KDO_LZH">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kdoLzh')}"
                                      th:errors="*{kdoLzh}">
@@ -230,7 +230,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">КСО ЛЖ, мл</label>
-                                <input th:field="*{ksoLzh}" type="text" class="form-control"
+                                <input th:field="*{ksoLzh}" disabled="" type="text" class="form-control"
                                        aria-label="KSO_LZH">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoLzh')}"
                                      th:errors="*{ksoLzh}">
@@ -240,7 +240,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ИММ, г/м2</label>
-                                <input th:field="*{imm}" type="text" class="form-control"
+                                <input th:field="*{imm}" disabled="" type="text" class="form-control"
                                        aria-label="IMM">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('imm')}"
                                      th:errors="*{imm}">
@@ -250,7 +250,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ФВ, %</label>
-                                <input th:field="*{fv}" type="text" class="form-control"
+                                <input th:field="*{fv}" disabled="" type="text" class="form-control"
                                        aria-label="FV">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('fv')}"
                                      th:errors="*{fv}">
@@ -262,7 +262,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">КСО ЛП</label>
-                                <input th:field="*{ksoLp}" type="text" class="form-control"
+                                <input th:field="*{ksoLp}" disabled="" type="text" class="form-control"
                                        aria-label="KSO_LP">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoLp')}"
                                      th:errors="*{ksoLp}">
@@ -272,7 +272,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">КСО ПП</label>
-                                <input th:field="*{ksoPp}" type="text" class="form-control"
+                                <input th:field="*{ksoPp}" disabled="" type="text" class="form-control"
                                        aria-label="KSO_PP">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ksoPp')}"
                                      th:errors="*{ksoPp}">
@@ -282,7 +282,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">СДЛА</label>
-                                <input th:field="*{sdla}" type="text" class="form-control"
+                                <input th:field="*{sdla}" disabled="" type="text" class="form-control"
                                        aria-label="SDLA">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sdla')}"
                                      th:errors="*{sdla}">
@@ -292,7 +292,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Диаст дисф.</label>
-                                <input th:field="*{diastDisf}" type="text" class="form-control"
+                                <input th:field="*{diastDisf}" disabled="" type="text" class="form-control"
                                        aria-label="diast_disf">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('diastDisf')}"
                                      th:errors="*{diastDisf}">
@@ -304,7 +304,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Локальн сокр.</label>
-                                <input th:field="*{lokalnSokr}" type="text" class="form-control"
+                                <input th:field="*{lokalnSokr}" disabled="" type="text" class="form-control"
                                        aria-label="lokaln_sokr">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lokalnSokr')}"
                                      th:errors="*{lokalnSokr}">
@@ -314,7 +314,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ХМ экг, дата</label>
-                                <input th:field="*{khmEkg}" type="text" class="form-control"
+                                <input th:field="*{khmEkg}" disabled="" type="text" class="form-control"
                                        aria-label="KHM_ekg">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('khmEkg')}"
                                      th:errors="*{khmEkg}">
@@ -324,7 +324,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Осн. ритм</label>
-                                <input th:field="*{osnRitm}" type="text" class="form-control"
+                                <input th:field="*{osnRitm}" disabled="" type="text" class="form-control"
                                        aria-label="osn_ritm">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('osnRitm')}"
                                      th:errors="*{osnRitm}">
@@ -334,7 +334,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">НЖА/НЖТЖА/ЖТ</label>
-                                <input th:field="*{nzhaNzhtzhaZht}" type="text" class="form-control"
+                                <input th:field="*{nzhaNzhtzhaZht}" disabled="" type="text" class="form-control"
                                        aria-label="NZHA_NZHTZHA_ZHT">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nzhaNzhtzhaZht')}"
                                      th:errors="*{nzhaNzhtzhaZht}">
@@ -346,7 +346,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ЖА/Жт</label>
-                                <input th:field="*{zhaZht}" type="text" class="form-control"
+                                <input th:field="*{zhaZht}" disabled="" type="text" class="form-control"
                                        aria-label="ZHA_Zht">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('zhaZht')}"
                                      th:errors="*{zhaZht}">
@@ -356,7 +356,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Сум. ишемия, мин</label>
-                                <input th:field="*{sumIshemiya}" type="text" class="form-control"
+                                <input th:field="*{sumIshemiya}" disabled="" type="text" class="form-control"
                                        aria-label="sum_ishemiya">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sumIshemiya')}"
                                      th:errors="*{sumIshemiya}">
@@ -366,7 +366,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ЭКГ ритм</label>
-                                <input th:field="*{ekgRitm}" type="text" class="form-control"
+                                <input th:field="*{ekgRitm}" disabled="" type="text" class="form-control"
                                        aria-label="EKG_ritm">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ekgRitm')}"
                                      th:errors="*{ekgRitm}">
@@ -376,7 +376,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Нарушения ритма</label>
-                                <input th:field="*{narRitma}" type="text" class="form-control"
+                                <input th:field="*{narRitma}" disabled="" type="text" class="form-control"
                                        aria-label="nar_ritma">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('narRitma')}"
                                      th:errors="*{narRitma}">
@@ -389,7 +389,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Нар. проводимости</label>
-                                <input th:field="*{narprovodimosti}" type="text" class="form-control"
+                                <input th:field="*{narprovodimosti}" disabled="" type="text" class="form-control"
                                        aria-label="nar_provodimosti">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('narprovodimosti')}"
                                      th:errors="*{narprovodimosti}">
@@ -399,7 +399,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ST, подъем/депрессия</label>
-                                <input th:field="*{st}" type="text" class="form-control"
+                                <input th:field="*{st}" disabled="" type="text" class="form-control"
                                        aria-label="ST">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('st')}"
                                      th:errors="*{st}">
@@ -409,7 +409,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Толерантность, МЕ/ВТ</label>
-                                <input th:field="*{tolerantnost}" type="text" class="form-control"
+                                <input th:field="*{tolerantnost}" disabled="" type="text" class="form-control"
                                        aria-label="tolerantnost">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('tolerantnost')}"
                                      th:errors="*{tolerantnost}">
@@ -419,7 +419,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Причина прекращения</label>
-                                <input th:field="*{prichinaPrekrashch}" type="text" class="form-control"
+                                <input th:field="*{prichinaPrekrashch}" disabled="" type="text" class="form-control"
                                        aria-label="prichina_prekrashch">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('prichinaPrekrashch')}"
                                      th:errors="*{prichinaPrekrashch}">
@@ -432,7 +432,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Продолж. нагрузки</label>
-                                <input th:field="*{prodolzhNagruzki}" type="text" class="form-control"
+                                <input th:field="*{prodolzhNagruzki}" disabled="" type="text" class="form-control"
                                        aria-label="prodolzh_nagruzki">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('prodolzhNagruzki')}"
                                      th:errors="*{prodolzhNagruzki}">
@@ -442,7 +442,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ОХ, ммоль/л</label>
-                                <input th:field="*{okh}" type="text" class="form-control"
+                                <input th:field="*{okh}" disabled="" type="text" class="form-control"
                                        aria-label="OKH">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('okh')}"
                                      th:errors="*{okh}">
@@ -452,7 +452,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ЛПНП, ммоль/л</label>
-                                <input th:field="*{lpnp}" type="text" class="form-control"
+                                <input th:field="*{lpnp}" disabled="" type="text" class="form-control"
                                        aria-label="LPNP">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lpnp')}"
                                      th:errors="*{lpnp}">
@@ -462,7 +462,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ЛПВП, ммоль/л</label>
-                                <input th:field="*{lpvp}" type="text" class="form-control"
+                                <input th:field="*{lpvp}" disabled="" type="text" class="form-control"
                                        aria-label="LPVP">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('lpvp')}"
                                      th:errors="*{lpvp}">
@@ -475,7 +475,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ТГ, ммоль/л</label>
-                                <input th:field="*{tg}" type="text" class="form-control"
+                                <input th:field="*{tg}" disabled="" type="text" class="form-control"
                                        aria-label="TG">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('tg')}"
                                      th:errors="*{tg}">
@@ -485,7 +485,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">АЛТ, ед/л</label>
-                                <input th:field="*{alt}" type="text" class="form-control"
+                                <input th:field="*{alt}" disabled="" type="text" class="form-control"
                                        aria-label="ALT">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('alt')}"
                                      th:errors="*{alt}">
@@ -495,7 +495,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">АСТ, ед/л</label>
-                                <input th:field="*{ast}" type="text" class="form-control"
+                                <input th:field="*{ast}" disabled="" type="text" class="form-control"
                                        aria-label="AST">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ast')}"
                                      th:errors="*{ast}">
@@ -505,7 +505,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Глю, ммоль/л</label>
-                                <input th:field="*{glyu}" type="text" class="form-control"
+                                <input th:field="*{glyu}" disabled="" type="text" class="form-control"
                                        aria-label="Glyu">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('glyu')}"
                                      th:errors="*{glyu}">
@@ -518,7 +518,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Кр, мкмоль/л</label>
-                                <input th:field="*{kr}" type="text" class="form-control"
+                                <input th:field="*{kr}" disabled="" type="text" class="form-control"
                                        aria-label="Kr">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kr')}"
                                      th:errors="*{kr}">
@@ -528,7 +528,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Медикаменты группы</label>
-                                <input th:field="*{medikamentyGruppy}" type="text" class="form-control"
+                                <input th:field="*{medikamentyGruppy}" disabled="" type="text" class="form-control"
                                        aria-label="medikamenty_gruppy">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('medikamentyGruppy')}"
                                      th:errors="*{medikamentyGruppy}">
@@ -538,7 +538,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">КАГ</label>
-                                <input th:field="*{kag}" type="text" class="form-control"
+                                <input th:field="*{kag}" disabled="" type="text" class="form-control"
                                        aria-label="KAG">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('kag')}"
                                      th:errors="*{kag}">
@@ -553,7 +553,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Гармоничный</label>
-                                <input th:field="*{harmonious}" type="number" class="form-control"
+                                <input th:field="*{harmonious}" disabled="" type="number" class="form-control"
                                        aria-label="harmonious">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('harmonious')}"
                                      th:errors="*{harmonious}">
@@ -563,7 +563,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Эргопатич.</label>
-                                <input th:field="*{ergopatial}" type="number" class="form-control"
+                                <input th:field="*{ergopatial}" disabled="" type="number" class="form-control"
                                        aria-label="ergopatical">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('ergopatial')}"
                                      th:errors="*{ergopatial}">
@@ -573,7 +573,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Аногнозич.</label>
-                                <input th:field="*{anognocy}" type="number" class="form-control"
+                                <input th:field="*{anognocy}" disabled="" type="number" class="form-control"
                                        aria-label="anognosy">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('anognocy')}"
                                      th:errors="*{anognocy}">
@@ -583,7 +583,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Тревожный</label>
-                                <input th:field="*{disturbing}" type="number" class="form-control"
+                                <input th:field="*{disturbing}" disabled="" type="number" class="form-control"
                                        aria-label="disturbing">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('disturbing')}"
                                      th:errors="*{disturbing}">
@@ -595,7 +595,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Ипохондрич.</label>
-                                <input th:field="*{hypochondriacal}" type="number" class="form-control"
+                                <input th:field="*{hypochondriacal}" disabled="" type="number" class="form-control"
                                        aria-label="hypochondriacal">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('hypochondriacal')}"
                                      th:errors="*{hypochondriacal}">
@@ -605,7 +605,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Неврастенич.</label>
-                                <input th:field="*{neurasthenic}" type="number" class="form-control"
+                                <input th:field="*{neurasthenic}" disabled="" type="number" class="form-control"
                                        aria-label="neurasthenic">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('neurasthenic')}"
                                      th:errors="*{neurasthenic}">
@@ -615,7 +615,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Меланхолич.</label>
-                                <input th:field="*{melancholy}" type="number" class="form-control"
+                                <input th:field="*{melancholy}" disabled="" type="number" class="form-control"
                                        aria-label="melancholy">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('melancholy')}"
                                      th:errors="*{melancholy}">
@@ -625,7 +625,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Апатическ</label>
-                                <input th:field="*{apathetic}" type="number" class="form-control"
+                                <input th:field="*{apathetic}" disabled="" type="number" class="form-control"
                                        aria-label="apathetic">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('apathetic')}"
                                      th:errors="*{apathetic}">
@@ -637,7 +637,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Сентитивн.</label>
-                                <input th:field="*{sentimental}" type="number" class="form-control"
+                                <input th:field="*{sentimental}" disabled="" type="number" class="form-control"
                                        aria-label="sentimental">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('sentimental')}"
                                      th:errors="*{sentimental}">
@@ -647,7 +647,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Эгоцентрич.</label>
-                                <input th:field="*{self_centered}" type="number" class="form-control"
+                                <input th:field="*{self_centered}" disabled="" type="number" class="form-control"
                                        aria-label="self_centered">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('self_centered')}"
                                      th:errors="*{self_centered}">
@@ -657,7 +657,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Паронояльный</label>
-                                <input th:field="*{paranoid}" type="number" class="form-control"
+                                <input th:field="*{paranoid}" disabled="" type="number" class="form-control"
                                        aria-label="paranoid">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('paranoid')}"
                                      th:errors="*{paranoid}">
@@ -667,7 +667,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Дисфорическ.</label>
-                                <input th:field="*{dysphoric}" type="number" class="form-control"
+                                <input th:field="*{dysphoric}" disabled="" type="number" class="form-control"
                                        aria-label="dysphoric">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('dysphoric')}"
                                      th:errors="*{dysphoric}">
@@ -679,7 +679,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Тип личности</label>
-                                <input th:field="*{personality_type}" type="number" class="form-control"
+                                <input th:field="*{personality_type}" disabled="" type="number" class="form-control"
                                        aria-label="personality_type">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('personality_type')}"
                                      th:errors="*{personality_type}">
@@ -689,7 +689,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Соотнош. типов</label>
-                                <input th:field="*{type_relationship}" type="number" class="form-control"
+                                <input th:field="*{type_relationship}" disabled="" type="number" class="form-control"
                                        aria-label="type_relationship">
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('type_relationship')}"
                                      th:errors="*{type_relationship}">
