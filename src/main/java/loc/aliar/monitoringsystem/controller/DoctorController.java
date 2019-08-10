@@ -6,6 +6,7 @@ import loc.aliar.monitoringsystem.service.ReadingService;
 import loc.aliar.monitoringsystem.service.SecurityService;
 import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
 import loc.aliar.monitoringsystem.service.admin.CardioMedInfoService;
+import loc.aliar.monitoringsystem.service.admin.LoadTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ public class DoctorController {
     private final AdminPatientService adminPatientService;
     private final ReadingService readingService;
     private final CardioMedInfoService cardioMedInfoService;
+    private final LoadTypeService loadTypeService;
 
     @GetMapping
     public String index(Model model) {
@@ -41,6 +43,7 @@ public class DoctorController {
                 .addAttribute(readingService.getLastByPatientId(1L))
                 .addAttribute(cardioMedInfoService.getByPatientId(1L))
                 .addAttribute(adminPatientService.get(1L))
+                .addAttribute(loadTypeService.getAll())
                 .addAttribute(new ChartDataRequest());
 
         return "doctor/patient";
