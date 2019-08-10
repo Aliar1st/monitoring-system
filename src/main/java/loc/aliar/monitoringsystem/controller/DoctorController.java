@@ -38,6 +38,7 @@ public class DoctorController {
 
         model
                 .addAttribute(readingService.getLastByPatientId(1L))
+                .addAttribute(cardioMedInfoService.getByPatientId(1L))
                 .addAttribute(adminPatientService.get(1L));
 
         return "";
