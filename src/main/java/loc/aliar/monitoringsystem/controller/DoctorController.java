@@ -1,5 +1,6 @@
 package loc.aliar.monitoringsystem.controller;
 
+import loc.aliar.monitoringsystem.model.ChartDataRequest;
 import loc.aliar.monitoringsystem.service.PatientService;
 import loc.aliar.monitoringsystem.service.ReadingService;
 import loc.aliar.monitoringsystem.service.SecurityService;
@@ -39,7 +40,8 @@ public class DoctorController {
         model
                 .addAttribute(readingService.getLastByPatientId(1L))
                 .addAttribute(cardioMedInfoService.getByPatientId(1L))
-                .addAttribute(adminPatientService.get(1L));
+                .addAttribute(adminPatientService.get(1L))
+                .addAttribute(new ChartDataRequest());
 
         return "doctor/patient";
     }

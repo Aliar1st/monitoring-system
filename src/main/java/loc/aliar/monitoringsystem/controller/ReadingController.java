@@ -33,7 +33,8 @@ public class ReadingController {
     public String index(Model model) {
         model
                 .addAttribute(readingService.getByPatientId(1L))
-                .addAttribute(loadTypeService.getAll());
+                .addAttribute(loadTypeService.getAll())
+                .addAttribute(new ChartDataRequest());
         return "readings/index";
     }
 
