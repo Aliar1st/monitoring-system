@@ -62,7 +62,8 @@ public class ReadingController {
                 .addAttribute("bodyPositions", bodyPositionService.getAll())
                 .addAttribute("loadTypes", loadTypeService.getAll())
                 .addAttribute("loads", loadService.getAll())
-                .addAttribute("statements", statementService.getAll());
+                .addAttribute("statements", statementService.getAll())
+                .addAttribute(new ReadingModel());
 
         return "readings/create";
     }
