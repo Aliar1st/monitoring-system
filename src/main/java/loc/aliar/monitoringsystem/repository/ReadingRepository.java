@@ -16,4 +16,7 @@ public interface ReadingRepository extends JpaRepository<Reading, Long> {
 
     List<Reading> findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(
             Long patientId, Long loadTypeId, LocalDateTime start, LocalDateTime end);
+
+    List<Reading> findAllByPatientIdAndCreatedDateBetween(
+            Long patientId, LocalDateTime start, LocalDateTime end);
 }

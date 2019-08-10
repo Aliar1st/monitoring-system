@@ -47,7 +47,7 @@ public class ReadingController {
             return chartDataResponse;
         }
 
-        return readingService.chartData(chartDataRequest.getPatientId(),
+        return readingService.chartData(1L,
                 chartDataRequest.getLoadTypeId(), chartDataRequest.getStart(), chartDataRequest.getEnd());
     }
 

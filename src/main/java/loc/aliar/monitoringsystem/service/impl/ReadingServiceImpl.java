@@ -38,8 +38,15 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public ChartDataResponse chartData(Long patientId, Long loadTypeId, LocalDateTime start, LocalDateTime end) {
-        List<Reading> readings = readingRepository
-                .findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(patientId, loadTypeId, start, end);
+        List<Reading> readings;
+
+        if (loadTypeId != null) {
+            readings = readingRepository
+                    .findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(patientId, loadTypeId, start, end);
+        } else {
+            readings = readingRepository
+                    .findAllByPatientIdAndCreatedDateBetween(patientId, start, end);
+        }
 
         ChartDataResponse chartDataResponse = new ChartDataResponse(true);
 
