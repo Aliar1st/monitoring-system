@@ -1,9 +1,6 @@
 package loc.aliar.monitoringsystem.converter;
 
-import loc.aliar.monitoringsystem.domain.BodyPosition;
-import loc.aliar.monitoringsystem.domain.Load;
-import loc.aliar.monitoringsystem.domain.Reading;
-import loc.aliar.monitoringsystem.domain.Statement;
+import loc.aliar.monitoringsystem.domain.*;
 import loc.aliar.monitoringsystem.model.ReadingModel;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -20,6 +17,7 @@ public class ModelToReadingConverter implements Converter<ReadingModel, Reading>
                 .load(new Load(source.getLoadId()))
                 .bodyPosition(new BodyPosition(source.getBodyPositionId()))
                 .statement(new Statement(source.getStatementId()))
+                .patient(new Patient(1L))
                 .build();
     }
 }

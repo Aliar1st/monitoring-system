@@ -51,6 +51,10 @@ public class Patient extends AbstractModel {
     @OneToMany(mappedBy = "patient")
     private List<Reading> readings;
 
+    public Patient(Long id) {
+        super(id);
+    }
+
     @Builder
     public Patient(Long id, String firstName, String lastName, String middleName, String photo, Boolean isWork,
                    Boolean isMale, LocalDate dateOfBirth, String phone, String email, Education education, User user) {
