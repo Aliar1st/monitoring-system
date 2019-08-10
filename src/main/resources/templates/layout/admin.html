@@ -9,16 +9,14 @@
 </head>
     <body>
         <div layout:fragment="content">
-            <div th:insert="~{partial/sidebar_admin :: sidebar_admin}">
-            </div>
+            <th:block th:insert="~{partial/sidebar_admin :: sidebar_admin}"/>
 
             <div class="main-panel">
-                <div th:insert="~{partial/navbar :: navbar}">
-                </div>
+                <th:block th:insert="~{partial/navbar :: navbar}"/>
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div layout:fragment="contentAdmin"></div>
+                            <th:block layout:fragment="contentAdmin"/>
                         </div>
                     </div>
                 </div>

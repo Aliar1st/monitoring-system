@@ -9,18 +9,20 @@
     <div th:fragment="profile_card" class="col-md-4">
         <div class="card card-profile">
             <div class="card-avatar">
-                <img class="img" th:src="@{/public/__${photo}__}" />
+<!--                <img class="img" th:src="@{/public/__${photo}__}" />-->
+                <img class="img" th:src="@{/images/faces/marc.jpg}"/>
+
             </div>
             <div class="card-body">
                 <h6 class="card-category text-gray"><span th:text="${dob}" th:remove="tag"></span></h6>
                 <h4 class="card-title"><span th:text="${name}" th:remove="tag"></span></h4>
                 <p class="card-description">
-                    <p><strong>Дата последних показаний</strong><th:block th:utext="':' + ${lastDate}"/></p>
-                    <p><strong>Время последних показаний</strong><th:block th:utext="':' + ${lastTime}"/></p>
-                    <p><strong>Результат последних показаний</strong><th:block th:utext="':' + ${lastScore} + 'баллов'"/></p>
+                    <p><strong>Дата последних показаний</strong><th:block th:utext="': ' + ${lastDate}"/></p>
+                    <p><strong>Время последних показаний</strong><th:block th:utext="': ' + ${lastTime}"/></p>
+                    <p><strong>Результат последних показаний</strong><th:block th:utext="': ' + ${lastScore} + ' баллов'"/></p>
 
 
-                <a href="{{ route('readings.create') }}" class="btn btn-primary btn-round">Оставить показания</a>
+                <a th:href="@{/readings/create}" class="btn btn-primary btn-round">Оставить показания</a>
             </div>
         </div>
     </div>

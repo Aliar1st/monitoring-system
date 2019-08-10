@@ -16,8 +16,8 @@ $(function () {
 
     function cb(s, e) {
 
-        $('input[name="date_from"]').val(s.format('YYYY-MM-DD'));
-        $('input[name="date_to"]').val(e.format('YYYY-MM-DD'));
+        $('input[name="start"]').val(s.format('YYYY-MM-DD'));
+        $('input[name="end"]').val(e.format('YYYY-MM-DD'));
 
         start = s;
         end = e;
