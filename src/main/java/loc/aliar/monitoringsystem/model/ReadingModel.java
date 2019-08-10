@@ -10,6 +10,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter @Setter
 @Builder
@@ -45,4 +46,12 @@ public class ReadingModel {
 
     @Exists(StatementRepository.class)
     private Long statementId;
+
+    public String getDateFormat() {
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public String getTimeFormat() {
+        return date.format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
 }

@@ -67,8 +67,8 @@
                             <th:block th:each="p : ${readingModelList}">
                                 <tr>
                                     <td th:text="${p.id}"></td>
-                                    <td th:text="${p.date}"></td>
-                                    <td th:text="${p.date}"></td>
+                                    <td th:text="${p.getDateFormat()}"></td>
+                                    <td th:text="${p.getTimeFormat()}"></td>
                                     <td th:text="${p.loadId}"></td>
                                     <td th:text="loadTypeId"></td>
                                     <td th:text="${p.borg}"></td>
