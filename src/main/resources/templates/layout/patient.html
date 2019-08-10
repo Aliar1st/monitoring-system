@@ -9,14 +9,14 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div th:insert="~{partial/sidebar_patient :: sidebar_patient}"></div>
+        <th:block th:insert="~{partial/sidebar_patient :: sidebar_patient}"/>
         <div class="main-panel">
-            <div th:insert="~{partial/navbar :: navbar}"></div>
+            <th:block th:insert="~{partial/navbar :: navbar}"/>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div layout:fragment="contentPatient"></div>
-                        <div th:insert="~{partial/profile_card :: profile_card}"></div>
+                        <th:block layout:fragment="contentPatient"/>
+                        <th:block th:insert="~{partial/profile_card :: profile_card}"/>
                     </div>
                 </div>
             </div>

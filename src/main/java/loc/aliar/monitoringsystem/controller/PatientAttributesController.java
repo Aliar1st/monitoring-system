@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -41,8 +42,8 @@ public class PatientAttributesController {
 
             if (lastReadingOpt.isPresent()) {
                 ReadingModel lastReading = lastReadingOpt.get();
-                lastDate = lastReading.getDate().format(null);
-                lastTime = lastReading.getDate().format(null);
+                lastDate = lastReading.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                lastTime = lastReading.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
                 lastScore = lastReading.getBorg().toString();
             } else {
                 lastDate = lastTime = lastScore = "н/д";

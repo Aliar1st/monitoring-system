@@ -9,11 +9,11 @@
     <div th:fragment="profile_card" class="col-md-4">
         <div class="card card-profile">
             <div class="card-avatar">
-<!--                <img class="img" src="{{ asset('storage/' . $photo) }}" />-->
+                <img class="img" th:src="@{/public/__${photo}__}" />
             </div>
             <div class="card-body">
-                <h6 class="card-category text-gray"><th:block th:value="${dob}"/></h6>
-                <h4 class="card-title"><th:block th:value="${name}"/></h4>
+                <h6 class="card-category text-gray"><span th:text="${dob}" th:remove="tag"></span></h6>
+                <h4 class="card-title"><span th:text="${name}" th:remove="tag"></span></h4>
                 <p class="card-description">
                     <p><strong>Дата последних показаний</strong><th:block th:utext="':' + ${lastDate}"/></p>
                     <p><strong>Время последних показаний</strong><th:block th:utext="':' + ${lastTime}"/></p>

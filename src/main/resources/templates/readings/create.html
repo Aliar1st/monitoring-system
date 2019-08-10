@@ -20,8 +20,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Дата выполнения</label>
-                                <input disabled=""  th:field="*{date}" type="date" class="form-control"
-                                        aria-label="date" th:value="${#calendars.format(#calendars.createNow(), 'dd MMM yyyy')}">
+                                <input  name="date" id="date"  type="text" class="form-control"
+                                        aria-label="date" th:value="${#temporals.format(now, 'dd.MMM.yyyy')}"
+                                        th:text="${#temporals.format(temporal, 'dd.MMM.yyyy')}">
+                                <strong th:text="${#temporals.format(now, 'dd/MMM/yyyy HH:mm')}">31/12/2015 15:00</strong>
 <!--                                {{ Form::label('', 'Дата выполнения', ['class' => 'bmd-label-floating']) }}-->
 <!--                                {{ Form::date('', \Carbon\Carbon::now(), ['class' => 'form-control', 'disabled' => '']) }}-->
                             </div>
@@ -89,34 +91,26 @@
                         <div class="col-md-6">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Тип физической нагрузки</label>
-                                <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
+                                <select required class="form-control" aria-label="load_type" id="load_type_id_readings">
                                     <option value="" selected="selected" style=" display: none;">Выберите тип</option>
                                     <option th:each="c : ${loadTypes}"
                                             th:value="${c.id}"
-                                            th:utext="${c.name}"></option>
+                                            th:utext="${c.name}"
+                                    ></option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Выполненная физическая нагрузка</label>
-<!--                                <select class="form-control" id="load_name_id" name="load_name_id">-->
-<!--                                    <option value="">Выберите нагрузку</option>-->
-<!--                                    -->
-<!--                                    @foreach($load_names as $load)-->
-<!--                                    <option value="{{ $load->id }}" data-load-type="{{ $load->load_type_id }}"-->
-<!--                                            style="display: none;">-->
-<!--                                        {{ $load->load_name }}-->
-<!--                                    </option>-->
-<!--                                    @endforeach-->
-<!--                                </select>-->
-
-                                <select required class="form-control" aria-label="load_type" th:field="*{loadId}">
-                                    <option value="" selected="selected" style=" display: none;">Выберите нагрузку</option>
+                                <select  required class="form-control" aria-label="load_type" th:field="*{loadId}" id="load_name_id" name="load_name_id">
+                                    <option value="">Выберите нагрузку</option>
                                     <option th:each="c : ${loads}"
                                             th:value="${c.id}"
                                             th:utext="${c.name}"
-                                            th:data-load-type="*{loadTypeId}"></option>
+                                            th:data-load-type="${c.loadTypeId}"
+                                            style="display: none;">
+                                    </option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('loadId')}"
                                      th:errors="*{loadId}">
@@ -133,7 +127,7 @@
                                     <option value="" selected="selected" style=" display: none;">Выберите утверждение</option>
                                     <option th:each="c : ${statements}"
                                             th:value="${c.id}"
-                                            th:utext="${c.name}"></option>
+                                            th:utext="${c.statement}"></option>
                                 </select>
                                 <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('statementId')}"
                                      th:errors="*{statementId}">
