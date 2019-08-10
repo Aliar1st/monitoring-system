@@ -34,6 +34,8 @@ public class ReadingModel {
     private LocalDateTime date;
 
     private Byte borg;
+    private String loadName;
+    private String loadTypeName;
 
     @Exists(LoadRepository.class)
     private Long loadId;

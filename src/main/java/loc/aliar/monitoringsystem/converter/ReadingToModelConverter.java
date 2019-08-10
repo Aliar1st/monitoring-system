@@ -16,6 +16,8 @@ public class ReadingToModelConverter implements Converter<Reading, ReadingModel>
                 .duration(source.getDuration())
                 .borg(source.getStatement().getBorgResult())
                 .date(source.getCreatedDate().orElse(null))
+                .loadName(source.getLoad().getName())
+                .loadTypeName(source.getLoad().getLoadType().getName())
                 .loadId(source.getLoad().getId())
                 .bodyPositionId(source.getBodyPosition().getId())
                 .statementId(source.getStatement().getId())
