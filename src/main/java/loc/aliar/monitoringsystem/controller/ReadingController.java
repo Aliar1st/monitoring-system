@@ -32,8 +32,8 @@ public class ReadingController {
     @GetMapping
     public String index(Model model) {
         model
-                .addAttribute("readings", securityService.getPatient().getReadings())
-                .addAttribute("loadTypes", loadTypeService.getAll());
+                .addAttribute(readingService.getByPatientId(1L))
+                .addAttribute(loadTypeService.getAll());
         return "readings/index";
     }
 
