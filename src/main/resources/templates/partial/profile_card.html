@@ -9,17 +9,17 @@
     <div th:fragment="profile_card" class="col-md-4">
         <div class="card card-profile">
             <div class="card-avatar">
-                <img class="img" src="{{ asset('storage/' . $photo) }}" />
+<!--                <img class="img" src="{{ asset('storage/' . $photo) }}" />-->
             </div>
             <div class="card-body">
-                <h6 class="card-category text-gray">{{ $dob }}</h6>
-                <h4 class="card-title">{{ $name }}</h4>
+                <h6 class="card-category text-gray"><th:block th:value="${dob}"/></h6>
+                <h4 class="card-title"><th:block th:value="${name}"/></h4>
                 <p class="card-description">
+                    <p><strong>Дата последних показаний</strong><th:block th:utext="':' + ${lastDate}"/></p>
+                    <p><strong>Время последних показаний</strong><th:block th:utext="':' + ${lastTime}"/></p>
+                    <p><strong>Результат последних показаний</strong><th:block th:utext="':' + ${lastScore} + 'баллов'"/></p>
 
-                <p><strong>Дата последних показаний</strong>: {{ $lastDate }}</p>
-                <p><strong>Время последних показаний</strong>: {{ $lastTime }}</p>
-                <p><strong>Результат последних показаний</strong>: {{ $lastScore }} баллов</p>
-                </p>
+
                 <a href="{{ route('readings.create') }}" class="btn btn-primary btn-round">Оставить показания</a>
             </div>
         </div>

@@ -16,36 +16,36 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <canvas id="myChart"></canvas>
-                        <form th:action="@{/readings}" th:object="${readingModel}" method="POST">
-                            <!--                {!! Form::open(['route' => ['readings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}-->
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-4">
-                                    <div class="form-group bmd-form-group is-filled time-readings">
-                                        <label class="bmd-label-floating">Временной промежуток</label>
-                                        <div id="reportrange">
-                                            <i class="fa fa-calendar"></i>&nbsp;
-                                            <span></span> <i class="fa fa-caret-down"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group bmd-form-group is-filled">
-                                        <label class="bmd-label-floating">Тип физической нагрузки</label>
-                                        <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
-                                            <option value="" selected="selected" style=" display: none;">Все типы</option>
-                                            <option th:each="c : ${loadTypes}"
-                                                    th:value="${c.id}"
-                                                    th:utext="${c.name}"></option>
-                                        </select>
-                                        <!--                            {{ Form::select('load_type_id', $load_types, null,-->
-                                        <!--                            ['id' => 'load_type_id_all_readings', 'class' => 'form-control',-->
-                                        <!--                            'placeholder' => 'Все типы']) }}-->
-                                    </div>
-                                </div>
-                                <input name="date_from" type="hidden">
-                                <input name="date_to" type="hidden">
-                            </div>
-                        </form>
+<!--                        <form th:action="@{/readings}" th:object="${readingModel}" method="POST">-->
+<!--                            &lt;!&ndash;                {!! Form::open(['route' => ['readings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}&ndash;&gt;-->
+<!--                            <div class="row justify-content-md-center">-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <div class="form-group bmd-form-group is-filled time-readings">-->
+<!--                                        <label class="bmd-label-floating">Временной промежуток</label>-->
+<!--                                        <div id="reportrange">-->
+<!--                                            <i class="fa fa-calendar"></i>&nbsp;-->
+<!--                                            <span></span> <i class="fa fa-caret-down"></i>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <div class="form-group bmd-form-group is-filled">-->
+<!--                                        <label class="bmd-label-floating">Тип физической нагрузки</label>-->
+<!--                                        <select required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">-->
+<!--                                            <option value="" selected="selected" style=" display: none;">Все типы</option>-->
+<!--                                            <option th:each="c : ${loadTypes}"-->
+<!--                                                    th:value="${c.id}"-->
+<!--                                                    th:utext="${c.name}"></option>-->
+<!--                                        </select>-->
+<!--                                        &lt;!&ndash;                            {{ Form::select('load_type_id', $load_types, null,&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                            ['id' => 'load_type_id_all_readings', 'class' => 'form-control',&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                            'placeholder' => 'Все типы']) }}&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <input name="date_from" type="hidden">-->
+<!--                                <input name="date_to" type="hidden">-->
+<!--                            </div>-->
+<!--                        </form>-->
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             <div class="card-header card-header-primary">
                 <h4 class="card-title">Медицинская информация</h4>
             </div>
-            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${patientModel}" method="POST">
+            <form th:action="@{/patient/medical_information/__${id}__}" th:object="${cardioMedicalInfoModel}" method="POST">
                 <input type="hidden" name="_method" value="put" />
                 <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
                 <div class="card-body">

@@ -15,7 +15,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('doctor.chat') }}">
+                    <a class="nav-link" href="#">
                         <p>Сообщения пациентов</p>
                     </a>
 
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-item" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/doctor/edit')} ? 'active' : ''">
-                    <a class="nav-link" th:href="@{/doctor/edit}">
+                    <a class="nav-link" href="#">
                         <i class="material-icons">person</i>
                         <p>Личная информация</p>
                     </a>
