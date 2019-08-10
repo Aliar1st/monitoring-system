@@ -69,8 +69,13 @@ public class ReadingController {
     }
 
     @PostMapping
-    public String create(@Valid ReadingModel readingModel, BindingResult bindingResult) {
+    public String create(@Valid ReadingModel readingModel, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model
+                    .addAttribute("bodyPositions", bodyPositionService.getAll())
+                    .addAttribute("loadTypes", loadTypeService.getAll())
+                    .addAttribute("loads", loadService.getAll())
+                    .addAttribute("statements", statementService.getAll());
             return "readings/create";
         }
 
