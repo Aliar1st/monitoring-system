@@ -40,7 +40,7 @@ public class DoctorController {
     public String showPatient(@PathVariable Long id, Model model) {
 
         model
-                .addAttribute(readingService.getLastByPatientId(1L))
+                .addAttribute(readingService.getByPatientId(1L))
                 .addAttribute(cardioMedInfoService.getByPatientId(1L))
                 .addAttribute(adminPatientService.get(1L))
                 .addAttribute(loadTypeService.getAll())
