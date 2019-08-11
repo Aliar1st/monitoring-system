@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -39,15 +40,15 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Override
-    public ChartDataResponse chartData(Long patientId, Long loadTypeId, LocalDateTime start, LocalDateTime end) {
+    public ChartDataResponse chartData(Long patientId, Long loadTypeId, LocalDate start, LocalDate end) {
         List<Reading> readings;
 
         if (loadTypeId != null) {
-            readings = readingRepository
-                    .findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(patientId, loadTypeId, start, end);
+            readings = readingRepository.findAllByPatientIdAndLoadLoadTypeIdAndCreatedDateBetween(
+                    patientId, loadTypeId, start.atStartOfDay(), end.atTime(LocalTime.MAX));
         } else {
-            readings = readingRepository
-                    .findAllByPatientIdAndCreatedDateBetween(patientId, start, end);
+            readings = readingRepository.findAllByPatientIdAndCreatedDateBetween(
+                    patientId, start.atStartOfDay(), end.atTime(LocalTime.MAX));
         }
 
         ChartDataResponse chartDataResponse = new ChartDataResponse(true);
