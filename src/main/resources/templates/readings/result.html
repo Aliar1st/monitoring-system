@@ -14,8 +14,8 @@
                 <p class="card-category">Комментарий к полученному результату</p>
             </div>
             <div class="card-body">
-                <h3>Ваш результат <strong><span th:text="${borg} + ' баллов'" th:remove="tag"></span></strong> </h3>
-                <p><span th:text="${recommendation}" th:remove="tag"></span></p>
+                <h3>Ваш результат <strong><span th:text="*{borg} + ' баллов'" th:remove="tag"></span></strong> </h3>
+                <p><span th:text="*{recommendation}" th:remove="tag"></span></p>
             </div>
         </div>
         <div class="card">
@@ -24,7 +24,7 @@
                 <p class="card-category">Рассчитывается как число баллов*10 уд/мин</p>
             </div>
             <div class="card-body">
-<!--                <span th:text="${borg} * 10" th:remove="tag"></span>-->
+                <span th:text="*{borg} * 10" th:remove="tag"></span>
             </div>
         </div>
         <a th:href="@{/readings}" class="btn btn-primary pull-right">Посмотреть историю реабилитации</a>

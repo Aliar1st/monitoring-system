@@ -31,7 +31,7 @@
                             <label class="bmd-label-floating">Тип физической нагрузки</label>
                             <select id="load_type_id_all_readings" required class="form-control" aria-label="load_type" th:field="*{loadTypeId}">
                                 <option value="" selected="selected" style=" display: none;">Все типы</option>
-                                <option th:each="c : ${loadTypes}"
+                                <option th:each="c : ${loadTypeModelList}"
                                         th:value="${c.id}"
                                         th:utext="${c.name}"></option>
                             </select>

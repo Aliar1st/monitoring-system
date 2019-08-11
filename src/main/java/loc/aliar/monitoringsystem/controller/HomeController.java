@@ -13,21 +13,27 @@ import static loc.aliar.monitoringsystem.domain.Role.*;
 public class HomeController {
     @RequestMapping("/")
     public String index(@AuthenticationPrincipal User user) {
-        if (user == null) {
-            return "redirect:/login";
-        }
+//        if (user == null) {
+//            return "redirect:/auth/login";
+//        }
 
-        switch (ID_ROLES.get(user.getRole().getId())){
-            case SUPER_ADMIN:
-                return "";
-            case ADMIN:
-                return "redirect:/admin";
-            case DOCTOR:
-                return "redirect:/doctor";
-            case PATIENT:
-                return "redirect:/patient";
-        }
+//        switch (ID_ROLES.get(user.getRole().getId())){
+//            case SUPER_ADMIN:
+//                return "";
+//            case ADMIN:
+//                return "redirect:/admin";
+//            case DOCTOR:
+//                return "redirect:/doctor";
+//            case PATIENT:
+//                return "redirect:/patient";
+//        }
+//
+//        throw new IllegalStateException("Unknown role");
+        return "auth/login";
+    }
 
-        throw new IllegalStateException("Unknown role");
+    @RequestMapping("/auth/choose_department")
+    public String chooseDep(@AuthenticationPrincipal User user) {
+        return "auth/choose_department";
     }
 }

@@ -30,7 +30,8 @@
                                 <h4 class="card-title">Вход в систему</h4>
                             </div>
 
-                            <form th:action="@{login}" method="POST">
+<!--                            <form th:action="@{login}" method="POST">-->
+                            <th:block>
                                 <!--                                <form th:action="@{login}" th:object="${loginForm}" method="POST">-->
                                 <!--                                {{ Form::open(['route' => 'login']) }}-->
                                 <div class="card-body">
@@ -66,10 +67,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right">Войти в систему</button>
+                                <a th:href="@{/auth/choose_department}"><button  type="submit" class="btn btn-primary pull-right">Войти в систему</button></a>
+
                                 <div class="clearfix"></div>
                                 <!--                                {{ Form::close() }}-->
-                            </form>
+<!--                            </form>-->
+                            </th:block>
                         </div>
                     </div>
                 </div>

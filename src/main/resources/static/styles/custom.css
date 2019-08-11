@@ -156,3 +156,14 @@ div >.reports_cl {
 {
     color: white !important;
 }
+
+.choose_dep{
+    color: black !important;
+
+
+}
+
+.choose_dep input,
+.choose_dep label{
+    color: black !important;
+}

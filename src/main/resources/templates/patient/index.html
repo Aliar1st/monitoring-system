@@ -77,7 +77,7 @@
                                 <label class="bmd-label-floating">Образование</label>
                                 <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
                                     <option value="" selected="selected" style=" display: none;">Выберите образование</option>
-                                    <option th:each="c : ${educationList}"
+                                    <option th:each="c : ${educationModelList}"
                                             th:value="${c.id}"
                                             th:utext="${c.name}"></option>
                                 </select>
