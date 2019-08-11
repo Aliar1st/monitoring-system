@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReadingRepository extends JpaRepository<Reading, Long> {
-    Optional<Reading> findFirstByPatientIdOrderByCreatedDate(Long patientId);
+    Optional<Reading> findFirstByPatientIdOrderByCreatedDateDesc(Long patientId);
 
     List<Reading> findAllByPatientIdOrderByCreatedDate(Long patientId);
 

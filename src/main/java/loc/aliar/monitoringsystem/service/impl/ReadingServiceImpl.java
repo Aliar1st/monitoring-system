@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public Optional<ReadingModel> getLastByPatientId(Long patientId) {
-        Optional<Reading> reading = readingRepository.findFirstByPatientIdOrderByCreatedDate(patientId);
+        Optional<Reading> reading = readingRepository.findFirstByPatientIdOrderByCreatedDateDesc(patientId);
         return reading.map(r -> conversionService.convert(r, ReadingModel.class));
     }
 
@@ -55,7 +56,7 @@ public class ReadingServiceImpl implements ReadingService {
 
         readings.forEach(reading -> {
             if (reading.getCreatedDate().isPresent()) {
-                chartDataResponse.getLabels().add(reading.getCreatedDate().get().toString());
+                chartDataResponse.getLabels().add(reading.getCreatedDate().get().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
             } else {
                 chartDataResponse.getLabels().add("-");
             }
