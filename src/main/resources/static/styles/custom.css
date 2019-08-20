@@ -9,13 +9,14 @@
     padding: 12px;
     margin-right: 5px;
     margin-bottom: 20px;
-    background-color: #9c27b0;
+    /*background-color: #9c27b0;*/
+    background-color: #0D5692;
     color: #fff;
 }
 
 .a:hover, .a:focus {
     color: #fff !important;
-    background-color: #a233b5 !important;
+    background-color: #0D5692 !important;
 }
 
 .bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating,
@@ -64,8 +65,9 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .sidebar .nav li.active > [data-toggle="collapse"]{
-    background-color: #9c27b0 !important;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4) !important;
+    /*background-color: #9c27b0 !important;*/
+    background-color: #0D5692 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(32, 98, 146, 0.06) !important;
     color:white;
 }
 
@@ -148,7 +150,8 @@ div >.reports_cl {
 }
 
 .friend-list .active{
-    background: #9c27b0;
+    /*background: #9c27b0;*/
+    background: #0D5692;
 }
 
 .friend-list .active strong,

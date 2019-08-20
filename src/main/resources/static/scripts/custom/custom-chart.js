@@ -126,8 +126,8 @@ $(function () {
                 }, {
                     label: "Результат по Боргу",
                     borderWidth: 2,
-                    backgroundColor: 'rgba(151, 46, 175, .5)',
-                    borderColor: 'rgb(151, 46, 175)',
+                    backgroundColor: 'rgba(32,98,146,0.5)',
+                    borderColor: 'rgba(32,98,146,0.85)',
                     data: result.data,
                     fill: false,
                     hitRadius: 20,
