@@ -1,7 +1,7 @@
 package loc.aliar.monitoringsystem.controller.admin;
 
+import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.domain.Patient;
-import loc.aliar.monitoringsystem.model.DoctorModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.service.SecurityService;
 import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller("adminPatientController")
 @RequestMapping("admin/patients")
@@ -32,32 +32,40 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
     }
 
     @GetMapping("add")
-    public String create(Model model) {
-        Integer departmentId = securityService.getDepartmentId();
-        List<DoctorModel> doctors = adminDoctorService.getAllByDepartmentId(departmentId);
-        return createDefault(model
-                .addAttribute("doctors", doctors)
-                .addAttribute("educations", educationService.getAll()));
+    public String create(Model model, HttpSession session) {
+        return createDefault(model, session);
     }
 
     @PostMapping
-    public String create(@Valid PatientModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(
+            @Valid PatientModel entityModel, BindingResult bindingResult,
+            Model model, HttpSession session) {
+        return createDefault(entityModel, bindingResult, model, session);
     }
 
     @GetMapping("{id}/edit")
-    public String edit(@PathVariable Long id, Model model) {
-        return editDefault(id, model);
+    public String edit(@PathVariable Long id, Model model, HttpSession session) {
+        return editDefault(id, model, session);
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid PatientModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(
+            @PathVariable Long id, @Valid PatientModel entityModel, BindingResult bindingResult,
+            Model model, HttpSession session) {
+        return editDefault(id, entityModel, bindingResult, model, session);
     }
 
     @DeleteMapping("{id}")
     public String delete(@PathVariable Long id) {
         return deleteDefault(id);
+    }
+
+    @Override
+    public void setAdditionAttributes(Model model, HttpSession session) {
+        Integer depId = (Integer) session.getAttribute(Constants.DEP_ATTR);
+        model
+                .addAttribute(adminDoctorService.getAllByDepartmentId(depId))
+                .addAttribute(educationService.getAll());
     }
 
     @Override

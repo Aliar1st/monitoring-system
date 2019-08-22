@@ -17,7 +17,7 @@ public class ModelToReadingConverter implements Converter<ReadingModel, Reading>
                 .load(new Load(source.getLoadId()))
                 .bodyPosition(new BodyPosition(source.getBodyPositionId()))
                 .statement(new Statement(source.getStatementId()))
-                .patient(new Patient(1L))
+                .patient(new Patient(source.getPatientId()))
                 .build();
     }
 }

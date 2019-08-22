@@ -29,8 +29,8 @@ public class EducationController implements BaseAdminController<Education, Educa
     }
 
     @PostMapping
-    public String create(@Valid EducationModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid EducationModel entityModel, BindingResult bindingResult, Model model) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
@@ -39,8 +39,8 @@ public class EducationController implements BaseAdminController<Education, Educa
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid EducationModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid EducationModel entityModel, BindingResult bindingResult, Model model) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")

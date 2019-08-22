@@ -29,8 +29,8 @@ public class DegreeController implements BaseAdminController<Degree, DegreeModel
     }
 
     @PostMapping
-    public String create(@Valid DegreeModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid DegreeModel entityModel, BindingResult bindingResult) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
@@ -39,8 +39,8 @@ public class DegreeController implements BaseAdminController<Degree, DegreeModel
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid DegreeModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid DegreeModel entityModel, BindingResult bindingResult) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -12,11 +13,11 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Admin extends AbstractModel {
-    //    @ManyToOne(optional = false)
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Department department;
 
     @OneToOne(optional = false)
+    @MapsId
     private User user;
 
     @Builder

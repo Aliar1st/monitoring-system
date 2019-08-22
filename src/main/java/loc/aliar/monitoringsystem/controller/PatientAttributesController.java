@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -35,7 +34,8 @@ public class PatientAttributesController {
             String name = patientModel.fullName();
             String photo = patientModel.getPhotoUrl();
 
-            Optional<ReadingModel> lastReadingOpt = readingService.getLastByPatientId(1L);
+            Optional<ReadingModel> lastReadingOpt =
+                    readingService.getLastByPatientId(securityService.getUser().getId());
             String lastDate;
             String lastTime;
             String lastScore;

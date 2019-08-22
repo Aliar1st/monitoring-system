@@ -1,5 +1,6 @@
 package loc.aliar.monitoringsystem.controller;
 
+import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.model.ChartDataRequest;
 import loc.aliar.monitoringsystem.model.ChartDataResponse;
 import loc.aliar.monitoringsystem.model.ReadingModel;
@@ -15,13 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/readings")
 @RequiredArgsConstructor
-public class ReadingController {
+public class CardioReadingController {
     private final BodyPositionService bodyPositionService;
     private final LoadService loadService;
     private final LoadTypeService loadTypeService;
@@ -31,8 +33,9 @@ public class ReadingController {
 
     @GetMapping
     public String index(Model model) {
+        Long patientId = securityService.getUser().getId();
         model
-                .addAttribute(readingService.getByPatientId(1L))
+                .addAttribute(readingService.getByPatientId(patientId))
                 .addAttribute(loadTypeService.getAll())
                 .addAttribute(new ChartDataRequest());
         return "readings/index";
@@ -47,13 +50,13 @@ public class ReadingController {
             return chartDataResponse;
         }
 
-        return readingService.chartData(1L,
+        return readingService.chartData(securityService.getUser().getId(),
                 chartDataRequest.getLoadTypeId(), chartDataRequest.getStart(), chartDataRequest.getEnd());
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        Long patientId = securityService.getPatient().getId();
+        Long patientId = securityService.getUser().getId();
         Optional<ReadingModel> lastReading = readingService.getLastByPatientId(patientId);
 
         lastReading.ifPresent(readingModel -> model
@@ -70,7 +73,8 @@ public class ReadingController {
     }
 
     @PostMapping
-    public String create(@Valid ReadingModel readingModel, BindingResult bindingResult, Model model) {
+    public String create(
+            @Valid ReadingModel readingModel, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model
                     .addAttribute("bodyPositions", bodyPositionService.getAll())
@@ -80,6 +84,8 @@ public class ReadingController {
             return "readings/create";
         }
 
+        Long patientId = (Long) session.getAttribute(Constants.DEP_ATTR);
+        readingModel.setPatientId(patientId);
         Long id = readingService.save(readingModel);
 
         return "redirect:/readings/" + id;

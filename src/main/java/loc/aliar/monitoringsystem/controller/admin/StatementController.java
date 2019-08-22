@@ -29,8 +29,8 @@ public class StatementController implements BaseAdminController<Statement, State
     }
 
     @PostMapping
-    public String create(@Valid StatementModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid StatementModel entityModel, BindingResult bindingResult) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
@@ -39,8 +39,8 @@ public class StatementController implements BaseAdminController<Statement, State
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid StatementModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid StatementModel entityModel, BindingResult bindingResult) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")

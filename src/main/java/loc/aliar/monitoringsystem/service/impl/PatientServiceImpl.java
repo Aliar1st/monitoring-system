@@ -2,7 +2,6 @@ package loc.aliar.monitoringsystem.service.impl;
 
 import loc.aliar.monitoringsystem.domain.Doctor;
 import loc.aliar.monitoringsystem.domain.Patient;
-import loc.aliar.monitoringsystem.exception.DepartmentException;
 import loc.aliar.monitoringsystem.model.PatientModel;
 import loc.aliar.monitoringsystem.repository.DoctorRepository;
 import loc.aliar.monitoringsystem.repository.PatientRepository;
@@ -28,14 +27,29 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Object getMedicalInfo(Integer depId) {
-//        switch (Department.ID_DEPARTMENTS.get(depId)) {
+        return null;
+//        Department.Departments departments = Department.ID_DEPARTMENTS.get(depId);
+//        Object medicalInfo = DepartmentToMedicalInfoMapping;
+//        Class<?> medicalClass;
+//        switch (departments) {
 //            case CARDIO:
-//                return conversionService.convert(
-//                        securityService.getPatient().getCardioMedicalInfo(),
-//                        CardioMedicalInfoModel.class);
+//                medicalInfo = securityService.getPatient().getCardioMedicalInfo();
+//                medicalClass = CardioMedicalInfoModel.class;
+//                break;
+//            default:
+//                throw new DepartmentException("Department with id " + depId + " does not exist");
 //        }
+//
+//        if (medicalInfo == null) {
+//            return null;
+//        }
+//
+//        return conversionService.convert(medicalInfo, medicalClass);
+    }
 
-        throw new DepartmentException("Department with id " + depId + " does not exist");
+    @Override
+    public boolean isRegisteredInDepartment(Integer depId) {
+        return getMedicalInfo(depId) != null;
     }
 
     @Override

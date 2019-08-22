@@ -15,7 +15,7 @@ public abstract class ReflectionUtils {
 
     public static Object getFieldValue(Object obj, String name) throws ReflectiveOperationException {
         Class<?> clazz = obj.getClass();
-        Field field = clazz.getField(name);
+        Field field = org.springframework.util.ReflectionUtils.findField(clazz, name);
         field.setAccessible(true);
         return field.get(obj);
     }

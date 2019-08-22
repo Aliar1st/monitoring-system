@@ -1,7 +1,9 @@
 package loc.aliar.monitoringsystem.controller.admin;
 
+import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.domain.Admin;
 import loc.aliar.monitoringsystem.model.AdminModel;
+import loc.aliar.monitoringsystem.service.SecurityService;
 import loc.aliar.monitoringsystem.service.admin.AdminService;
 import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -17,6 +20,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AdminController implements BaseAdminController<Admin, AdminModel> {
     private final AdminService service;
+    private final SecurityService securityService;
 
     @GetMapping
     public String index(Model model) {
@@ -24,28 +28,39 @@ public class AdminController implements BaseAdminController<Admin, AdminModel> {
     }
 
     @GetMapping("add")
-    public String create(Model model) {
-        return createDefault(model);
+    public String create(Model model, HttpSession session) {
+        return createDefault(model, session);
     }
 
     @PostMapping
-    public String create(@Valid AdminModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(
+            @Valid AdminModel entityModel, BindingResult bindingResult,
+            Model model, HttpSession session) {
+        return createDefault(entityModel, bindingResult, model, session);
     }
 
     @GetMapping("{id}/edit")
-    public String edit(@PathVariable Long id, Model model) {
-        return editDefault(id, model);
+    public String edit(@PathVariable Long id, Model model, HttpSession session) {
+        return editDefault(id, model, session);
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid AdminModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(
+            @PathVariable Long id, @Valid AdminModel entityModel, BindingResult bindingResult,
+            Model model, HttpSession session) {
+        return editDefault(id, entityModel, bindingResult, model, session);
     }
 
     @DeleteMapping("{id}")
     public String delete(@PathVariable Long id) {
         return deleteDefault(id);
+    }
+
+    @Override
+    public void prepareModelToSave(AdminModel entityModel, HttpSession session) {
+        if (!securityService.isSuperAdmin()) {
+            entityModel.setDepartmentId((Integer) session.getAttribute(Constants.DEP_ATTR));
+        }
     }
 
     @Override
