@@ -170,3 +170,101 @@ div >.reports_cl {
 .choose_dep label{
     color: black !important;
 }
+
+
+.dep_but{
+    margin: 40px 20px 20px 0;
+}
+/******************************/
+.service {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.service-block {
+    width: 20%;
+    border-radius: 30px;
+    background-color: #ECF0F1;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-block{
+    /*background-color: #dadedf;*/
+    border: #0057c0 1px solid;
+}
+
+.selected-block a{
+    color: #0056b3 !important;
+    text-decoration: underline !important;
+}
+
+.service-block a {
+    color: #000;
+}
+
+.service-block  a:hover {
+    color: #0056b3 !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.infarkt {
+    background-image: url(../images/infarkt.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+.service-img {
+    align-self: center;
+    height: 108px;
+}
+
+.service-block h3 {
+
+    color: #3D507A;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+}
+
+.insult {
+    background-image: url(../images/insult.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+.protez {
+    background-image: url(../images/protez.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .service-block {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .service-img {
+        min-height: 120px;
+    }
+}
+
+

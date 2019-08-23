@@ -12,7 +12,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="offset-2 col-md-6 ">
+                <div class="col-md-9">
 <!--                    <div class="card">-->
 <!--                        <div class="card-header card-header-primary">-->
 <!--                            <h4 class="card-title">Уважаемый пользователь!</h4>-->
@@ -26,74 +26,49 @@
 <!--                    </div>-->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Выберите отдел</h4>
+                            <h4 class="card-title">Выберите направление Вашей реабилитации</h4>
                         </div>
+
+
+
 
 <!--                        <form th:action="@{login}" method="POST">-->
                         <th:block>
                             <!--                                <form th:action="@{login}" th:object="${loginForm}" method="POST">-->
                             <!--                                {{ Form::open(['route' => 'login']) }}-->
-                            <div class="card-body">
-                                <div class="row">
-                                    <!--                                        @if ($errors->any())-->
-                                    <!--                                        <div class="alert alert-danger m-auto">-->
-                                    <!--                                            Неправильный логин и/или пароль-->
-                                    <!--                                        </div>-->
-                                    <!--                                        @endif-->
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <!--                                                <label th:field="*{login}"  class="bmd-label-floating">Введите логин</label>-->
-                                            <!--                                                <input th:field="*{login}" type="text" class="form-control"-->
-                                            <!--                                                       aria-label="login">-->
-<!--                                            <label class="bmd-label-floating">Введите логин</label>-->
-                                            <label>
-                                                <input type="radio"
-                                                    name="choose" value="Медицинская реабилитация после инсульта">
-                                                Медицинская реабилитация после инсульта
+                            <div class="about-service radio-group">
 
-                                            </label>
-                                        </div>
+                                <div class="row service">
+                                    <div class="service-block">
+                                        <a class="radio" data-value="1">
+                                          <div class="service-img infarkt"></div>
+                                            <h3>Медицинская кардиореабилитация</h3>
+                                        </a>
+                                    </div>
+
+
+
+                                    <div class="service-block">
+                                        <a class="radio" data-value="2">
+                                            <div class="service-img insult"></div>
+                                            <h3>Медицинская реабилитация после инсульта</h3>
+                                        </a>
+                                    </div>
+
+
+
+                                    <div class="service-block">
+                                        <a class="radio" data-value="3">
+                                            <div class="service-img protez"></div>
+                                            <h3>Медицинская реабилитация после эндопротезирования</h3>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <!--                                                <label th:field="*{password}"  class="bmd-label-floating">Введите пароль</label>-->
-                                            <!--                                                <input th:field="*{password}" type="text" class="form-control"-->
-                                            <!--                                                       aria-label="password">-->
-<!--                                            <label class="bmd-label-floating">Введите пароль</label>-->
-                                            <label>
-                                                <input type="radio"
-                                                    name="choose" value="Медицинская реабилитация после эндопротезирования">
-                                                Медицинская реабилитация после эндопротезирования
-
-                                            </label>
-                                            <!--                                                {{ Form::label('password', 'Введите пароль', ['class' => 'bmd-label-floating']) }}-->
-                                            <!--                                                {{ Form::password('password', ['class' => 'form-control']) }}-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <!--                                                <label th:field="*{password}"  class="bmd-label-floating">Введите пароль</label>-->
-                                            <!--                                                <input th:field="*{password}" type="text" class="form-control"-->
-                                            <!--                                                       aria-label="password">-->
-<!--                                            <label class="bmd-label-floating">Введите пароль</label>-->
-                                            <label>
-                                            <input type="radio"
-                                                    name="choose" value="Медицинская кардиореабилитация">
-                                                Медицинская кардиореабилитация
-                                            </label>
-
-                                            <!--                                                {{ Form::label('password', 'Введите пароль', ['class' => 'bmd-label-floating']) }}-->
-                                            <!--                                                {{ Form::password('password', ['class' => 'form-control']) }}-->
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="hidden" id="radio-value" name="val">
+<!--                                <input type="text" id="radio-value" name="radio-value" />-->
                             </div>
                             <a th:href="@{/admin/admins}">
-                                <button type="submit" class="btn btn-primary pull-right">Выбрать</button>
+                                <button type="submit" class="btn btn-primary pull-right dep_but">Выбрать</button>
                             </a>
                             <div class="clearfix"></div>
                             <!--                                {{ Form::close() }}-->
@@ -105,5 +80,12 @@
         </div>
     </div>
 </div>
+
+
+<div layout:fragment="scripts">
+    <script th:src="@{/scripts/custom/custom-choose-dep.js}"></script>
+</div>
+
+
 </body>
 </html>
