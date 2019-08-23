@@ -27,12 +27,8 @@ public class DoctorController {
 
     @GetMapping
     public String index(Model model) {
-//        Long doctorId = securityService.getDoctor().getId();
-//        model.addAttribute(patientService.getAllByDoctorId(doctorId));
-
-        model
-                .addAttribute(adminPatientService.getAll());
-
+        Long doctorId = securityService.getUser().getId();
+        model.addAttribute(patientService.getAllByDoctorId(doctorId));
         return "doctor/index";
     }
 
@@ -40,9 +36,9 @@ public class DoctorController {
     public String showPatient(@PathVariable Long id, Model model) {
 
         model
-                .addAttribute(readingService.getByPatientId(1L))
-                .addAttribute(cardioMedInfoService.getByPatientId(1L))
-                .addAttribute(adminPatientService.get(1L))
+                .addAttribute(readingService.getByPatientId(id))
+                .addAttribute(cardioMedInfoService.getByPatientId(id))
+                .addAttribute(adminPatientService.get(id))
                 .addAttribute(loadTypeService.getAll())
                 .addAttribute(new ChartDataRequest());
 

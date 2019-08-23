@@ -45,6 +45,9 @@ public class Patient extends AbstractModel {
     @OneToOne(optional = false)
     private User user;
 
+    @OneToOne(mappedBy = "patient")
+    private CardioMedicalInfo cardioMedicalInfo;
+
     @ManyToMany(mappedBy = "patients")
     private List<Doctor> doctors;
 

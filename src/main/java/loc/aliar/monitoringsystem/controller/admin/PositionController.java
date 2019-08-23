@@ -29,8 +29,8 @@ public class PositionController implements BaseAdminController<Position, Positio
     }
 
     @PostMapping
-    public String create(@Valid PositionModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid PositionModel entityModel, BindingResult bindingResult) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
@@ -39,8 +39,8 @@ public class PositionController implements BaseAdminController<Position, Positio
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid PositionModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid PositionModel entityModel, BindingResult bindingResult) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")

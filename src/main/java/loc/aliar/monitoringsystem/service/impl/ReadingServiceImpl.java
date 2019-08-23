@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -26,7 +25,6 @@ import java.util.Optional;
 public class ReadingServiceImpl implements ReadingService {
     private final ReadingRepository readingRepository;
     private final ConversionService conversionService;
-    private final EntityManager entityManager;
 
     @Override
     public List<ReadingModel> getByPatientId(Long patientId) {

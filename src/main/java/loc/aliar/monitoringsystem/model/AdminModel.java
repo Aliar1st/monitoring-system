@@ -1,14 +1,15 @@
 package loc.aliar.monitoringsystem.model;
 
+import loc.aliar.monitoringsystem.domain.Role;
 import loc.aliar.monitoringsystem.repository.DepartmentRepository;
 import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
+import loc.aliar.monitoringsystem.validation.annotation.NotNullIfRole;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter @Setter
@@ -29,8 +30,7 @@ public class AdminModel implements IdAble {
     @Size(min = 4, max = 50)
     private String password;
 
-
-    @NotNull
+    @NotNullIfRole(Role.Roles.SUPER_ADMIN)
     @Exists(DepartmentRepository.class)
     private Integer departmentId;
 }

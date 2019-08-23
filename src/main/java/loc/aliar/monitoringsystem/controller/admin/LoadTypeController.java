@@ -29,8 +29,8 @@ public class LoadTypeController implements BaseAdminController<LoadType, LoadTyp
     }
 
     @PostMapping
-    public String create(@Valid LoadTypeModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid LoadTypeModel entityModel, BindingResult bindingResult) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
@@ -39,8 +39,8 @@ public class LoadTypeController implements BaseAdminController<LoadType, LoadTyp
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid LoadTypeModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid LoadTypeModel entityModel, BindingResult bindingResult) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")

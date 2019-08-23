@@ -1,8 +1,10 @@
 package loc.aliar.monitoringsystem.model;
 
+import loc.aliar.monitoringsystem.domain.Role;
 import loc.aliar.monitoringsystem.repository.*;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
+import loc.aliar.monitoringsystem.validation.annotation.NotNullIfRole;
 import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.*;
 
@@ -59,7 +61,7 @@ public class DoctorModel implements IdAble {
     @Exists(PositionRepository.class)
     private Long positionId;
 
-    @NotNull
+    @NotNullIfRole(Role.Roles.SUPER_ADMIN)
     @Exists(DepartmentRepository.class)
     private Integer departmentId;
 }

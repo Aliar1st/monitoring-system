@@ -48,6 +48,8 @@ public class ReadingModel {
     @Exists(StatementRepository.class)
     private Long statementId;
 
+    private Long patientId;
+
     public String getDateFormat() {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }

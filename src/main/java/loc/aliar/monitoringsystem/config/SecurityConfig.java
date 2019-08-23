@@ -23,13 +23,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .formLogin().permitAll().and()
                 .authorizeRequests()
+//                .mvcMatchers("/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN")
+//                .mvcMatchers("/doctor/**").hasRole("DOCTOR")
+//                .mvcMatchers("/patient/**", "readings/**").hasRole("PATIENT")
+//                .anyRequest().authenticated();
                 .anyRequest().permitAll();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println(passwordEncoder().encode("1111"));
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 

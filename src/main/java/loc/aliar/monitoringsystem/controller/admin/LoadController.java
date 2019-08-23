@@ -27,29 +27,32 @@ public class LoadController implements BaseAdminController<Load, LoadModel> {
 
     @GetMapping("add")
     public String create(Model model) {
-        return createDefault(model
-                .addAttribute("loadTypes", loadTypeService.getAll()));
+        return createDefault(model.addAttribute("loadTypes", loadTypeService.getAll()));
     }
 
     @PostMapping
-    public String create(@Valid LoadModel model, BindingResult bindingResult) {
-        return createDefault(model, bindingResult);
+    public String create(@Valid LoadModel entityModel, BindingResult bindingResult) {
+        return createDefault(entityModel, bindingResult);
     }
 
     @GetMapping("{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        return editDefault(id, model
-                .addAttribute("loadTypes", loadTypeService.getAll()));
+        return editDefault(id, model.addAttribute("loadTypes", loadTypeService.getAll()));
     }
 
     @PutMapping("{id}")
-    public String edit(@PathVariable Long id, @Valid LoadModel model, BindingResult bindingResult) {
-        return editDefault(id, model, bindingResult);
+    public String edit(@PathVariable Long id, @Valid LoadModel entityModel, BindingResult bindingResult) {
+        return editDefault(id, entityModel, bindingResult);
     }
 
     @DeleteMapping("{id}")
     public String delete(@PathVariable Long id) {
         return deleteDefault(id);
+    }
+
+    @Override
+    public void setAdditionAttributes(Model model) {
+        model.addAttribute("loadTypes", loadTypeService.getAll());
     }
 
     @Override
