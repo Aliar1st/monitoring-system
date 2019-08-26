@@ -30,50 +30,50 @@
                         </div>
 
 
+                        <form th:action="@{/auth/choose_department}" method="POST">
+
+                            <th:block>
+                                <!--                                <form th:action="@{login}" th:object="${loginForm}" method="POST">-->
+                                <!--                                {{ Form::open(['route' => 'login']) }}-->
+                                <div class="about-service radio-group">
+
+                                    <div class="row service">
+                                        <div class="service-block">
+                                            <a class="radio" data-value="1">
+                                              <div class="service-img infarkt"></div>
+                                                <h3>Медицинская кардиореабилитация</h3>
+                                            </a>
+                                        </div>
 
 
-<!--                        <form th:action="@{login}" method="POST">-->
-                        <th:block>
-                            <!--                                <form th:action="@{login}" th:object="${loginForm}" method="POST">-->
-                            <!--                                {{ Form::open(['route' => 'login']) }}-->
-                            <div class="about-service radio-group">
 
-                                <div class="row service">
-                                    <div class="service-block">
-                                        <a class="radio" data-value="1">
-                                          <div class="service-img infarkt"></div>
-                                            <h3>Медицинская кардиореабилитация</h3>
-                                        </a>
+                                        <div class="service-block">
+                                            <a class="radio" data-value="2">
+                                                <div class="service-img insult"></div>
+                                                <h3>Медицинская реабилитация после инсульта</h3>
+                                            </a>
+                                        </div>
+
+
+
+                                        <div class="service-block">
+                                            <a class="radio" data-value="3">
+                                                <div class="service-img protez"></div>
+                                                <h3>Медицинская реабилитация после эндопротезирования</h3>
+                                            </a>
+                                        </div>
                                     </div>
-
-
-
-                                    <div class="service-block">
-                                        <a class="radio" data-value="2">
-                                            <div class="service-img insult"></div>
-                                            <h3>Медицинская реабилитация после инсульта</h3>
-                                        </a>
-                                    </div>
-
-
-
-                                    <div class="service-block">
-                                        <a class="radio" data-value="3">
-                                            <div class="service-img protez"></div>
-                                            <h3>Медицинская реабилитация после эндопротезирования</h3>
-                                        </a>
-                                    </div>
+                                    <input type="hidden" id="radio-value" name="val" th:value="">
+    <!--                                <input type="text" id="radio-value" name="radio-value" />-->
                                 </div>
-                                <input type="hidden" id="radio-value" name="val">
-<!--                                <input type="text" id="radio-value" name="radio-value" />-->
-                            </div>
-                            <a th:href="@{/admin/admins}">
-                                <button type="submit" class="btn btn-primary pull-right dep_but">Выбрать</button>
-                            </a>
-                            <div class="clearfix"></div>
-                            <!--                                {{ Form::close() }}-->
-<!--                        </form>-->
-                        </th:block>
+                                <a th:href="@{/admin/admins}">
+                                    <button type="submit" class="btn btn-primary pull-right dep_but">Выбрать</button>
+                                </a>
+                                <div class="clearfix"></div>
+                                <!--                                {{ Form::close() }}-->
+
+                                </th:block>
+                        </form>
                     </div>
                 </div>
             </div>
