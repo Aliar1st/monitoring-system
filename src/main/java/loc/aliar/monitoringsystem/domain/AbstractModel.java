@@ -22,6 +22,7 @@ import java.util.Optional;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractModel implements Persistable<Long>, Auditable<User, Long, LocalDateTime> {
     @Id
+    @Access(AccessType.PROPERTY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -48,14 +49,17 @@ public abstract class AbstractModel implements Persistable<Long>, Auditable<User
         return getId() == null;
     }
 
+    @Override
     public Optional<User> getCreatedBy() {
         return Optional.ofNullable(createdBy);
     }
 
+    @Override
     public Optional<LocalDateTime> getCreatedDate() {
         return Optional.ofNullable(createdDate);
     }
 
+    @Override
     public Optional<User> getLastModifiedBy() {
         return Optional.ofNullable(lastModifiedBy);
     }

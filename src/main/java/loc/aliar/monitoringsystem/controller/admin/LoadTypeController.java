@@ -2,7 +2,7 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.domain.LoadType;
 import loc.aliar.monitoringsystem.model.LoadTypeModel;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.admin.LoadTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,6 @@
 package loc.aliar.monitoringsystem.model;
 
+import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.repository.BodyPositionRepository;
 import loc.aliar.monitoringsystem.repository.LoadRepository;
 import loc.aliar.monitoringsystem.repository.StatementRepository;
@@ -10,13 +11,12 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReadingModel {
+public class CardioReadingModel implements IdAble {
     private Long id;
 
     @NotNull
@@ -51,10 +51,10 @@ public class ReadingModel {
     private Long patientId;
 
     public String getDateFormat() {
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return date.format(Constants.DATE_FORMAT);
     }
 
     public String getTimeFormat() {
-        return date.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return date.format(Constants.TIME_FORMAT);
     }
 }

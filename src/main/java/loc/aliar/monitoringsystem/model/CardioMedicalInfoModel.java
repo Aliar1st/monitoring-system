@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 
 @Getter @Setter
 @NoArgsConstructor
-public class CardioMedicalInfoModel {
+public class CardioMedicalInfoModel implements IdAble {
     private Long id;
 
     @NotEmpty
@@ -50,7 +50,9 @@ public class CardioMedicalInfoModel {
     @Min(0) private Double alt;
     @Min(0) private Double ast;
     @Min(0) private Double glyu;
-    @Min(0) private Double kr;private String medikamentyGruppy;
+    @Min(0) private Double kr;
+
+    private String medikamentyGruppy;
 
     @Size(max = 100) private String kag;
 

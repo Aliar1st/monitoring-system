@@ -9,6 +9,8 @@ import loc.aliar.monitoringsystem.model.PatientModel;
 public interface SecurityService {
     User getUser();
 
+    Long getId();
+
     AdminModel getAdminModel();
 
     DoctorModel getDoctorModel();

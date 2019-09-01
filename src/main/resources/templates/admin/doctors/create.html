@@ -14,7 +14,7 @@
                 <p class="card-category">Добавить личную информацию доктора</p>
             </div>
             <div class="card-body">
-            <form th:action="@{/admin/doctors}" th:object="${doctorModel}" method="POST">
+            <form th:action="@{/admin/doctors}" th:object="${adminDoctorModel}" method="POST">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">

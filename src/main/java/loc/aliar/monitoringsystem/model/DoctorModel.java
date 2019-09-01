@@ -1,11 +1,10 @@
 package loc.aliar.monitoringsystem.model;
 
-import loc.aliar.monitoringsystem.domain.Role;
-import loc.aliar.monitoringsystem.repository.*;
+import loc.aliar.monitoringsystem.repository.DegreeRepository;
+import loc.aliar.monitoringsystem.repository.PositionRepository;
+import loc.aliar.monitoringsystem.repository.SpecializationRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
 import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
-import loc.aliar.monitoringsystem.validation.annotation.NotNullIfRole;
-import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -17,17 +16,6 @@ import javax.validation.constraints.*;
 @NewUserPassword
 public class DoctorModel implements IdAble {
     private Long id;
-
-    @NotEmpty
-    @Size(min = 4, max = 50)
-    @Unique(value = UserRepository.class,
-            fieldName = "username")
-    private String username;
-
-    @NotEmpty
-    @Size(min = 4, max = 50)
-    private String password;
-
 
     @NotEmpty
     @Size(min = 2, max = 50)
@@ -61,7 +49,5 @@ public class DoctorModel implements IdAble {
     @Exists(PositionRepository.class)
     private Long positionId;
 
-    @NotNullIfRole(Role.Roles.SUPER_ADMIN)
-    @Exists(DepartmentRepository.class)
     private Integer departmentId;
 }

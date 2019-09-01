@@ -2,9 +2,13 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.domain.Doctor;
-import loc.aliar.monitoringsystem.model.DoctorModel;
+import loc.aliar.monitoringsystem.model.AdminDoctorModel;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.SecurityService;
-import loc.aliar.monitoringsystem.service.admin.*;
+import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
+import loc.aliar.monitoringsystem.service.admin.DegreeService;
+import loc.aliar.monitoringsystem.service.admin.PositionService;
+import loc.aliar.monitoringsystem.service.admin.SpecializationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +21,7 @@ import javax.validation.Valid;
 @Controller("adminDoctorController")
 @RequestMapping("admin/doctors")
 @RequiredArgsConstructor
-public class DoctorController implements BaseAdminController<Doctor, DoctorModel> {
+public class DoctorController implements BaseAdminController<Doctor, AdminDoctorModel> {
     private final AdminDoctorService service;
     private final PositionService positionService;
     private final DegreeService degreeService;
@@ -36,7 +40,7 @@ public class DoctorController implements BaseAdminController<Doctor, DoctorModel
 
     @PostMapping
     public String create(
-            @Valid DoctorModel entityModel, BindingResult bindingResult,
+            @Valid AdminDoctorModel entityModel, BindingResult bindingResult,
             Model model, HttpSession session) {
         return createDefault(entityModel, bindingResult, model, session);
     }
@@ -48,7 +52,7 @@ public class DoctorController implements BaseAdminController<Doctor, DoctorModel
 
     @PutMapping("{id}")
     public String edit(
-            @PathVariable Long id, @Valid DoctorModel entityModel, BindingResult bindingResult,
+            @PathVariable Long id, @Valid AdminDoctorModel entityModel, BindingResult bindingResult,
             Model model, HttpSession session) {
         return editDefault(id, entityModel, bindingResult, model, session);
     }
@@ -59,7 +63,7 @@ public class DoctorController implements BaseAdminController<Doctor, DoctorModel
     }
 
     @Override
-    public void prepareModelToSave(DoctorModel entityModel, HttpSession session) {
+    public void prepareModelToSave(AdminDoctorModel entityModel, HttpSession session) {
         if (!securityService.isSuperAdmin()) {
             entityModel.setDepartmentId((Integer) session.getAttribute(Constants.DEP_ATTR));
         }
@@ -74,12 +78,12 @@ public class DoctorController implements BaseAdminController<Doctor, DoctorModel
     }
 
     @Override
-    public Class<DoctorModel> getModelClass() {
-        return DoctorModel.class;
+    public Class<AdminDoctorModel> getModelClass() {
+        return AdminDoctorModel.class;
     }
 
     @Override
-    public CrudService<Doctor, DoctorModel> getCrudService() {
+    public CrudService<Doctor, AdminDoctorModel> getCrudService() {
         return service;
     }
 

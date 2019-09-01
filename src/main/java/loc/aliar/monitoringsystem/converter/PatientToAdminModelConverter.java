@@ -1,32 +1,29 @@
 package loc.aliar.monitoringsystem.converter;
 
-import loc.aliar.monitoringsystem.domain.Education;
+import loc.aliar.monitoringsystem.domain.AbstractModel;
 import loc.aliar.monitoringsystem.domain.Patient;
-import loc.aliar.monitoringsystem.model.PatientModel;
-import loc.aliar.monitoringsystem.service.storage.StorageService;
-import lombok.RequiredArgsConstructor;
+import loc.aliar.monitoringsystem.model.AdminPatientModel;
+import loc.aliar.monitoringsystem.utils.ObjectUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class PatientModelToPatientConverter implements Converter<PatientModel, Patient> {
-    private StorageService storageService;
-
+public class PatientToAdminModelConverter implements Converter<Patient, AdminPatientModel> {
     @Override
-    public Patient convert(PatientModel source) {
-        return Patient.builder()
+    public AdminPatientModel convert(Patient source) {
+        return AdminPatientModel.builder()
                 .id(source.getId())
+                .username(source.getUser().getUsername())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
                 .middleName(source.getMiddleName())
-                .photo(storageService.store(source.getPhoto()))
+                .photoUrl(source.getPhoto())
                 .isWork(source.getIsWork())
                 .isMale(source.getIsMale())
                 .dateOfBirth(source.getDateOfBirth())
                 .phone(source.getPhone())
                 .email(source.getEmail())
-                .education(new Education(source.getEducationId()))
+                .educationId(ObjectUtils.nullSafe(source.getEducation(), AbstractModel::getId))
                 .build();
     }
 }

@@ -22,7 +22,7 @@ public class PatientChatController {
 
     @GetMapping
     public String index(Model model) {
-        Long userId = securityService.getUser().getId();
+        Long userId = securityService.getId();
 
         model
                 .addAttribute("messages", messageService.getAllByUserId(userId));
@@ -36,7 +36,7 @@ public class PatientChatController {
 
         }
 
-        messageModel.setFromUserId(securityService.getUser().getId());
+        messageModel.setFromUserId(securityService.getId());
         messageService.save(messageModel);
 
         return "";

@@ -6,9 +6,9 @@ import loc.aliar.monitoringsystem.exception.UserNotAuthenticatedException;
 import loc.aliar.monitoringsystem.model.AdminModel;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
+import loc.aliar.monitoringsystem.service.DoctorService;
+import loc.aliar.monitoringsystem.service.PatientService;
 import loc.aliar.monitoringsystem.service.SecurityService;
-import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
-import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
 import loc.aliar.monitoringsystem.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -23,8 +23,8 @@ import static loc.aliar.monitoringsystem.domain.Role.ID_ROLES;
 @Service
 @RequiredArgsConstructor
 public class SecurityServiceImpl implements SecurityService {
-    private final AdminPatientService adminPatientService;
-    private final AdminDoctorService adminDoctorService;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
     private final AdminService adminService;
 
     @Override
@@ -36,22 +36,27 @@ public class SecurityServiceImpl implements SecurityService {
         return user
                 .filter(User.class::isInstance)
                 .map(User.class::cast)
-                .orElseThrow(() -> new UserNotAuthenticatedException("User is not authenticated"));
+                .orElseThrow(UserNotAuthenticatedException::new);
+    }
+
+    @Override
+    public Long getId() {
+        return getUser().getId();
     }
 
     @Override
     public AdminModel getAdminModel() {
-        return adminService.get(getUser().getId());
+        return adminService.get(getId());
     }
 
     @Override
     public DoctorModel getDoctorModel() {
-        return adminDoctorService.get(getUser().getId());
+        return doctorService.get(getId());
     }
 
     @Override
     public PatientModel getPatientModel() {
-        return adminPatientService.get(getUser().getId());
+        return patientService.get(getId());
     }
 
     @Override

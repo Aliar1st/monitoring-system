@@ -16,8 +16,8 @@ public class Admin extends AbstractModel {
     @ManyToOne(optional = false)
     private Department department;
 
-    @OneToOne(optional = false)
     @MapsId
+    @OneToOne(optional = false)
     private User user;
 
     @Builder

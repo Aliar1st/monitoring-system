@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,7 +16,7 @@ public class Load extends AbstractModel {
     @Column(unique = true, length = 255, nullable = false)
     private String name;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private LoadType loadType;
 
     public Load(Long id) {

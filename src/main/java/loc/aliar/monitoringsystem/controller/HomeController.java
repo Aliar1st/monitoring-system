@@ -1,7 +1,9 @@
 package loc.aliar.monitoringsystem.controller;
 
 import loc.aliar.monitoringsystem.config.Constants;
+import loc.aliar.monitoringsystem.domain.Department;
 import loc.aliar.monitoringsystem.domain.User;
+import loc.aliar.monitoringsystem.exception.DepartmentNotFoundException;
 import loc.aliar.monitoringsystem.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -45,6 +47,9 @@ public class HomeController {
     @PostMapping("/auth/choose-department")
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'PATIENT')")
     public String chooseDep(@AuthenticationPrincipal User user, HttpSession session, Integer departmentId) {
+        if (!Department.ID_DEPARTMENTS.containsKey(departmentId)) {
+            throw new DepartmentNotFoundException(departmentId);
+        }
         session.setAttribute(Constants.DEP_ATTR, departmentId);
         switch (ID_ROLES.get(user.getRole().getId())) {
             case SUPER_ADMIN:

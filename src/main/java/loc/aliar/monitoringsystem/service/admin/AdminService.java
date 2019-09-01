@@ -1,9 +1,8 @@
 package loc.aliar.monitoringsystem.service.admin;
 
 import loc.aliar.monitoringsystem.domain.Admin;
-import loc.aliar.monitoringsystem.domain.User;
 import loc.aliar.monitoringsystem.model.AdminModel;
-import loc.aliar.monitoringsystem.model.UserModel;
+import loc.aliar.monitoringsystem.service.CrudService;
 
 import java.util.List;
 

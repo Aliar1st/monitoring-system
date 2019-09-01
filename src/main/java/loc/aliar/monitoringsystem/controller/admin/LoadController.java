@@ -2,7 +2,7 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.domain.Load;
 import loc.aliar.monitoringsystem.model.LoadModel;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.admin.LoadService;
 import loc.aliar.monitoringsystem.service.admin.LoadTypeService;
 import lombok.RequiredArgsConstructor;

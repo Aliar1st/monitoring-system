@@ -23,13 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .formLogin().permitAll().and()
+                .formLogin()
+                    .defaultSuccessUrl("/", true)
+                    .permitAll()
+                .and()
                 .authorizeRequests()
-//                .mvcMatchers("/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN")
-//                .mvcMatchers("/doctor/**").hasRole("DOCTOR")
-//                .mvcMatchers("/patient/**", "readings/**").hasRole("PATIENT")
-//                .anyRequest().authenticated();
-                .anyRequest().permitAll();
+                    .mvcMatchers("/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN")
+                    .mvcMatchers("/doctor/**").hasRole("DOCTOR")
+                    .mvcMatchers("/patient/**", "cardioReadings/**").hasRole("PATIENT")
+                    .anyRequest().authenticated();
+//                .anyRequest().permitAll();
     }
 
     @Override

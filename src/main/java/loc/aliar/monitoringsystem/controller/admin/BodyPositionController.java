@@ -2,8 +2,8 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.domain.BodyPosition;
 import loc.aliar.monitoringsystem.model.BodyPositionModel;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.admin.BodyPositionService;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

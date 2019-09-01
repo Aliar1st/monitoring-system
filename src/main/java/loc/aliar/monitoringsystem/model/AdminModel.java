@@ -22,8 +22,7 @@ public class AdminModel implements IdAble {
 
     @NotEmpty
     @Size(min = 4, max = 50)
-    @Unique(value = UserRepository.class,
-            fieldName = "username")
+    @Unique(value = UserRepository.class, fieldName = "username")
     private String username;
 
     @NotEmpty

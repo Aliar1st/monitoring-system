@@ -2,11 +2,10 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.domain.Patient;
-import loc.aliar.monitoringsystem.model.PatientModel;
-import loc.aliar.monitoringsystem.service.SecurityService;
+import loc.aliar.monitoringsystem.model.AdminPatientModel;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
 import loc.aliar.monitoringsystem.service.admin.AdminPatientService;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
 import loc.aliar.monitoringsystem.service.admin.EducationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,15 +19,16 @@ import javax.validation.Valid;
 @Controller("adminPatientController")
 @RequestMapping("admin/patients")
 @RequiredArgsConstructor
-public class PatientController implements BaseAdminController<Patient, PatientModel> {
+public class PatientController implements BaseAdminController<Patient, AdminPatientModel> {
     private final AdminPatientService service;
     private final EducationService educationService;
     private final AdminDoctorService adminDoctorService;
-    private final SecurityService securityService;
 
     @GetMapping
-    public String index(Model model) {
-        return indexDefault(model);
+    public String index(Model model, HttpSession session) {
+        Integer depId = (Integer) session.getAttribute(Constants.DEP_ATTR);
+        model.addAttribute(service.getAllByDepartmentId(depId));
+        return getHtmlFolder() + INDEX_TEMPLATE_NAME;
     }
 
     @GetMapping("add")
@@ -38,7 +38,7 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
 
     @PostMapping
     public String create(
-            @Valid PatientModel entityModel, BindingResult bindingResult,
+            @Valid AdminPatientModel entityModel, BindingResult bindingResult,
             Model model, HttpSession session) {
         return createDefault(entityModel, bindingResult, model, session);
     }
@@ -50,7 +50,7 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
 
     @PutMapping("{id}")
     public String edit(
-            @PathVariable Long id, @Valid PatientModel entityModel, BindingResult bindingResult,
+            @PathVariable Long id, @Valid AdminPatientModel entityModel, BindingResult bindingResult,
             Model model, HttpSession session) {
         return editDefault(id, entityModel, bindingResult, model, session);
     }
@@ -69,12 +69,12 @@ public class PatientController implements BaseAdminController<Patient, PatientMo
     }
 
     @Override
-    public Class<PatientModel> getModelClass() {
-        return PatientModel.class;
+    public Class<AdminPatientModel> getModelClass() {
+        return AdminPatientModel.class;
     }
 
     @Override
-    public CrudService<Patient, PatientModel> getCrudService() {
+    public CrudService<Patient, AdminPatientModel> getCrudService() {
         return service;
     }
 

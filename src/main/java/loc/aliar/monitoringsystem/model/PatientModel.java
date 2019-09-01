@@ -1,13 +1,9 @@
 package loc.aliar.monitoringsystem.model;
 
+import loc.aliar.monitoringsystem.config.Constants;
 import loc.aliar.monitoringsystem.repository.EducationRepository;
-import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.validation.annotation.Exists;
-import loc.aliar.monitoringsystem.validation.annotation.NewUserPassword;
-import loc.aliar.monitoringsystem.validation.annotation.Unique;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -19,18 +15,8 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@NewUserPassword
 public class PatientModel implements IdAble {
     private Long id;
-
-    @NotEmpty
-    @Length(min = 4, max = 50)
-    @Unique(value = UserRepository.class,
-            fieldName = "username")
-    private String username;
-
-    @Length(min = 4, max = 50)
-    private String password;
 
     @NotEmpty
     @Size(min = 2, max = 50)
@@ -44,8 +30,6 @@ public class PatientModel implements IdAble {
     private String middleName;
 
     private String photoUrl;
-
-    private MultipartFile photo;
 
     @NotNull
     private Boolean isWork;
@@ -66,7 +50,7 @@ public class PatientModel implements IdAble {
     @Exists(EducationRepository.class)
     private Long educationId;
 
-    public String fullName() {
-        return getLastName() + " " + getFirstName();
+    public String getFullName() {
+        return String.format(Constants.FULL_NAME_FORMAT, getFirstName(), getLastName());
     }
 }

@@ -35,7 +35,7 @@
                 <p class="card-category">Вы можете изменить свою личную информацию</p>
             </div>
             <div class="card-body">
-                <form th:action="@{/patient/general_information/__${id}__}" th:object="${patientModel}" method="POST">
+                <form th:action="@{/patient}" th:object="${patientModel}" method="POST">
                     <input type="hidden" name="_method" value="put" />
                     <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
 <!--                {!! Form::model($general_information, ['route' => 'patient.update']) !!}-->
@@ -102,7 +102,7 @@
                         <div class="col-md-3">
                             <div class="form-group bmd-form-group is-filled">
                                 <label class="bmd-label-floating">Занятость</label>
-                                <select required class="form-control" aria-label="load_type" th:field="*{educationId}">
+                                <select required class="form-control" aria-label="load_type" th:field="*{isWork}">
                                     <option value="" selected="selected" style=" display: none;">Выберите занятость</option>
                                     <option th:value="true">Работаю</option>
                                     <option th:value="false">Не работаю</option>

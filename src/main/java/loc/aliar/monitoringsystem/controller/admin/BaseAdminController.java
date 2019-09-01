@@ -1,7 +1,7 @@
 package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.model.IdAble;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
+import loc.aliar.monitoringsystem.service.CrudService;
 import lombok.SneakyThrows;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,28 +9,33 @@ import org.springframework.validation.BindingResult;
 import javax.servlet.http.HttpSession;
 
 public interface BaseAdminController<E, M extends IdAble> {
+
+    String INDEX_TEMPLATE_NAME = "index";
+    String CREATE_TEMPLATE_NAME = "create";
+    String EDIT_TEMPLATE_NAME = "edit";
+
     default String indexDefault(Model model) {
         model.addAttribute(getCrudService().getAll());
-        return getHtmlFolder() + "index";
+        return getHtmlFolder() + INDEX_TEMPLATE_NAME;
     }
 
     @SneakyThrows
     default String createDefault(Model model) {
         model.addAttribute(getModelClass().newInstance());
         setAdditionAttributes(model);
-        return getHtmlFolder() + "create";
+        return getHtmlFolder() + CREATE_TEMPLATE_NAME;
     }
 
     @SneakyThrows
     default String createDefault(Model model, HttpSession session) {
         model.addAttribute(getModelClass().newInstance());
         setAdditionAttributes(model, session);
-        return getHtmlFolder() + "create";
+        return getHtmlFolder() + CREATE_TEMPLATE_NAME;
     }
 
     default String createDefault(M entityModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return getHtmlFolder() + "create";
+            return getHtmlFolder() + CREATE_TEMPLATE_NAME;
         }
 
         getCrudService().save(entityModel);
@@ -41,7 +46,7 @@ public interface BaseAdminController<E, M extends IdAble> {
     default String createDefault(M entityModel, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             setAdditionAttributes(model);
-            return getHtmlFolder() + "create";
+            return getHtmlFolder() + CREATE_TEMPLATE_NAME;
         }
 
         getCrudService().save(entityModel);
@@ -52,7 +57,7 @@ public interface BaseAdminController<E, M extends IdAble> {
     default String createDefault(M entityModel, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             setAdditionAttributes(model, session);
-            return getHtmlFolder() + "create";
+            return getHtmlFolder() + CREATE_TEMPLATE_NAME;
         }
 
         prepareModelToSave(entityModel, session);
@@ -64,22 +69,21 @@ public interface BaseAdminController<E, M extends IdAble> {
     default String editDefault(Long id, Model model) {
         model.addAttribute(getCrudService().get(id));
         setAdditionAttributes(model);
-        return getHtmlFolder() + "edit";
+        return getHtmlFolder() + EDIT_TEMPLATE_NAME;
     }
 
     default String editDefault(Long id, Model model, HttpSession session) {
         model.addAttribute(getCrudService().get(id));
         setAdditionAttributes(model, session);
-        return getHtmlFolder() + "edit";
+        return getHtmlFolder() + EDIT_TEMPLATE_NAME;
     }
 
     default String editDefault(Long id, M entityModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return getHtmlFolder() + "edit";
+            return getHtmlFolder() + EDIT_TEMPLATE_NAME;
         }
 
-        entityModel.setId(id);
-        getCrudService().save(entityModel);
+        getCrudService().save(id, entityModel);
 
         return getRedirectToRootPath();
     }
@@ -87,11 +91,10 @@ public interface BaseAdminController<E, M extends IdAble> {
     default String editDefault(Long id, M entityModel, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             setAdditionAttributes(model);
-            return getHtmlFolder() + "edit";
+            return getHtmlFolder() + EDIT_TEMPLATE_NAME;
         }
 
-        entityModel.setId(id);
-        getCrudService().save(entityModel);
+        getCrudService().save(id, entityModel);
 
         return getRedirectToRootPath();
     }
@@ -99,12 +102,11 @@ public interface BaseAdminController<E, M extends IdAble> {
     default String editDefault(Long id, M entityModel, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             setAdditionAttributes(model, session);
-            return getHtmlFolder() + "edit";
+            return getHtmlFolder() + EDIT_TEMPLATE_NAME;
         }
 
-        entityModel.setId(id);
         prepareModelToSave(entityModel, session);
-        getCrudService().save(entityModel);
+        getCrudService().save(id, entityModel);
 
         return getRedirectToRootPath();
     }

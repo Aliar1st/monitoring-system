@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -21,12 +21,11 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final AdminRepository adminRepository;
     private final ConversionService conversionService;
-//    private final SecurityService securityService;
 
     @Override
     public List<AdminModel> getAllByDepartmentId(Long departmentId) {
         List<Admin> admins = adminRepository.findAllByDepartmentId(departmentId);
-        return convertEntitiesListToModels(admins);
+        return convertToModelList(admins);
     }
 
     @Override
@@ -36,9 +35,6 @@ public class AdminServiceImpl implements AdminService {
 
         Admin admin = conversionService.convert(model, Admin.class);
         admin.setUser(user);
-//        if (securityService.isAdmin()) {
-//            admin.setDepartment(new Department(securityService.getDepartmentId()));
-//        }
         adminRepository.save(admin);
 
         return conversionService.convert(admin, AdminModel.class);

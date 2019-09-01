@@ -30,7 +30,7 @@
                         </div>
 
 
-                        <form th:action="@{/auth/choose_department}" method="POST">
+                        <form th:action="@{/auth/choose-department}" method="POST">
 
                             <th:block>
                                 <!--                                <form th:action="@{login}" th:object="${loginForm}" method="POST">-->
@@ -63,7 +63,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="radio-value" name="val" th:value="">
+                                    <input type="hidden" id="radio-value" name="departmentId">
     <!--                                <input type="text" id="radio-value" name="radio-value" />-->
                                 </div>
                                 <a th:href="@{/admin/admins}">

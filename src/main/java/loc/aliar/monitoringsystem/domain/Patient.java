@@ -42,17 +42,18 @@ public class Patient extends AbstractModel {
     @ManyToOne
     private Education education;
 
-    @OneToOne(optional = false)
+    @MapsId
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
-
-    @OneToOne(mappedBy = "patient")
-    private CardioMedicalInfo cardioMedicalInfo;
 
     @ManyToMany(mappedBy = "patients")
     private List<Doctor> doctors;
 
+    @OneToOne(mappedBy = "patient", fetch = FetchType.LAZY)
+    private CardioMedicalInfo cardioMedicalInfo;
+
     @OneToMany(mappedBy = "patient")
-    private List<Reading> readings;
+    private List<CardioReading> cardioReadings;
 
     public Patient(Long id) {
         super(id);

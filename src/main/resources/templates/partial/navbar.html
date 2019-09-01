@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav">
 <!--                    @isset($unreadCount)-->
-                    <th:block th:if="(${unreadCount} > 0) AND !${#strings.contains(#httpServletRequest.requestURI, '/admin')}" >
+                    <th:block th:if="!${#strings.contains(#httpServletRequest.requestURI, '/admin')} AND (${unreadCount} > 0)" >
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdownMenuLin"
                            data-toggle="dropdown"

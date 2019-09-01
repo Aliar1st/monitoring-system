@@ -1,7 +1,9 @@
 package loc.aliar.monitoringsystem.converter;
 
+import loc.aliar.monitoringsystem.domain.AbstractModel;
 import loc.aliar.monitoringsystem.domain.Patient;
 import loc.aliar.monitoringsystem.model.PatientModel;
+import loc.aliar.monitoringsystem.utils.ObjectUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +13,6 @@ public class PatientToModelConverter implements Converter<Patient, PatientModel>
     public PatientModel convert(Patient source) {
         return PatientModel.builder()
                 .id(source.getId())
-                .username(source.getUser().getUsername())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
                 .middleName(source.getMiddleName())
@@ -21,7 +22,7 @@ public class PatientToModelConverter implements Converter<Patient, PatientModel>
                 .dateOfBirth(source.getDateOfBirth())
                 .phone(source.getPhone())
                 .email(source.getEmail())
-                .educationId(source.getEducation() != null ? source.getEducation().getId() : null)
+                .educationId(ObjectUtils.nullSafe(source.getEducation(), AbstractModel::getId))
                 .build();
     }
 }

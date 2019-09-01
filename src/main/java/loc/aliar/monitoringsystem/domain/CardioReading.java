@@ -2,16 +2,26 @@ package loc.aliar.monitoringsystem.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Reading extends AbstractModel {
+@NamedEntityGraph(name = CardioReading.NEWG_W_ALL_EX_PATIENT, attributeNodes = {
+        @NamedAttributeNode(value = "load", subgraph = CardioReading.NESG_W_LOADTYPE),
+        @NamedAttributeNode("bodyPosition"),
+        @NamedAttributeNode("statement")
+}, subgraphs = {
+        @NamedSubgraph(name = CardioReading.NESG_W_LOADTYPE, attributeNodes = {
+             @NamedAttributeNode("loadType")
+        })
+})
+public class CardioReading extends AbstractModel {
+    public static final String NEWG_W_ALL_EX_PATIENT = "CardioReading.all_ex_patient";
+    public static final String NESG_W_LOADTYPE = "CardioReading.Load.loadType";
+
     @Column(nullable = false)
     private Short duration;
 
@@ -21,7 +31,7 @@ public class Reading extends AbstractModel {
     @Column(nullable = false)
     private Short weight;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Patient patient;
 
     @ManyToOne(optional = false)
@@ -34,7 +44,7 @@ public class Reading extends AbstractModel {
     private Statement statement;
 
     @Builder
-    public Reading(
+    public CardioReading(
             Long id, Short duration, Short growth, Short weight, Patient patient,
             Load load, BodyPosition bodyPosition, Statement statement) {
         super(id);

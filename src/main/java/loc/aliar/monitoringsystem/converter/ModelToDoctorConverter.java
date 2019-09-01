@@ -1,12 +1,15 @@
 package loc.aliar.monitoringsystem.converter;
 
-import loc.aliar.monitoringsystem.domain.*;
+import loc.aliar.monitoringsystem.domain.Degree;
+import loc.aliar.monitoringsystem.domain.Doctor;
+import loc.aliar.monitoringsystem.domain.Position;
+import loc.aliar.monitoringsystem.domain.Specialization;
 import loc.aliar.monitoringsystem.model.DoctorModel;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DoctorModelToDoctorConverter implements Converter<DoctorModel, Doctor> {
+public class ModelToDoctorConverter implements Converter<DoctorModel, Doctor> {
     @Override
     public Doctor convert(DoctorModel source) {
         return Doctor.builder()
@@ -19,7 +22,6 @@ public class DoctorModelToDoctorConverter implements Converter<DoctorModel, Doct
                 .specialization(new Specialization(source.getSpecializationId()))
                 .degree(new Degree(source.getDegreeId()))
                 .position(new Position(source.getPositionId()))
-                .department(new Department(source.getDepartmentId()))
                 .build();
     }
 }

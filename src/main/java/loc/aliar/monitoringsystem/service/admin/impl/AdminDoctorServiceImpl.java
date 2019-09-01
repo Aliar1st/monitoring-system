@@ -2,7 +2,7 @@ package loc.aliar.monitoringsystem.service.admin.impl;
 
 import loc.aliar.monitoringsystem.domain.Doctor;
 import loc.aliar.monitoringsystem.domain.User;
-import loc.aliar.monitoringsystem.model.DoctorModel;
+import loc.aliar.monitoringsystem.model.AdminDoctorModel;
 import loc.aliar.monitoringsystem.repository.DoctorRepository;
 import loc.aliar.monitoringsystem.repository.UserRepository;
 import loc.aliar.monitoringsystem.service.admin.AdminDoctorService;
@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -21,27 +21,23 @@ public class AdminDoctorServiceImpl implements AdminDoctorService {
     private final UserRepository userRepository;
     private final DoctorRepository doctorRepository;
     private final ConversionService conversionService;
-//    private final SecurityService securityService;
 
     @Override
-    public List<DoctorModel> getAllByDepartmentId(Integer departmentId) {
+    public List<AdminDoctorModel> getAllByDepartmentId(Integer departmentId) {
         List<Doctor> doctors = doctorRepository.findAllByDepartmentId(departmentId);
-        return convertEntitiesListToModels(doctors);
+        return convertToModelList(doctors);
     }
 
     @Override
-    public DoctorModel save(DoctorModel model) {
+    public AdminDoctorModel save(AdminDoctorModel model) {
         User user = conversionService.convert(model, User.class);
         userRepository.save(user);
 
         Doctor doctor = conversionService.convert(model, Doctor.class);
         doctor.setUser(user);
-//        if (securityService.isAdmin()) {
-//            doctor.setDepartment(new Department(securityService.getDepartmentId()));
-//        }
         doctorRepository.save(doctor);
 
-        return conversionService.convert(doctor, DoctorModel.class);
+        return conversionService.convert(doctor, AdminDoctorModel.class);
     }
 
     @Override
@@ -60,7 +56,7 @@ public class AdminDoctorServiceImpl implements AdminDoctorService {
     }
 
     @Override
-    public Class<DoctorModel> getModelClass() {
-        return DoctorModel.class;
+    public Class<AdminDoctorModel> getModelClass() {
+        return AdminDoctorModel.class;
     }
 }

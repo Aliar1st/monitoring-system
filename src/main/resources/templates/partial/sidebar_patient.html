@@ -25,14 +25,14 @@
                         <p>Главная страница</p>
                     </a>
                 </li>
-                <li class="nav-item " th:classappend="${#httpServletRequest.requestURI == '/readings/create'} ? 'active' : ''">
-                    <a class="nav-link" th:href="@{/readings/create}">
+                <li class="nav-item " th:classappend="${#httpServletRequest.requestURI == '/cardioReadings/create'} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/cardioReadings/create}">
                         <i class="material-icons">person</i>
                         <p>Оставить показания</p>
                     </a>
                 </li>
-                <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/readings'} ? 'active' : ''">
-                    <a class="nav-link" th:href="@{/readings}">
+                <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/cardio-readings'} ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/cardio-readings}">
                         <i class="material-icons">content_paste</i>
                         <p>История реабилитации</p>
                     </a>

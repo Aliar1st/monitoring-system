@@ -25,7 +25,7 @@ public class StatementModel implements IdAble {
     @Min(6)
     @Max(20)
     @Unique(value = StatementRepository.class,
-            fieldName = "borgResult",
+            fieldName = "lastReadingBorg",
             fieldClass = Byte.class)
     private Byte borgResult;
 }

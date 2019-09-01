@@ -1,15 +1,17 @@
 package loc.aliar.monitoringsystem.service;
 
+import loc.aliar.monitoringsystem.domain.Patient;
+import loc.aliar.monitoringsystem.model.CardioCardModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
 
 import java.util.List;
 
-public interface PatientService {
-    Object getMedicalInfo(Integer depId);
+public interface PatientService extends CrudService<Patient, PatientModel> {
+    PatientModel getForCard(Long patientId);
 
-    boolean isRegisteredInDepartment(Integer depId);
+    List<CardioCardModel> getCardsByDoctorId(Long doctorId, Integer departmentId);
 
-    List<PatientModel> getAllByDoctorId(Long doctorId);
+    boolean isRegisteredInDepartment(Long patientId, Integer depId);
 
-    PatientModel getPatient(Long id);
+    List<PatientModel> getAllByDepartmentId(Integer departmentId);
 }

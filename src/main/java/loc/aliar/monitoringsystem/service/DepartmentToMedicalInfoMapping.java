@@ -2,7 +2,6 @@ package loc.aliar.monitoringsystem.service;
 
 import loc.aliar.monitoringsystem.domain.Department;
 import loc.aliar.monitoringsystem.service.admin.CardioMedInfoService;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

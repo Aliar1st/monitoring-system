@@ -15,7 +15,7 @@
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
-                <form th:action="@{/readings}" th:object="${readingModel}" method="POST">
+                <form th:action="@{/cardio-readings}" th:object="${cardioReadingModel}" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -146,7 +146,7 @@
     </div>
 
     <div layout:fragment="scripts">
-        <script th:src="@{/scripts/custom/custom-create-reading.js}"></script>
+        <script th:src="@{/scripts/custom/custom-create-cardioReading.js}"></script>
     </div>
 </body>
 </html>

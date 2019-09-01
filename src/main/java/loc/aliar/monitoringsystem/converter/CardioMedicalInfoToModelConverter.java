@@ -6,7 +6,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CardioMedInfoToModelConverter implements Converter<CardioMedicalInfo, CardioMedicalInfoModel> {
+public class CardioMedicalInfoToModelConverter implements Converter<CardioMedicalInfo, CardioMedicalInfoModel> {
     @Override
     public CardioMedicalInfoModel convert(CardioMedicalInfo source) {
         return CardioMedicalInfoModel.builder()
@@ -60,7 +60,6 @@ public class CardioMedInfoToModelConverter implements Converter<CardioMedicalInf
                 .dysphoric(source.getPatientDiseaseAttitude().getDysphoric())
                 .personality_type(source.getPatientDiseaseAttitude().getPersonality_type())
                 .type_relationship(source.getPatientDiseaseAttitude().getType_relationship())
-                .patientId(source.getPatient().getId())
                 .build();
     }
 }

@@ -33,14 +33,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="p : ${patientModelList}">
+                    <th:block th:each="p : ${adminPatientModelList}">
                         <tr>
                             <td th:text="${p.id}"></td>
                             <td th:text="${p.lastName}"></td>
                             <td th:text="${p.firstName}"></td>
                             <td th:text="${p.middleName}"></td>
-                            <td th:text="${lastDate}"></td>
-                            <td th:text="${lastScore}"></td>
+                            <td th:text="${p.lastDate}"></td>
+                            <td th:text="${p.lastScore}"></td>
                             <td th:text="${p.phone}"></td>
                             <td class="text-primary">
                                 <a th:href="@{/admin/patients/__${p.id}__/edit}" class="btn btn-primary ">Редактировать</a>

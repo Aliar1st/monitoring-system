@@ -2,7 +2,7 @@ package loc.aliar.monitoringsystem.converter;
 
 import loc.aliar.monitoringsystem.domain.Role;
 import loc.aliar.monitoringsystem.domain.User;
-import loc.aliar.monitoringsystem.model.DoctorModel;
+import loc.aliar.monitoringsystem.model.AdminDoctorModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DoctorModelToUserConverter implements Converter<DoctorModel, User> {
+public class AdminDoctorModelToUserConverter implements Converter<AdminDoctorModel, User> {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User convert(DoctorModel source) {
+    public User convert(AdminDoctorModel source) {
         return User.builder()
                 .id(source.getId())
                 .username(source.getUsername())

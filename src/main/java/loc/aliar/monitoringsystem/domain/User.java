@@ -1,7 +1,6 @@
 package loc.aliar.monitoringsystem.domain;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -16,7 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "usr")
+@NamedEntityGraph(name = User.NEGW_ROLE,
+        attributeNodes = @NamedAttributeNode("role"))
 public class User implements UserDetails {
+    public static final String NEGW_ROLE = "User.role";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +30,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Role role;
 
     @OneToMany(mappedBy = "fromUser")
@@ -37,7 +40,7 @@ public class User implements UserDetails {
     private List<Message> receivedMessages;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<Role> getAuthorities() {
         return Collections.singletonList(role);
     }
 

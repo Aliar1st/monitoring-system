@@ -2,10 +2,7 @@ package loc.aliar.monitoringsystem.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -90,15 +87,16 @@ public class CardioMedicalInfo extends AbstractModel {
     @Embedded
     private PatientDiseaseAttitude patientDiseaseAttitude;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @MapsId
     private Patient patient;
 
     @Builder
     public CardioMedicalInfo(
             Long id, String basicDiagnosis, String concomitantDiagnosis, String operations,
             String oslozhneniye, Short kdoLzh, Short ksoLzh, Short imm, Short fv, Short ksoLp,
-            Short ksoPp, Short sdla, String diastDisf, String lokalnSokr, String khmEkg,
-            String osnRitm, String zhaZht, String sumIshemiya, String ekgRitm, String narRitma,
+            Short ksoPp, Short sdla, String diastDisf, String lokalnSokr, String khmEkg, String osnRitm,
+            String nzhaNzhtzhaZht, String zhaZht, String sumIshemiya, String ekgRitm, String narRitma,
             String narprovodimosti, String st, String tolerantnost, String prichinaPrekrashch,
             Short prodolzhNagruzki, Double okh, Double lpnp, Double lpvp, Double tg, Double alt,
             Double ast, Double glyu, Double kr, String medikamentyGruppy, String kag,
@@ -119,6 +117,7 @@ public class CardioMedicalInfo extends AbstractModel {
         this.lokalnSokr = lokalnSokr;
         this.khmEkg = khmEkg;
         this.osnRitm = osnRitm;
+        this.nzhaNzhtzhaZht = nzhaNzhtzhaZht;
         this.zhaZht = zhaZht;
         this.sumIshemiya = sumIshemiya;
         this.ekgRitm = ekgRitm;

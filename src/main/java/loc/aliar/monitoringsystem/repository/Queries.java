@@ -1,6 +1,6 @@
 package loc.aliar.monitoringsystem.repository;
 
-public abstract class Queries {
+abstract class Queries {
     private Queries() {
     }
 
@@ -15,12 +15,12 @@ public abstract class Queries {
             "SELECT CONCAT(d.first_name, CONCAT(' ', d.last_name)) doctor " +
             "     , CONCAT(gi.first_name, CONCAT(' ', gi.last_name)) patient " +
             " 	  , COUNT(r.id) count_interval " +
-            "     , (SELECT COUNT(r.id) FROM readings r WHERE r.patient_id = p.id) count_all " +
-            "     , (SELECT max(r.date) FROM readings r WHERE r.patient_id = p.id) last_date " +
+            "     , (SELECT COUNT(r.id) FROM cardioReadings r WHERE r.patient_id = p.id) count_all " +
+            "     , (SELECT max(r.date) FROM cardioReadings r WHERE r.patient_id = p.id) last_date " +
             "   FROM patients p " +
             "   JOIN general_information gi ON gi.id = p.general_information_id " +
             "   JOIN doctors d ON d.id = p.doctor_id " +
-            "   LEFT JOIN readings r ON r.patient_id = p.id " +
+            "   LEFT JOIN cardioReadings r ON r.patient_id = p.id " +
             "   WHERE r.date BETWEEN ?1 AND ?2 " +
             "   OR r.id IS NULL " +
             "   GROUP BY p.id " +
@@ -69,7 +69,7 @@ public abstract class Queries {
             "                          FROM patients p " +
             "                          JOIN general_information gi ON gi.id = p.general_information_id " +
             "                          JOIN doctors d ON d.id = p.doctor_id " +
-            "                          LEFT JOIN readings r ON r.patient_id = p.id " +
+            "                          LEFT JOIN cardioReadings r ON r.patient_id = p.id " +
             "                          LEFT JOIN loads l ON l.id = r.load_id " +
             "                          LEFT JOIN statements s ON s.id = l.statement_id " +
             "                         WHERE r.date BETWEEN ?1 and ?2 " +

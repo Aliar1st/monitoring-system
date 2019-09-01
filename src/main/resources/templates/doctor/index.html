@@ -8,7 +8,7 @@
 </head>
 <body>
     <th:block layout:fragment="contentDoctor">
-        <th:block th:each="a : ${patientModelList}">
+        <th:block th:each="a : ${cardioCardModelList}">
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
@@ -17,11 +17,11 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray"><span th:text="${a.dateOfBirth}" th:remove="tag"></span></h6>
-                        <h4 class="card-title"><span th:text="${a.fullName()}" th:remove="tag"></span></h4>
+                        <h4 class="card-title"><span th:text="${a.fullName}" th:remove="tag"></span></h4>
                         <p class="card-description">
-                        <p><strong>Дата последних показаний</strong><th:block th:utext="': ' + ${lastDate}"/></p>
-                        <p><strong>Время последних показаний</strong><th:block th:utext="': ' + ${lastTime}"/></p>
-                        <p><strong>Результат последних показаний</strong><th:block th:utext="': ' + ${lastScore} + ' баллов'"/></p>
+                        <p><strong>Дата последних показаний</strong><th:block th:utext="': ' + ${a.lastReadingDate}"/></p>
+                        <p><strong>Время последних показаний</strong><th:block th:utext="': ' + ${a.lastReadingDate}"/></p>
+                        <p><strong>Результат последних показаний</strong><th:block th:utext="': ' + ${a.lastReadingBorg} + ' баллов'"/></p>
 
                         <a th:href="@{/doctor/__${a.id}__}" class="btn btn-primary btn-round">Перейти</a>
                     </div>

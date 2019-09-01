@@ -2,7 +2,7 @@ package loc.aliar.monitoringsystem.controller.admin;
 
 import loc.aliar.monitoringsystem.domain.Specialization;
 import loc.aliar.monitoringsystem.model.SpecializationModel;
-import loc.aliar.monitoringsystem.service.admin.CrudService;
+import loc.aliar.monitoringsystem.service.CrudService;
 import loc.aliar.monitoringsystem.service.admin.SpecializationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

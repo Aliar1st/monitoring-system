@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="col-md-12" layout:fragment="contentAdmin">
-        <form th:action="@{/admin/patients/__${id}__}" th:object="${patientModel}" method="POST">
+        <form th:action="@{/admin/patients/__${id}__}" th:object="${adminPatientModel}" method="POST">
             <input type="hidden" name="_method" value="put" />
             <input type="hidden" th:field="*{id}" name="id" th:value="${id}">
             <!--    {!! Form::model($general_information, ['route' => ['patients.update', $patient->id], 'method' => 'put']) !!}-->

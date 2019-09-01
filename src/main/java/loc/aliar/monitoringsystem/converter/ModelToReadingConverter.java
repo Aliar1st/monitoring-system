@@ -1,15 +1,15 @@
 package loc.aliar.monitoringsystem.converter;
 
 import loc.aliar.monitoringsystem.domain.*;
-import loc.aliar.monitoringsystem.model.ReadingModel;
+import loc.aliar.monitoringsystem.model.CardioReadingModel;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ModelToReadingConverter implements Converter<ReadingModel, Reading> {
+public class ModelToReadingConverter implements Converter<CardioReadingModel, CardioReading> {
     @Override
-    public Reading convert(ReadingModel source) {
-        return Reading.builder()
+    public CardioReading convert(CardioReadingModel source) {
+        return CardioReading.builder()
                 .id(source.getId())
                 .weight(source.getWeight())
                 .growth(source.getGrowth())

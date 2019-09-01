@@ -1,60 +1,76 @@
 package loc.aliar.monitoringsystem.controller;
 
+import loc.aliar.monitoringsystem.model.CardioCardModel;
 import loc.aliar.monitoringsystem.model.PatientModel;
-import loc.aliar.monitoringsystem.model.ReadingModel;
-import loc.aliar.monitoringsystem.service.ReadingService;
+import loc.aliar.monitoringsystem.service.CardioReadingService;
+import loc.aliar.monitoringsystem.service.PatientService;
 import loc.aliar.monitoringsystem.service.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.time.format.DateTimeFormatter;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-@ControllerAdvice
+import static loc.aliar.monitoringsystem.config.Constants.DATETIME_FORMAT;
+import static loc.aliar.monitoringsystem.config.Constants.DATE_FORMAT;
+
+@ControllerAdvice(basePackageClasses = {
+        PatientController.class,
+        CardioReadingController.class
+})
 @RequiredArgsConstructor
 public class PatientAttributesController {
+    private static final String DATE_OF_BIRTH_ATTR = "dob";
+    private static final String NAME_ATTR = "name";
+    private static final String PHOTO_ATTR = "photo";
+    private static final String LAST_READING_DATE_ATTR = "lastDate";
+    private static final String LAST_BORG_SCORE_ATTR = "lastScore";
+
     private final SecurityService securityService;
-    private final ReadingService readingService;
+    private final PatientService patientService;
+    private final CardioReadingService cardioReadingService;
 
     @ModelAttribute
-    public void unreadCount(Model model) {
-        if (securityService.isPatient() || securityService.isDoctor()) {
-            model.addAttribute("unreadCount", 5);
+    public void unreadCount(Authentication authentication, Model model) {
+        if (authentication == null || !(securityService.isPatient() || securityService.isDoctor())) {
+            return;
         }
+
+        model.addAttribute("unreadCount", 5);
     }
 
     @ModelAttribute
-    public void profileCard(Model model) {
-        if (securityService.isPatient()) {
-            PatientModel patientModel = securityService.getPatientModel();
-
-            String dob = patientModel.getDateOfBirth().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-            String name = patientModel.fullName();
-            String photo = patientModel.getPhotoUrl();
-
-            Optional<ReadingModel> lastReadingOpt =
-                    readingService.getLastByPatientId(securityService.getUser().getId());
-            String lastDate;
-            String lastTime;
-            String lastScore;
-
-            if (lastReadingOpt.isPresent()) {
-                ReadingModel lastReading = lastReadingOpt.get();
-                lastDate = lastReading.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                lastTime = lastReading.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                lastScore = lastReading.getBorg().toString();
-            } else {
-                lastDate = lastTime = lastScore = "н/д";
-            }
-
-            model.addAttribute("dob", dob)
-                    .addAttribute("name", name)
-                    .addAttribute("photo", photo)
-                    .addAttribute("lastDate", lastDate)
-                    .addAttribute("lastTime", lastTime)
-                    .addAttribute("lastScore", lastScore);
+    public void profileCard(Authentication authentication, Model model, HttpServletRequest request) {
+        if (authentication == null || !securityService.isPatient()) {
+            return;
         }
+
+        Optional<CardioCardModel> card = cardioReadingService.getCardByPatientId(securityService.getId());
+
+        if (card.isPresent()) {
+            addAttributesFromCard(card.get(), model);
+        } else {
+            PatientModel patientModel = patientService.getForCard(securityService.getId());
+            addAttributesFromPatientModel(patientModel, model);
+        }
+
+        model.addAttribute("lastTime", model.asMap().get(LAST_READING_DATE_ATTR));
+    }
+
+    private void addAttributesFromCard(CardioCardModel cardModel, Model model) {
+        model.addAttribute(DATE_OF_BIRTH_ATTR, cardModel.getDateOfBirth().format(DATE_FORMAT));
+        model.addAttribute(NAME_ATTR, cardModel.getFullName());
+        model.addAttribute(PHOTO_ATTR, cardModel.getPhoto());
+        model.addAttribute(LAST_READING_DATE_ATTR, cardModel.getLastReadingDate().format(DATETIME_FORMAT));
+        model.addAttribute(LAST_BORG_SCORE_ATTR, cardModel.getLastReadingBorg());
+    }
+
+    private void addAttributesFromPatientModel(PatientModel patientModel, Model model) {
+        model.addAttribute(DATE_OF_BIRTH_ATTR, patientModel.getDateOfBirth().format(DATE_FORMAT));
+        model.addAttribute(NAME_ATTR, patientModel.getFullName());
+        model.addAttribute(PHOTO_ATTR, patientModel.getPhotoUrl());
     }
 }

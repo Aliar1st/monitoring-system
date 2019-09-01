@@ -14,11 +14,11 @@
             </div>
             <div class="card-body">
                 <canvas id="myChart"></canvas>
-                <form id="chartDateForm" th:action="@{/readings/chartData}" th:object="${chartDataRequest}" method="GET">
-<!--                {!! Form::open(['route' => ['readings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}-->
+                <form id="chartDateForm" th:action="@{/cardio-readings/chartData}" th:object="${chartDataRequest}" method="GET">
+<!--                {!! Form::open(['route' => ['cardioReadings.chartdata', Auth::user()->patient->id], 'id' => 'chartDateForm']) !!}-->
                 <div class="row justify-content-md-center">
                     <div class="col-md-4">
-                        <div class="form-group bmd-form-group is-filled time-readings">
+                        <div class="form-group bmd-form-group is-filled time-cardioReadings">
                             <label class="bmd-label-floating">Временной промежуток</label>
                             <div id="reportrange">
                                 <i class="fa fa-calendar"></i>&nbsp;
@@ -65,7 +65,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <th:block th:each="p : ${readingModelList}">
+                            <th:block th:each="p : ${cardioReadingModelList}">
                                 <tr>
                                     <td th:text="${p.id}"></td>
                                     <td th:text="${p.getDateFormat()}"></td>
@@ -75,7 +75,7 @@
                                     <td th:text="${p.borg}"></td>
                                 </tr>
                             </th:block>
-<!--                            @foreach($readings as $reading)-->
+<!--                            @foreach($cardioReadings as $reading)-->
 <!--                            <tr>-->
 <!--                                <td>{{ $reading->id }}</td>-->
 <!--                                <td>{{ Helper::getDateFromReading($reading) }}</td>-->
